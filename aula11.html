@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 11: Transições e Animações CSS</title>
+    <link rel="stylesheet" href="style.css"> <style>
+        /* Estilos específicos para a página da aula 11 */
+        .aula-container {
+            max-width: 900px;
+            margin: 100px auto 60px auto;
+            padding: 30px;
+            background-color: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
+            animation: fadeInScale 0.8s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            0% { opacity: 0; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .aula-container h1 {
+            color: #00bcd4;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.8em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            border-bottom: 3px solid #e0e0e0;
+            padding-bottom: 20px;
+        }
+
+        .aula-container h2 {
+            color: #343a40;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 2em;
+            border-bottom: 1px solid #ced4da;
+            padding-bottom: 10px;
+        }
+
+        .aula-container h3 {
+            color: #495057;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.6em;
+        }
+
+        .aula-container p {
+            font-size: 1.1em;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .aula-container ul, .aula-container ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .aula-container ul li, .aula-container ol li {
+            margin-bottom: 8px;
+            font-size: 1.05em;
+        }
+
+        .aula-container strong {
+            color: #00bcd4;
+        }
+
+        /* Estilo para blocos de código */
+        .code-example {
+            background-color: #f4f6f8;
+            border-left: 5px solid #00bcd4;
+            padding: 15px 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        .code-example pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .code-example code {
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.95em;
+            color: #333;
+        }
+
+        /* Exemplos Visuais */
+
+        /* Transições */
+        .transition-box {
+            width: 150px;
+            height: 100px;
+            background-color: #4CAF50; /* Green */
+            border: 2px solid #388E3C;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin: 20px auto;
+            cursor: pointer;
+            transition: background-color 0.5s ease, transform 0.3s ease-out; /* Multiplas propriedades */
+        }
+
+        .transition-box:hover {
+            background-color: #FFC107; /* Amber */
+            transform: scale(1.1);
+        }
+
+        .button-transition {
+            background-color: #2196F3; /* Blue */
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin: 10px auto;
+            display: block;
+            width: fit-content;
+            transition: background-color 0.3s linear, box-shadow 0.3s ease-in-out;
+        }
+
+        .button-transition:hover {
+            background-color: #1976D2; /* Darker Blue */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Animações */
+        @keyframes slideInFromLeft {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-30px);
+            }
+            60% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .animation-box {
+            width: 100px;
+            height: 100px;
+            background-color: #FF5722; /* Deep Orange */
+            border: 2px solid #E64A19;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin: 30px auto;
+            animation: slideInFromLeft 1s ease-out forwards; /* Aplica a animação ao carregar */
+        }
+
+        .animated-text {
+            text-align: center;
+            font-size: 1.8em;
+            color: #00796B;
+            margin-top: 40px;
+            animation: bounce 2s infinite;
+        }
+
+        /* Botão para Quiz */
+        .quiz-button-container {
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 30px;
+        }
+
+        .quiz-button {
+            display: inline-block;
+            background-color: #f44336;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .quiz-button:hover {
+            background-color: #d32f2f;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Seção de Situações-Problema */
+        .problema-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .problema-card {
+            background-color: #fefefe;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .problema-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+        }
+
+        .problema-card h3 {
+            color: #2196f3;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed #e0e0e0;
+            padding-bottom: 10px;
+        }
+
+        .problema-card p {
+            font-size: 1em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .problema-card pre {
+            background-color: #eee;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 0.85em;
+            overflow-x: auto;
+        }
+
+        /* Responsividade */
+        @media screen and (max-width: 768px) {
+            .aula-container {
+                margin: 20px auto;
+                padding: 20px;
+            }
+            .aula-container h1 {
+                font-size: 2.2em;
+            }
+            .aula-container h2 {
+                font-size: 1.8em;
+            }
+            .aula-container h3 {
+                font-size: 1.4em;
+            }
+            .aula-container p {
+                font-size: 1em;
+            }
+            .quiz-button {
+                font-size: 1em;
+                padding: 12px 25px;
+            }
+            .transition-box, .animation-box {
+                width: 120px;
+                height: 80px;
+                font-size: 0.9em;
+            }
+            .animated-text {
+                font-size: 1.5em;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .aula-container h1 {
+                font-size: 1.8em;
+            }
+            .aula-container h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Aula 11: Transições e Animações</h1>
+        <nav>
+            <ul>
+                <li><a href="painel.html">Voltar ao Painel</a></li>
+                <li><a href="aula10.html">Aula Anterior</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="aula-container">
+        <h1>Aula 11: Transições e Animações CSS - Dando Vida aos Elementos</h1>
+        <p>Transições e animações CSS permitem criar efeitos visuais fluidos e atraentes sem a necessidade de JavaScript complexo. Elas são fundamentais para melhorar a experiência do usuário, indicando mudanças de estado e tornando a interface mais dinâmica.</p>
+
+        <section>
+            <h2>Transições CSS: Mudanças Suaves de Estado</h2>
+            <p>Transições são usadas para criar um efeito suave e gradual quando uma propriedade CSS de um elemento muda de um estado para outro (ex: no `hover`, `focus`, ou quando uma classe é adicionada/removida via JavaScript).</p>
+
+            <h3>Propriedades das Transições:</h3>
+            <ul>
+                <li><strong><code>transition-property</code>:</strong> Qual propriedade CSS será transicionada (ex: `background-color`, `opacity`, `transform`, `all`). Use `all` para transicionar todas as propriedades que suportam transição.</li>
+                <li><strong><code>transition-duration</code>:</strong> A duração da transição (ex: `0.5s`, `200ms`).</li>
+                <li><strong><code>transition-timing-function</code>:</strong> A velocidade da transição (como ela acelera ou desacelera).
+                    <ul>
+                        <li><code>ease</code> (padrão): Inicia e termina lentamente.</li>
+                        <li><code>linear</code>: Velocidade constante.</li>
+                        <li><code>ease-in</code>: Inicia lentamente.</li>
+                        <li><code>ease-out</code>: Termina lentamente.</li>
+                        <li><code>ease-in-out</code>: Inicia e termina lentamente (mais suave que `ease`).</li>
+                        <li><code>cubic-bezier(...)</code>: Curva de velocidade personalizada.</li>
+                    </ul>
+                </li>
+                <li><strong><code>transition-delay</code>:</strong> Um atraso antes do início da transição.</li>
+            </ul>
+            <p>O shorthand <strong><code>transition</code></strong> combina todas essas propriedades na ordem: `property duration timing-function delay`.</p>
+
+            <div class="code-example">
+                <pre><code>
+.minha-caixa {
+    background-color: blue;
+    transition: background-color 0.5s ease-in-out; /* Transiciona a cor de fundo em 0.5s */
+}
+
+.minha-caixa:hover {
+    background-color: red;
+}
+
+/* Exemplo com múltiplas propriedades */
+.meu-botao {
+    transform: scale(1);
+    opacity: 1;
+    transition: transform 0.3s ease-out, opacity 0.5s linear;
+}
+
+.meu-botao:active {
+    transform: scale(0.95);
+    opacity: 0.8;
+}
+                </code></pre>
+            </div>
+
+            <p><strong>Exemplo de Transição (Passe o mouse sobre a caixa e o botão):</strong></p>
+            <div class="transition-box">Passe o Mouse</div>
+            <button class="button-transition">Clique-me</button>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2>Animações CSS: Sequências de Estilos Complexas</h2>
+            <p>Animações são mais poderosas que transições porque permitem definir múltiplos "quadros-chave" (keyframes) para um efeito que acontece automaticamente, sem a necessidade de um evento de mouse ou clique. Elas podem ser repetidas, atrasadas, revertidas, etc.</p>
+
+            <h3>Passos para Criar uma Animação:</h3>
+            <ol>
+                <li>
+                    <strong>Definir os Keyframes:</strong> Use a regra <code>@keyframes</code> para criar uma sequência de estilos. Você define os estilos em porcentagens (<code>0%</code>, <code>50%</code>, <code>100%</code>) ou com <code>from</code> (0%) e <code>to</code> (100%).
+                    <div class="code-example">
+                        <pre><code>
+@keyframes nomeDaAnimacao {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(100px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+                        </code></pre>
+                    </div>
+                </li>
+                <li>
+                    <strong>Aplicar a Animação ao Elemento:</strong> Use as propriedades `animation` para vincular os keyframes a um elemento.
+                    <ul>
+                        <li><strong><code>animation-name</code>:</strong> O nome da animação (`nomeDaAnimacao`).</li>
+                        <li><strong><code>animation-duration</code>:</strong> Duração de um ciclo da animação.</li>
+                        <li><strong><code>animation-timing-function</code>:</strong> Velocidade (igual às transições).</li>
+                        <li><strong><code>animation-delay</code>:</strong> Atraso antes do início.</li>
+                        <li><strong><code>animation-iteration-count</code>:</strong> Quantas vezes a animação deve rodar (número ou `infinite`).</li>
+                        <li><strong><code>animation-direction</code>:</strong> Se a animação deve ir e voltar (`alternate`, `alternate-reverse`).</li>
+                        <li><strong><code>animation-fill-mode</code>:</strong> Como os estilos do elemento se comportam antes e depois da animação (<code>forwards</code>, <code>backwards</code>, <code>both</code>, `none`). `forwards` mantém o estado final da animação.</li>
+                        <li><strong><code>animation-play-state</code>:</strong> `running` ou `paused`.</li>
+                    </ul>
+                </li>
+            </ol>
+            <p>O shorthand <strong><code>animation</code></strong> combina todas essas propriedades na ordem: `name duration timing-function delay iteration-count direction fill-mode play-state`.</p>
+
+            <div class="code-example">
+                <pre><code>
+.meu-elemento-animado {
+    animation-name: nomeDaAnimacao;
+    animation-duration: 2s;
+    animation-iteration-count: infinite; /* Roda infinitamente */
+    animation-direction: alternate; /* Vai e volta */
+    animation-fill-mode: forwards; /* Mantém o estado final */
+    /* Shorthand: */
+    /* animation: nomeDaAnimacao 2s infinite alternate forwards; */
+}
+                </code></pre>
+            </div>
+
+            <p><strong>Exemplo de Animação (Caixa desliza ao carregar a página, texto pulando):</strong></p>
+            <div class="animation-box">Animação!</div>
+            <p class="animated-text">Este texto "Pula"!</p>
+        </section>
+
+        <hr>
+
+        <div class="quiz-button-container">
+            <h2>Hora do Quiz!</h2>
+            <p>Teste seus conhecimentos sobre Transições e Animações CSS!</p>
+            <a href="https://quizizz.com/admin/quiz/YOUR_QUIZ_CODE_AULA11" target="_blank" class="quiz-button">Fazer o Quiz da Aula 11!</a>
+            <p style="font-size: 0.9em; color: #888; margin-top: 15px;">**Lembre-se:** Substitua "YOUR_QUIZ_CODE_AULA11" pelo código real do seu Quizizz!</p>
+        </div>
+
+        <hr>
+
+        <section>
+            <h2>Situações-Problema: Desafios Práticos com Transições e Animações!</h2>
+            <p>Aplique o que aprendeu para resolver os seguintes cenários. Crie um novo arquivo HTML temporário (ex: `desafios-aula11.html`) e um CSS associado para testar suas soluções.</p>
+
+            <div class="problema-card-grid">
+                <div class="problema-card">
+                    <h3>Problema 1: Botão com Efeito "Flutuar" no Hover</h3>
+                    <p>Crie um botão. Ao passar o mouse sobre ele, o botão deve levemente se mover para cima e ter uma sombra mais pronunciada, de forma suave.</p>
+                    <p>HTML:</p>
+                    <pre><code>
+&lt;button class="hover-button"&gt;Compre Agora&lt;/button&gt;
+                    </code></pre>
+                    <p>CSS:</p>
+                    <pre><code>
+/* Insira seu código CSS aqui para resolver o Problema 1 */
+.hover-button {
+    background-color: #f0f0f0;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    /* Adicione suas transições aqui */
+}
+.hover-button:hover {
+    /* Adicione seus estilos de hover aqui */
+}
+                    </code></pre>
+                </div>
+
+                <div class="problema-card">
+                    <h3>Problema 2: Elemento Sumindo Suavemente</h3>
+                    <p>Crie uma caixa. Ao passar o mouse sobre ela, a caixa deve diminuir sua opacidade de 1 para 0, e também diminuir de tamanho (escalar) de forma suave, desaparecendo gradualmente.</p>
+                    <p>HTML:</p>
+                    <pre><code>
+&lt;div class="fade-out-box"&gt;
+    Passe o mouse para me fazer sumir!
+&lt;/div&gt;
+                    </code></pre>
+                    <p>CSS:</p>
+                    <pre><code>
+/* Insira seu código CSS aqui para resolver o Problema 2 */
+.fade-out-box {
+    width: 180px;
+    height: 120px;
+    background-color: #FFEB3B;
+    border: 1px solid #FBC02D;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    /* Adicione suas transições aqui */
+}
+.fade-out-box:hover {
+    /* Adicione seus estilos de hover aqui */
+}
+                    </code></pre>
+                </div>
+
+                <div class="problema-card">
+                    <h3>Problema 3: Ícone "Girando" Automaticamente</h3>
+                    <p>Crie um ícone (pode ser um `&lt;div&gt;` com texto "⚙️" ou uma imagem). Faça com que ele gire indefinidamente no próprio eixo.</p>
+                    <p>HTML:</p>
+                    <pre><code>
+&lt;div class="rotating-icon"&gt;⚙️&lt;/div&gt;
+                    </code></pre>
+                    <p>CSS:</p>
+                    <pre><code>
+/* Insira seu código CSS aqui para resolver o Problema 3 */
+.rotating-icon {
+    font-size: 3em;
+    display: block;
+    width: fit-content;
+    margin: 50px auto;
+    /* Defina sua animação aqui */
+}
+
+/* Defina seus @keyframes aqui */
+@keyframes spin {
+    /* ... */
+}
+                    </code></pre>
+                </div>
+
+                <div class="problema-card">
+                    <h3>Problema 4: Barra de Progresso Carregando</h3>
+                    <p>Crie uma barra de progresso. Use uma animação para simular o "carregamento", onde uma barra interna se expande de 0% a 100% da largura da barra externa, e então se reinicia.</p>
+                    <p>HTML:</p>
+                    <pre><code>
+&lt;div class="progress-bar-container"&gt;
+    &lt;div class="progress-bar-fill"&gt;&lt;/div&gt;
+&lt;/div&gt;
+                    </code></pre>
+                    <p>CSS:</p>
+                    <pre><code>
+/* Insira seu código CSS aqui para resolver o Problema 4 */
+.progress-bar-container {
+    width: 80%;
+    height: 20px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden; /* Garante que a barra interna não vaze */
+    margin: 30px auto;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    width: 0%; /* Inicia em 0 */
+    background-color: #2196F3;
+    border-radius: 10px;
+    /* Defina sua animação aqui */
+}
+
+/* Defina seus @keyframes aqui */
+@keyframes loadProgress {
+    /* ... */
+}
+                    </code></pre>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Curso de HTML e CSS. Aula 11: Transições e Animações.</p>
+        <p><a href="#topo">Voltar ao Topo</a></p>
+    </footer>
+
+</body>
+</html>

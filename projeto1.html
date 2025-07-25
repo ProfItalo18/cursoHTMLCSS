@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto 1 - Módulo 1: Portfólio Pessoal</title>
+    <link rel="stylesheet" href="style.css"> 
+    <style>
+        /* Estilos específicos para a página do projeto */
+        .project-container {
+            max-width: 900px;
+            margin: 100px auto 60px auto;
+            padding: 30px;
+            background-color: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
+            animation: fadeInScale 0.8s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            0% { opacity: 0; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .project-container h1 {
+            color: #00bcd4;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.8em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            border-bottom: 3px solid #e0e0e0;
+            padding-bottom: 20px;
+        }
+
+        .project-container h2 {
+            color: #343a40;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 2em;
+            border-bottom: 1px solid #ced4da;
+            padding-bottom: 10px;
+        }
+
+        .project-container h3 {
+            color: #495057;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.6em;
+        }
+
+        .project-container p {
+            font-size: 1.1em;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .project-container ul, .project-container ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .project-container ul li, .project-container ol li {
+            margin-bottom: 8px;
+            font-size: 1.05em;
+        }
+
+        .project-container strong {
+            color: #00bcd4;
+        }
+
+        .call-to-action-box {
+            background-color: #e0f2f7;
+            border: 1px solid #b3e5fc;
+            padding: 25px;
+            margin-top: 50px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .call-to-action-box h3 {
+            color: #007bb6;
+            margin-top: 0;
+            font-size: 1.8em;
+        }
+
+        .call-to-action-box p {
+            font-size: 1.1em;
+            margin-bottom: 25px;
+        }
+
+        .start-button {
+            display: inline-block;
+            background-color: #28a745;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .start-button:hover {
+            background-color: #218838;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsividade */
+        @media screen and (max-width: 768px) {
+            .project-container {
+                margin: 20px auto;
+                padding: 20px;
+            }
+            .project-container h1 {
+                font-size: 2.2em;
+            }
+            .project-container h2 {
+                font-size: 1.8em;
+            }
+            .project-container h3 {
+                font-size: 1.4em;
+            }
+            .project-container p {
+                font-size: 1em;
+            }
+            .start-button {
+                font-size: 1em;
+                padding: 12px 25px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .project-container h1 {
+                font-size: 1.8em;
+            }
+            .project-container h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Proposta do Projeto 1: Módulo 1</h1>
+        <nav>
+            <ul>
+                <li><a href="painel.html">Voltar ao Painel</a></li>
+                <li><a href="projetos.html">Ver Todos os Projetos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="project-container">
+        <h1>Projeto 1: Módulo 1 - Construindo Seu Primeiro Portfólio Web Pessoal</h1>
+        <p>Este projeto marca o ponto alto do seu aprendizado no Módulo 1. Você aplicará todos os conceitos essenciais de HTML e CSS que exploramos até agora para criar uma versão inicial do seu próprio Portfólio Web Pessoal. Pense nele como sua primeira vitrine online, exibindo suas habilidades para o mundo!</p>
+
+        <section>
+            <h2>Objetivo do Projeto</h2>
+            <p>Seu principal objetivo aqui é demonstrar sua capacidade de estruturar uma página web com HTML e estilizá-la com CSS, focando em:</p>
+            <ul>
+                <li>Uso correto da **estrutura básica do HTML**, incluindo `&lt;!DOCTYPE html&gt;`, `&lt;html&gt;`, `&lt;head&gt;` e `&lt;body&gt;`.</li>
+                <li>Aplicação de **elementos de texto** como `&lt;p&gt;` (parágrafo) e títulos `&lt;h1&gt;` a `&lt;h6&gt;`.</li>
+                <li>Criação de **listas** utilizando `&lt;ul&gt;` (não ordenada), `&lt;ol&gt;` (ordenada) e `&lt;li&gt;` (item de lista).</li>
+                <li>Inserção de **links** com a tag `&lt;a&gt;` e **imagens** com a tag `&lt;img&gt;`.</li>
+                <li>Compreensão e manipulação do **modelo de caixa**, utilizando propriedades CSS como `margin`, `padding` e `border`.</li>
+                <li>Utilização eficaz de **seletores CSS** por `tag`, `.classe` e `#ID` para aplicar estilos específicos.</li>
+                <li>Início da **responsividade básica** com a meta tag `viewport` (`&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;`) e a implementação de media queries simples para adaptar o layout a diferentes tamanhos de tela.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Requisitos Essenciais</h2>
+            <p>Seu portfólio deve ser composto por, no mínimo, as seguintes seções e elementos:</p>
+            <ol>
+                <li>
+                    <h3>Página Inicial (<code>index.html</code> já existente ou adaptado)</h3>
+                    <ul>
+                        <li>Um **cabeçalho** (`&lt;header&gt;`) que contenha seu nome ou um título principal (`&lt;h1&gt;`).</li>
+                        <li>Uma **barra de navegação** (`&lt;nav&gt;`) com links (`&lt;a&gt;`) para as principais seções:
+                            <ul>
+                                <li>Início (apontando para a própria página <code>index.html</code>)</li>
+                                <li>Sobre Mim (apontando para <code>sobre-mim.html</code>, a página que você criou na atividade de revisão)</li>
+                                <li>Contato (uma seção simples na mesma página inicial ou em uma página separada)</li>
+                                <li>Módulo 1 (um link para o <code>painel.html</code> ou uma página de "Aulas" se preferir)</li>
+                            </ul>
+                        </li>
+                        <li>Uma **seção principal de boas-vindas** (`&lt;main&gt;` ou `&lt;section&gt;`) com um texto introdutório sobre você, usando a tag `&lt;p&gt;`.</li>
+                        <li>Uma **imagem sua** ou uma imagem representativa do seu trabalho, inserida com a tag `&lt;img&gt;`.</li>
+                        <li>Uma seção simples de **"Projetos em Destaque"** (pode ter 1 ou 2 cards bem básicos, com um título `&lt;h3&gt;` e uma imagem `&lt;img&gt;`).</li>
+                        <li>Um **rodapé** (`&lt;footer&gt;`) com informações de copyright, usando a tag `&lt;p&gt;`.</li>
+                    </ul>
+                </li>
+                <li>
+                    <h3>Página "Sobre Mim" (<code>sobre-mim.html</code> - da atividade de revisão)</h3>
+                    <ul>
+                        <li>Você deve adaptar e aprimorar a página "Sobre Mim" que desenvolveu na atividade de revisão das Aulas 1-4.</li>
+                        <li>Esta página deve incluir: sua foto (`&lt;img&gt;`), uma descrição detalhada (`&lt;p&gt;`), uma lista de suas habilidades (organizada com `&lt;ul&gt;` e `&lt;li&gt;`), e links para redes sociais (usando `&lt;a&gt;`).</li>
+                    </ul>
+                </li>
+                <li>
+                    <h3>Estilização CSS (<code>style.css</code> e/ou outros arquivos CSS)</h3>
+                    <ul>
+                        <li>Aplique **estilos consistentes** em todo o site (escolha fontes, cores e defina espaçamentos que criem uma identidade visual).</li>
+                        <li>Utilize o **modelo de caixa** (`margin`, `padding`, `border`, `box-sizing`) de forma eficaz para controlar o espaçamento e as dimensões dos elementos.</li>
+                        <li>Implemente **seletores de classe** (ex: `.nome-da-classe`) e **ID** (ex: `#nome-do-id`) de forma organizada e semântica no seu CSS.</li>
+                        <li>Assegure que a **meta tag viewport** (`&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;`) esteja presente no `&lt;head&gt;` de todas as suas páginas para garantir que o layout se adapte a dispositivos móveis.</li>
+                        <li>Adicione **transições** simples a elementos interativos (como links da navegação ou botões), utilizando a propriedade CSS `transition` para criar efeitos suaves.</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>Entrega do Projeto</h2>
+            <p>Para entregar seu projeto finalizado, siga os passos abaixo:</p>
+            <ol>
+                <li>**Organização:** Reúna todos os seus arquivos (HTML, CSS e quaisquer pastas de imagens ou outros recursos) em uma única pasta, por exemplo, <code>meu-portfolio-modulo1</code>.</li>
+                <li>**GitHub:** Faça o upload completo desta pasta para um repositório que você criar no **GitHub**.</li>
+                <li>**Publicação:** Publique seu site online utilizando o serviço gratuito **GitHub Pages** (lembre-se da Aula 12!).</li>
+                <li>**Compartilhamento:** Compartilhe o **link público** do seu site. Este será o URL que outras pessoas poderão usar para acessar seu portfólio.</li>
+                <li>(Opcional, mas recomendado): Adicione um pequeno arquivo <code>README.md</code> na raiz do seu repositório GitHub. Neste arquivo, explique brevemente o projeto, quais tecnologias foram usadas e quaisquer desafios ou aprendizados significativos.</li>
+            </ol>
+            <p>Lembre-se que a **qualidade do seu código** (aplicação de boas práticas) e a **organização dos arquivos** no repositório serão aspectos importantes da avaliação. Boa sorte e divirta-se criando!</p>
+        </section>
+
+        <div class="call-to-action-box">
+            <h3>Preparado para Construir seu Portfólio?</h3>
+            <p>Este é o momento de colocar todo o seu conhecimento em prática e ver seus primeiros passos como desenvolvedor web ganharem vida!</p>
+            <a href="painel.html" class="start-button">Voltar ao Painel de Aulas</a>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Curso de HTML e CSS. Projeto 1 - Módulo 1.</p>
+        <p><a href="#topo">Voltar ao Topo</a></p>
+    </footer>
+</body>
+</html>

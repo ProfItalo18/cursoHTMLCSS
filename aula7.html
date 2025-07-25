@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 7: Posicionamento Básico - CSS</title>
+    <link rel="stylesheet" href="style.css"> <style>
+        /* Estilos específicos para a página da aula 7 */
+        .aula-container {
+            max-width: 900px;
+            margin: 100px auto 60px auto;
+            padding: 30px;
+            background-color: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
+            animation: fadeInScale 0.8s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            0% { opacity: 0; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .aula-container h1 {
+            color: #00bcd4;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.8em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            border-bottom: 3px solid #e0e0e0;
+            padding-bottom: 20px;
+        }
+
+        .aula-container h2 {
+            color: #343a40;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 2em;
+            border-bottom: 1px solid #ced4da;
+            padding-bottom: 10px;
+        }
+
+        .aula-container h3 {
+            color: #495057;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.6em;
+        }
+
+        .aula-container p {
+            font-size: 1.1em;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .aula-container ul, .aula-container ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .aula-container ul li, .aula-container ol li {
+            margin-bottom: 8px;
+            font-size: 1.05em;
+        }
+
+        .aula-container strong {
+            color: #00bcd4;
+        }
+
+        /* Estilo para blocos de código */
+        .code-example {
+            background-color: #f4f6f8;
+            border-left: 5px solid #00bcd4;
+            padding: 15px 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        .code-example pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .code-example code {
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.95em;
+            color: #333;
+        }
+
+        /* Exemplos visuais de posicionamento */
+        .position-example-container {
+            border: 2px dashed #ccc;
+            padding: 20px;
+            margin-bottom: 30px;
+            min-height: 250px; /* Para visualizar o movimento */
+            position: relative; /* Contexto para absolute/fixed */
+            background-color: #f0f8ff;
+            border-radius: 8px;
+        }
+
+        .box {
+            width: 80px;
+            height: 80px;
+            background-color: #00bcd4;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 0.9em;
+            border: 1px solid #0097a7;
+            margin: 10px; /* Default margin */
+            box-sizing: border-box; /* Boa prática */
+        }
+
+        /* Classes para demonstração dos tipos de posicionamento */
+        .box.static {
+            background-color: #bbdefb;
+            border-color: #2196f3;
+            position: static; /* Padrão */
+        }
+
+        .box.relative {
+            background-color: #c8e6c9;
+            border-color: #4caf50;
+            position: relative;
+            top: 20px;
+            left: 20px;
+        }
+
+        .box.absolute {
+            background-color: #ffccbc;
+            border-color: #ff5722;
+            position: absolute;
+            top: 30px;
+            right: 30px;
+        }
+
+        .box.fixed {
+            background-color: #ede7f6;
+            border-color: #673ab7;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000; /* Para ficar acima de outros elementos */
+        }
+
+        .box.sticky {
+            background-color: #fff9c4;
+            border-color: #ffeb3b;
+            position: sticky;
+            top: 0; /* Cola no topo da viewport quando atinge 0px do topo */
+            margin: 0; /* Remove margem para demonstrar colagem */
+            width: 100%; /* Ocupa a largura do pai */
+            text-align: center;
+            padding: 10px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Para demonstrar o sticky, precisamos de conteúdo para rolagem */
+        .scroll-content {
+            height: 800px; /* Cria rolagem */
+            background-color: #f9f9f9;
+            padding: 20px;
+            border: 1px dashed #eee;
+            margin-top: 20px;
+        }
+
+        /* Botão para Quiz */
+        .quiz-button-container {
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 30px;
+        }
+
+        .quiz-button {
+            display: inline-block;
+            background-color: #f44336;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .quiz-button:hover {
+            background-color: #d32f2f;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Seção de Situações-Problema */
+        .problema-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .problema-card {
+            background-color: #fefefe;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .problema-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+        }
+
+        .problema-card h3 {
+            color: #2196f3;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed #e0e0e0;
+            padding-bottom: 10px;
+        }
+
+        .problema-card p {
+            font-size: 1em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .problema-card pre {
+            background-color: #eee;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 0.85em;
+            overflow-x: auto;
+        }
+
+        /* Responsividade */
+        @media screen and (max-width: 768px) {
+            .aula-container {
+                margin: 20px auto;
+                padding: 20px;
+            }
+            .aula-container h1 {
+                font-size: 2.2em;
+            }
+            .aula-container h2 {
+                font-size: 1.8em;
+            }
+            .aula-container h3 {
+                font-size: 1.4em;
+            }
+            .aula-container p {
+                font-size: 1em;
+            }
+            .quiz-button {
+                font-size: 1em;
+                padding: 12px 25px;
+            }
+            .position-example-container {
+                min-height: 400px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .aula-container h1 {
+                font-size: 1.8em;
+            }
+            .aula-container h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Aula 7: Posicionamento Básico</h1>
+        <nav>
+            <ul>
+                <li><a href="painel.html">Voltar ao Painel</a></li>
+                <li><a href="aula6.html">Aula Anterior</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="aula-container">
+        <h1>Aula 7: Posicionamento Básico - Controlando Onde os Elementos Ficam</h1>
+        <p>Após entender o Modelo de Caixa, o próximo passo é dominar como os elementos são posicionados na página. A propriedade <strong><code>position</code></strong> no CSS é a chave para isso, permitindo que você tire elementos do seu fluxo normal e os coloque exatamente onde deseja.</p>
+
+        <section>
+            <h2>Tipos de Posicionamento (<code>position</code>)</h2>
+            <p>Existem cinco valores principais para a propriedade <code>position</code>, cada um com um comportamento distinto:</p>
+
+            <h3>1. <code>position: static;</code> (Padrão)</h3>
+            <ul>
+                <li>É o valor **padrão** para todos os elementos HTML.</li>
+                <li>Os elementos são renderizados na ordem em que aparecem no fluxo normal do documento (da esquerda para a direita, de cima para baixo).</li>
+                <li>As propriedades <code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code> e <code>z-index</code> **não têm efeito** em elementos com <code>position: static;</code>.</li>
+            </ul>
+            <div class="code-example">
+                <pre><code>
+.elemento-normal {
+    position: static; /* Não faz diferença, é o padrão */
+}
+                </code></pre>
+            </div>
+            <div class="position-example-container">
+                <p>Exemplo de elementos estáticos (fluxo normal):</p>
+                <div class="box static">Static 1</div>
+                <div class="box static">Static 2</div>
+                <div class="box static">Static 3</div>
+            </div>
+
+            <h3>2. <code>position: relative;</code> (Relativo à Posição Normal)</h3>
+            <ul>
+                <li>O elemento é posicionado **relativo à sua posição normal** no fluxo do documento.</li>
+                <li>Você pode usar <code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code> para deslocá-lo.</li>
+                <li>Importante: Mesmo deslocado, o espaço original que o elemento ocuparia no fluxo **ainda é reservado**, o que pode causar "buracos" ou sobreposições.</li>
+            </ul>
+            <div class="code-example">
+                <pre><code>
+.elemento-relativo {
+    position: relative;
+    top: 20px;   /* Move 20px para baixo da posição original */
+    left: 30px;  /* Move 30px para a direita da posição original */
+}
+                </code></pre>
+            </div>
+            <div class="position-example-container">
+                <p>Um elemento relativo deslocado:</p>
+                <div class="box static">Normal</div>
+                <div class="box relative">Relative (20px top, 20px left)</div>
+                <div class="box static">Normal</div>
+            </div>
+
+            <h3>3. <code>position: absolute;</code> (Absoluto ao Pai Posicionado)</h3>
+            <ul>
+                <li>O elemento é posicionado **absolutamente em relação ao seu ancestral posicionado mais próximo** (ou seja, um pai que tenha <code>position: relative;</code>, <code>absolute;</code>, <code>fixed;</code> ou <code>sticky;</code>).</li>
+                <li>Se não houver nenhum ancestral posicionado, ele se posiciona em relação ao elemento <code>&lt;body&gt;</code>.</li>
+                <li>**É removido do fluxo normal** do documento. O espaço que ele ocupava é liberado, e outros elementos se comportam como se ele não existisse ali.</li>
+                <li>Use <code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code> para definir sua posição exata.</li>
+            </ul>
+            <div class="code-example">
+                <pre><code>
+/* O elemento pai deve ter position: relative; */
+.pai-posicionado {
+    position: relative;
+}
+
+.elemento-absoluto {
+    position: absolute;
+    top: 0;      /* 0px do topo do pai */
+    right: 0;    /* 0px da direita do pai */
+}
+                </code></pre>
+            </div>
+            <div class="position-example-container" style="min-height: 150px;">
+                <p>Um elemento absoluto dentro de um pai relativo:</p>
+                <div class="box static">Normal</div>
+                <div class="box absolute">Absolute (30px top, 30px right from parent)</div>
+                <div class="box static">Normal</div>
+            </div>
+
+            <h3>4. <code>position: fixed;</code> (Fixo na Tela)</h3>
+            <ul>
+                <li>O elemento é posicionado **absolutamente em relação à janela de visualização (viewport)** do navegador.</li>
+                <li>**Permanece fixo na mesma posição** mesmo quando a página é rolada.</li>
+                <li>Também é removido do fluxo normal do documento.</li>
+                <li>Comum para cabeçalhos fixos, rodapés, botões "voltar ao topo" ou menus de navegação flutuantes.</li>
+            </ul>
+            <div class="code-example">
+                <pre><code>
+.barra-fixa {
+    position: fixed;
+    top: 0;      /* Fica fixo no topo da tela */
+    width: 100%; /* Ocupa a largura total */
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    z-index: 999; /* Garante que fique acima de outros elementos */
+}
+                </code></pre>
+            </div>
+            <p>Role a página para ver o exemplo abaixo fixo:</p>
+            <div class="box fixed">Fixed (Bottom 20px, Right 20px)</div>
+            <div class="scroll-content">
+                <p>Conteúdo de rolagem para demonstrar o `position: fixed;`. Continue rolando para baixo.</p>
+                <p>Este é um parágrafo de exemplo para preencher espaço. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p>Mais conteúdo para rolagem. Continue rolando para baixo. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p>Fim do conteúdo de rolagem para o exemplo fixo.</p>
+            </div>
+
+
+            <h3>5. <code>position: sticky;</code> (Fixo com Rolagem)</h3>
+            <ul>
+                <li>Um híbrido de <code>relative</code> e <code>fixed</code>.</li>
+                <li>O elemento se comporta como <code>relative</code> até que uma certa posição de rolagem seja atingida, então ele "gruda" na tela como um elemento <code>fixed</code>.</li>
+                <li>Precisa de uma propriedade <code>top</code>, <code>right</code>, <code>bottom</code> ou <code>left</code> para funcionar.</li>
+                <li>Muito útil para cabeçalhos de seções, barras de navegação que aparecem ao rolar, etc.</li>
+            </ul>
+            <div class="code-example">
+                <pre><code>
+.menu-sticky {
+    position: sticky;
+    top: 0; /* Cola no topo da tela quando o elemento o alcança */
+    background-color: #f8f8f8;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+                </code></pre>
+            </div>
+            <p>Role a página para ver o exemplo de sticky:</p>
+            <div class="scroll-content" style="height: 400px; overflow-y: scroll;">
+                <p>Conteúdo antes do elemento sticky.</p>
+                <div class="box sticky">Sticky Element (gruda no topo ao rolar)</div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p>Outro parágrafo para preencher. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p>Fim do conteúdo de rolagem para o sticky.</p>
+            </div>
+
+            <h3>A propriedade <code>z-index</code></h3>
+            <ul>
+                <li>Controla a ordem de empilhamento de elementos posicionados (não `static`).</li>
+                <li>Elementos com maior <code>z-index</code> ficam **acima** de elementos com menor <code>z-index</code>.</li>
+                <li>Só funciona em elementos que têm <code>position</code> diferente de `static`.</li>
+                <li>Valores podem ser positivos, negativos ou zero.</li>
+            </ul>
+            <div class="code-example">
+                <pre><code>
+.caixa-acima {
+    position: absolute;
+    z-index: 2; /* Fica acima da caixa-abaixo */
+}
+.caixa-abaixo {
+    position: absolute;
+    z-index: 1;
+}
+                </code></pre>
+            </div>
+        </section>
+
+        <hr>
+
+        <div class="quiz-button-container">
+            <h2>Hora do Quiz!</h2>
+            <p>Teste seus conhecimentos sobre Posicionamento Básico com este quiz rápido!</p>
+            <a href="https://quizizz.com/admin/quiz/YOUR_QUIZ_CODE_AULA7" target="_blank" class="quiz-button">Fazer o Quiz da Aula 7!</a>
+            <p style="font-size: 0.9em; color: #888; margin-top: 15px;">**Lembre-se:** Substitua "YOUR_QUIZ_CODE_AULA7" pelo código real do seu Quizizz!</p>
+        </div>
+
+        <hr>
+
+        <section>
+            <h2>Situações-Problema: Desafios Práticos com Posicionamento!</h2>
+            <p>Aplique o que aprendeu para resolver os seguintes cenários. Crie um novo arquivo HTML temporário (ex: `desafios-aula7.html`) e um CSS associado para testar suas soluções.</p>
+
+            <div class="problema-card-grid">
+                <div class="problema-card">
+                    <h3>Problema 1: Notificação Flutuante</h3>
+                    <p>Você quer criar uma pequena notificação "Promoção!" que aparece no canto superior direito da tela, e ela deve permanecer visível mesmo quando o usuário rola a página.</p>
+                    <p>HTML:</p>
+                    <pre><code>&lt;div class="notificacao"&gt;Promoção!&lt;/div&gt;</code></pre>
+                    <p>CSS:</p>
+                    <pre><code>
+/* Insira seu código CSS aqui para resolver o Problema 1 */
+.notificacao {
+    /* ... */
+}
+                    </code></pre>
+                </div>
+
+                <div class="problema-card">
+                    <h3>Problema 2: Ícone de Carrinho no Cabeçalho</h3>
+                    <p>Em um cabeçalho (<code>&lt;header&gt;</code>), você tem um ícone de carrinho de compras. Você quer posicioná-lo no canto superior direito do cabeçalho, sobrepondo ligeiramente outros elementos, sem afetar o fluxo normal do cabeçalho.</p>
+                    <p>HTML:</p>
+                    <pre><code>
+&lt;header class="site-header"&gt;
+    &lt;h1&gt;Minha Loja&lt;/h1&gt;
+    &lt;!-- Outros elementos do cabeçalho --&gt;
+    &lt;div class="icone-carrinho"&gt;🛒&lt;/div&gt;
+&lt;/header&gt;
+                    </code></pre>
+                    <p>CSS:</p>
+                    <pre><code>
+/* Insira seu código CSS aqui para resolver o Problema 2 */
+.site-header { /* Lembre-se que o pai do ícone precisa de position */
+    /* ... */
+}
+.icone-carrinho {
+    /* ... */
+}
+                    </code></pre>
+                </div>
+
+                <div class="problema-card">
+                    <h3>Problema 3: Elemento "Sticky" em uma Seção</h3>
+                    <p>Crie uma seção longa de conteúdo. Dentro dela, adicione um título secundário (`&lt;h3&gt;`) que, ao rolar a página, "grude" no topo da viewport quando ele chega lá, agindo como um subtítulo fixo para aquela seção enquanto o restante do conteúdo rola.</p>
+                    <p>HTML:</p>
+                    <pre><code>
+&lt;section class="conteudo-longo"&gt;
+    &lt;p&gt;Texto antes do sticky...&lt;/p&gt;
+    &lt;h3 class="sticky-title"&gt;Seção de Detalhes&lt;/h3&gt;
+    &lt;p&gt;Conteúdo da seção de detalhes que rola abaixo do título...&lt;/p&gt;
+&lt;/section&gt;
+                    </code></pre>
+                    <p>CSS:</p>
+                    <pre><code>
+/* Insira seu código CSS aqui para resolver o Problema 3 */
+.conteudo-longo {
+    height: 600px; /* Apenas para criar rolagem de exemplo */
+    overflow-y: scroll;
+    border: 1px solid #ddd;
+    padding: 15px;
+}
+.sticky-title {
+    /* ... */
+}
+                    </code></pre>
+                </div>
+
+                <div class="problema-card">
+                    <h3>Problema 4: Deslocar Elemento Sem Mudar o Fluxo</h3>
+                    <p>Você tem dois parágrafos. Você quer que o segundo parágrafo seja ligeiramente deslocado para baixo e para a direita, mas sem que ele afete a posição ou o fluxo do primeiro parágrafo ou de qualquer outro elemento na página.</p>
+                    <p>HTML:</p>
+                    <pre><code>
+&lt;p&gt;Primeiro parágrafo de texto.&lt;/p&gt;
+&lt;p class="paragrafo-deslocado"&gt;Segundo parágrafo de texto.&lt;/p&gt;
+                    </code></pre>
+                    <p>CSS:</p>
+                    <pre><code>
+/* Insira seu código CSS aqui para resolver o Problema 4 */
+.paragrafo-deslocado {
+    /* ... */
+}
+                    </code></pre>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Curso de HTML e CSS. Aula 7: Posicionamento Básico.</p>
+        <p><a href="#topo">Voltar ao Topo</a></p>
+    </footer>
+
+</body>
+</html>

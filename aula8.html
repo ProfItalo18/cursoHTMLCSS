@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 8: Flexbox - CSS</title>
+    <link rel="stylesheet" href="style.css"> <style>
+        /* Estilos específicos para a página da aula 8 */
+        .aula-container {
+            max-width: 900px;
+            margin: 100px auto 60px auto;
+            padding: 30px;
+            background-color: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
+            animation: fadeInScale 0.8s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            0% { opacity: 0; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .aula-container h1 {
+            color: #00bcd4;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.8em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            border-bottom: 3px solid #e0e0e0;
+            padding-bottom: 20px;
+        }
+
+        .aula-container h2 {
+            color: #343a40;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 2em;
+            border-bottom: 1px solid #ced4da;
+            padding-bottom: 10px;
+        }
+
+        .aula-container h3 {
+            color: #495057;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.6em;
+        }
+
+        .aula-container p {
+            font-size: 1.1em;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .aula-container ul, .aula-container ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .aula-container ul li, .aula-container ol li {
+            margin-bottom: 8px;
+            font-size: 1.05em;
+        }
+
+        .aula-container strong {
+            color: #00bcd4;
+        }
+
+        /* Estilo para blocos de código */
+        .code-example {
+            background-color: #f4f6f8;
+            border-left: 5px solid #00bcd4;
+            padding: 15px 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        .code-example pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .code-example code {
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.95em;
+            color: #333;
+        }
+
+        /* Exemplos visuais de Flexbox */
+        .flex-container-demo {
+            display: flex;
+            border: 2px dashed #00bcd4;
+            padding: 10px;
+            margin-bottom: 20px;
+            min-height: 150px;
+            background-color: #e0f7fa;
+            border-radius: 8px;
+            gap: 5px; /* Espaçamento entre os itens */
+            flex-wrap: wrap; /* Para visualização em telas menores */
+            justify-content: flex-start; /* Padrão */
+            align-items: stretch; /* Padrão */
+        }
+
+        .flex-item {
+            background-color: #2196f3;
+            color: white;
+            padding: 15px;
+            border: 1px solid #1976d2;
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.9em;
+            flex-basis: 80px; /* Largura inicial */
+            min-height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+            flex-grow: 0; /* Padrão */
+            flex-shrink: 1; /* Padrão */
+        }
+
+        .flex-container-demo.direction-row { flex-direction: row; }
+        .flex-container-demo.direction-column { flex-direction: column; height: 300px; }
+        .flex-container-demo.justify-center { justify-content: center; }
+        .flex-container-demo.justify-end { justify-content: flex-end; }
+        .flex-container-demo.justify-space-between { justify-content: space-between; }
+        .flex-container-demo.align-center { align-items: center; }
+        .flex-container-demo.align-end { align-items: flex-end; }
+        .flex-container-demo.wrap { flex-wrap: wrap; height: auto;}
+        .flex-container-demo.item-grow .flex-item:first-child { flex-grow: 1; }
+        .flex-container-demo.item-shrink .flex-item:last-child { flex-shrink: 0; flex-basis: 150px;} /* Para demonstrar que não encolhe */
+        .flex-container-demo.item-order .item-1 { order: 3; background-color: #ff5722; }
+        .flex-container-demo.item-order .item-2 { order: 1; background-color: #4caf50; }
+        .flex-container-demo.item-order .item-3 { order: 2; background-color: #ffeb3b; }
+
+
+        /* Botão para Quiz */
+        .quiz-button-container {
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 30px;
+        }
+
+        .quiz-button {
+            display: inline-block;
+            background-color: #f44336;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .quiz-button:hover {
+            background-color: #d32f2f;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Seção de Situações-Problema */
+        .problema-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .problema-card {
+            background-color: #fefefe;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .problema-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+        }
+
+        .problema-card h3 {
+            color: #2196f3;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed #e0e0e0;
+            padding-bottom: 10px;
+        }
+
+        .problema-card p {
+            font-size: 1em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .problema-card pre {
+            background-color: #eee;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 0.85em;
+            overflow-x: auto;
+        }
+
+        /* Responsividade */
+        @media screen and (max-width: 768px) {
+            .aula-container {
+                margin: 20px auto;
+                padding: 20px;
+            }
+            .aula-container h1 {
+                font-size: 2.2em;
+            }
+            .aula-container h2 {
+                font-size: 1.8em;
+            }
+            .aula-container h3 {
+                font-size: 1.4em;
+            }
+            .aula-container p {
+                font-size: 1em;
+            }
+            .quiz-button {
+                font-size: 1em;
+                padding: 12px 25px;
+            }
+            .flex-container-demo.direction-column {
+                height: auto; /* Ajuste para não ter rolagem interna em mobile */
+            }
+            .flex-item {
+                flex-basis: 100%; /* Em telas muito pequenas, itens se expandem */
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .aula-container h1 {
+                font-size: 1.8em;
+            }
+            .aula-container h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Aula 8: Flexbox</h1>
+        <nav>
+            <ul>
+                <li><a href="painel.html">Voltar ao Painel</a></li>
+                <li><a href="aula7.html">Aula Anterior</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="aula-container">
+        <h1>Aula 8: Flexbox - O Guia Definitivo para Layouts Flexíveis</h1>
+        <p>O <strong>Flexbox (Flexible Box Layout)</strong> é um módulo de layout unidimensional do CSS que permite organizar elementos em uma única linha ou coluna, distribuindo o espaço disponível de forma flexível. É ideal para componentes como barras de navegação, galerias de fotos ou qualquer grupo de itens que precisam se ajustar dinamicamente.</p>
+
+        <section>
+            <h2>Como o Flexbox Funciona?</h2>
+            <p>O Flexbox trabalha com dois conceitos principais:</p>
+            <ul>
+                <li><strong>Contêiner Flex (Flex Container):</strong> O elemento pai que contém os itens. É nele que você aplica <code>display: flex;</code> ou <code>display: inline-flex;</code>.</li>
+                <li><strong>Itens Flex (Flex Items):</strong> Os elementos filhos diretos do contêiner flex. Eles se tornam flexíveis e se ajustam de acordo com as propriedades do contêiner.</li>
+            </ul>
+            <p>Há um <strong>eixo principal</strong> (main axis) e um <strong>eixo transversal</strong> (cross axis). A direção desses eixos é definida pela propriedade <code>flex-direction</code>.</p>
+
+            <h3>Propriedades do Contêiner Flex:</h3>
+
+            <h4>1. <code>display: flex;</code> ou <code>display: inline-flex;</code></h4>
+            <ul>
+                <li><strong><code>flex</code>:</strong> Transforma o elemento em um contêiner flex de **bloco**.</li>
+                <li><strong><code>inline-flex</code>:</strong> Transforma o elemento em um contêiner flex de **linha** (se comporta como um `span`).</li>
+            </ul>
+            <div class="code-example">
+                <pre><code>
+.container {
+    display: flex;
+    /* ou display: inline-flex; */
+}
+                </code></pre>
+            </div>
+
+            <h4>2. <code>flex-direction</code>: Direção do Eixo Principal</h4>
+            <p>Define a direção dos itens no contêiner.</p>
+            <ul>
+                <li><strong><code>row</code> (padrão):</strong> Itens dispostos em linha, da esquerda para a direita.</li>
+                <li><strong><code>row-reverse</code>:</strong> Itens em linha, da direita para a esquerda.</li>
+                <li><strong><code>column</code>:</strong> Itens dispostos em coluna, de cima para baixo.</li>
+                <li><strong><code>column-reverse</code>:</strong> Itens em coluna, de baixo para cima.</li>
+            </ul>
+            <div class="code-example">
+                <pre><code>
+.container {
+    display: flex;
+    flex-direction: row; /* Padrão */
+    /* flex-direction: column; */
+}
+                </code></pre>
+            </div>
+            <p>Exemplo <code>flex-direction: row;</code>:</p>
+            <div class="flex-container-demo direction-row">
+                <div class="flex-item">Item 1</div>
+                <div class="flex-item">Item 2</div>
+                <div class="flex-item">Item 3</div>
+            </div>
+            <p>Exemplo <code>flex-direction: column;</code>:</p>
+            <div class="flex-container-demo direction-column">
+                <div class="flex-item">Item A</div>
+                <div class="flex-item">Item B</div>
+                <div class="flex-item">Item C</div>
+            </div>
+
+            <h4>3. <code>flex-wrap</code>: Quebra de Linha</h4>
+            <p>Controla se os itens devem quebrar para a próxima linha/coluna quando não há espaço suficiente.</p>
+            <ul>
+                <li><strong><code>nowrap</code> (padrão):</strong> Itens tentarão ficar em uma única linha.</li>
+                <li><strong><code>wrap</code>:</strong> Itens quebram para a próxima linha/coluna se não houver espaço.</li>
+                <li><strong><code>wrap-reverse</code>:</strong> Itens quebram para a próxima linha/coluna na direção oposta.</li>
+            </ul>
+            <div class="code-example">
+                <pre><code>
+.container {
+    display: flex;
+    flex-wrap: wrap; /* Itens quebrarão para a linha de baixo */
+}
+                </code></pre>
+            </div>
+            <p>Exemplo <code>flex-wrap: wrap;</code> (redimensione a janela):</p>
+            <div class="flex-container-demo wrap" style="width: 300px;">
+                <div class="flex-item" style="flex-basis: 100px;">Item Longo 1</div>
+                <div class="flex-item" style="flex-basis: 100px;">Item 2</div>
+                <div class="flex-item" style="flex-basis: 100px;">Item 3</div>
+                <div class="flex-item" style="flex-basis: 100px;">Item 4</div>
+                <div class="flex-item" style="flex-basis: 100px;">Item 5</div>
+            </div>
+
+            <h4>4. <code>justify-content</code>: Alinhamento no Eixo Principal</h4>
+            <p>Distribui o espaço extra ao longo do eixo principal.</p>
+            <ul>
+                <li><strong><code>flex-start</code> (padrão):</strong> Itens no início do contêiner.</li>
+                <li><strong><code>flex-end</code>:</strong> Itens no final do contêiner.</li>
+                <li><strong><code>center</code>:</strong> Itens centralizados.</li>
+                <li><strong><code>space-between</code>:</strong> Primeiro item no início, último no final, espaço restante distribuído uniformemente entre eles.</li>
+                <li><strong><code>space-around</code>:</strong> Espaço uniformemente distribuído ao redor de cada item.</li>
+                <li><strong><code>space-evenly</code>:</strong> Espaço uniformemente distribuído entre os itens e nas extremidades.</li>
+            </ul>
+            <div class="code-example">
+                <pre><code>
+.container {
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente (se flex-direction: row) */
+}
+                </code></pre>
+            </div>
+            <p>Exemplo <code>justify-content: center;</code>:</p>
+            <div class="flex-container-demo justify-center">
+                <div class="flex-item">Item 1</div>
+                <div class="flex-item">Item 2</div>
+            </div>
+            <p>Exemplo <code>justify-content: space-between;</code>:</p>
+            <div class="flex-container-demo justify-space-between">
+                <div class="flex-item">Item 1</div>
+                <div class="flex-item">Item 2</div>
+                <div class="flex-item">Item 3</div>
+            </div>
+
+            <h4>5. <code>align-items</code>: Alinhamento no Eixo Transversal</h4>
+            <p>Distribui o espaço extra ao longo do eixo transversal (perpendicular ao eixo principal).</p>
+            <ul>
+                <li><strong><code>stretch</code> (padrão):</strong> Itens esticam para preencher o contêiner (se não tiverem altura/largura definidas).</li>
+                <li><strong><code>flex-start</code>:</strong> Itens no início do eixo transversal.</li>
+                <li><strong><code>flex-end</code>:</strong> Itens no final do eixo transversal.</li>
+                <li><strong><code>center</code>:</strong> Itens centralizados no eixo transversal.</li>
+                <li><strong><code>baseline</code>:</strong> Itens alinhados pela linha de base do texto.</li>
+            </ul>
+            <div class="code-example">
+                <pre><code>
+.container {
+    display: flex;
+    align-items: center; /* Centraliza verticalmente (se flex-direction: row) */
+    height: 100px; /* Precisa de altura para ver o efeito */
+}
+                </code></pre>
+            </div>
+            <p>Exemplo <code>align-items: center;</code>:</p>
+            <div class="flex-container-demo align-center" style="height: 120px;">
+                <div class="flex-item">Item 1</div>
+                <div class="flex-item" style="height: 40px;">Item 2</div>
+                <div class="flex-item">Item 3</div>
+            </div>
+
+            <h4>6. <code>gap</code> (ou <code>row-gap</code>, <code>column-gap</code>): Espaçamento entre Itens</h4>
+            <p>Adiciona espaçamento entre os itens flex, sem afetar as bordas externas do contêiner.</p>
+            <div class="code-example">
+                <pre><code>
+.container {
+    display: flex;
+    gap: 10px; /* Espaço de 10px entre os itens (linhas e colunas) */
+    /* row-gap: 5px; */
+    /* column-gap: 15px; */
+}
+                </code></pre>
+            </div>
+            <p>Exemplo <code>gap: 15px;</code> (observe o espaço entre os itens):</p>
+            <div class="flex-container-demo" style="gap: 15px;">
+                <div class="flex-item">Item A</div>
+                <div class="flex-item">Item B</div>
+                <div class="flex-item">Item C</div>
+            </div>
+
+            <h3>Propriedades dos Itens Flex:</h3>
+
+            <h4>1. <code>flex-grow</code>: Capacidade de Crescer</h4>
+            <p>Define a capacidade do item de crescer e ocupar o espaço extra disponível no contêiner.</p>
+            <ul>
+                <li>Valor padrão: <code>0</code> (não cresce).</li>
+                <li>Valores positivos (ex: <code>1</code>, <code>2</code>) permitem que o item cresça proporcionalmente.</li>
+            </ul>
+            <div class="code-example">
+                <pre><code>
+.item-que-cresce {
+    flex-grow: 1; /* Ocupa todo o espaço extra disponível */
+}
+                </code></pre>
+            </div>
+            <p>Exemplo <code>flex-grow: 1;</code> no Item 1:</p>
+            <div class="flex-container-demo item-grow">
+                <div class="flex-item">Item 1 (grow: 1)</div>
+                <div class="flex-item">Item 2</div>
+                <div class="flex-item">Item 3</div>
+            </div>
+
+            <h4>2. <code>flex-shrink</code>: Capacidade de Encolher</h4>
+            <p>Define a capacidade do item de encolher para evitar que ele transborde o contêiner.</p>
+            <ul>
+                <li>Valor padrão: <code>1</code> (pode encolher).</li>
+                <li>Valor <code>0</code> (não encolhe, manterá seu tamanho base).</li>
+            </ul>
+            <div class="code-example">
+                <pre><code>
+.item-nao-encolhe {
+    flex-shrink: 0; /* Não encolhe, mantém sua largura */
+}
+                </code></pre>
+            </div>
+            <p>Exemplo <code>flex-shrink: 0;</code> no Item 3 (tente diminuir a janela):</p>
+            <div class="flex-container-demo item-shrink">
+                <div class="flex-item">Item 1</div>
+                <div class="flex-item">Item 2</div>
+                <div class="flex-item" style="flex-basis: 150px; flex-shrink: 0;">Item 3 (shrink: 0, base: 150px)</div>
+            </div>
+
+            <h4>3. <code>flex-basis</code>: Tamanho Base Inicial</h4>
+            <p>Define o tamanho padrão de um item antes que o espaço restante seja distribuído.</p>
+            <ul>
+                <li>Pode ser um valor fixo (<code>100px</code>) ou percentual (<code>30%</code>).</li>
+                <li>Valor padrão: <code>auto</code> (tamanho do conteúdo).</li>
+            </ul>
+            <div class="code-example">
+                <pre><code>
+.meu-item {
+    flex-basis: 120px; /* Tamanho inicial de 120px */
+}
+                </code></pre>
+            </div>
+
+            <h4>4. <code>flex</code> (Shorthand): grow | shrink | basis</h4>
+            <p>Atalho para <code>flex-grow</code>, <code>flex-shrink</code> e <code>flex-basis</code>.</p>
+            <div class="code-example">
+                <pre><code>
+.item-flex {
+    flex: 1 1 auto; /* flex-grow: 1, flex-shrink: 1, flex-basis: auto */
+    /* flex: 1; é o mesmo que flex: 1 1 0%; */
+    /* flex: auto; é o mesmo que flex: 1 1 auto; */
+    /* flex: none; é o mesmo que flex: 0 0 auto; */
+}
+                </code></pre>
+            </div>
+
+            <h4>5. <code>order</code>: Ordem dos Itens</h4>
+            <p>Define a ordem visual de um item dentro do contêiner flex, independentemente da ordem no HTML. Itens com valores menores aparecem primeiro.</p>
+            <ul>
+                <li>Valor padrão: <code>0</code>.</li>
+            </ul>
+            <div class="code-example">
+                <pre><code>
+.item-a { order: 2; }
+.item-b { order: 1; } /* Aparecerá antes do item-a */
+                </code></pre>
+            </div>
+            <p>Exemplo <code>order</code>:</p>
+            <div class="flex-container-demo item-order">
+                <div class="flex-item item-1">Item 1 (order: 3)</div>
+                <div class="flex-item item-2">Item 2 (order: 1)</div>
+                <div class="flex-item item-3">Item 3 (order: 2)</div>
+            </div>
+
+            <h4>6. <code>align-self</code>: Alinhamento Individual no Eixo Transversal</h4>
+            <p>Sobrescreve o <code>align-items</code> do contêiner para um item específico.</p>
+            <ul>
+                <li>Valores são os mesmos de <code>align-items</code>: <code>stretch</code>, <code>flex-start</code>, <code>flex-end</code>, <code>center</code>, <code>baseline</code>.</li>
+            </ul>
+            <div class="code-example">
+                <pre><code>
+.container {
+    display: flex;
+    align-items: flex-start; /* Todos os itens no topo */
+}
+.item-especial {
+    align-self: center; /* Este item específico será centralizado */
+}
+                </code></pre>
+            </div>
+        </section>
+
+        <hr>
+
+        <div class="quiz-button-container">
+            <h2>Hora do Quiz!</h2>
+            <p>Teste seus conhecimentos sobre Flexbox com este quiz rápido!</p>
+            <a href="https://quizizz.com/admin/quiz/YOUR_QUIZ_CODE_AULA8" target="_blank" class="quiz-button">Fazer o Quiz da Aula 8!</a>
+            <p style="font-size: 0.9em; color: #888; margin-top: 15px;">**Lembre-se:** Substitua "YOUR_QUIZ_CODE_AULA8" pelo código real do seu Quizizz!</p>
+        </div>
+
+        <hr>
+
+        <section>
+            <h2>Situações-Problema: Desafios Práticos com Flexbox!</h2>
+            <p>Aplique o que aprendeu para resolver os seguintes cenários. Crie um novo arquivo HTML temporário (ex: `desafios-aula8.html`) e um CSS associado para testar suas soluções.</p>
+
+            <div class="problema-card-grid">
+                <div class="problema-card">
+                    <h3>Problema 1: Barra de Navegação Centralizada</h3>
+                    <p>Crie uma barra de navegação simples com 3 links (Home, Sobre, Contato). Faça com que esses links estejam centralizados horizontalmente na barra de navegação e tenham um espaçamento igual entre eles.</p>
+                    <p>HTML:</p>
+                    <pre><code>
+&lt;nav class="navbar"&gt;
+    &lt;a href="#"&gt;Home&lt;/a&gt;
+    &lt;a href="#"&gt;Sobre&lt;/a&gt;
+    &lt;a href="#"&gt;Contato&lt;/a&gt;
+&lt;/nav&gt;
+                    </code></pre>
+                    <p>CSS:</p>
+                    <pre><code>
+/* Insira seu código CSS aqui para resolver o Problema 1 */
+.navbar {
+    /* ... */
+}
+.navbar a {
+    /* ... */
+}
+                    </code></pre>
+                </div>
+
+                <div class="problema-card">
+                    <h3>Problema 2: Card de Produto com Conteúdo Alinhado</h3>
+                    <p>Crie um card de produto. Dentro dele, coloque uma imagem e, ao lado, o nome do produto e o preço. O nome e o preço devem estar alinhados verticalmente no centro ao lado da imagem.</p>
+                    <p>HTML:</p>
+                    <pre><code>
+&lt;div class="product-card"&gt;
+    &lt;img src="https://via.placeholder.com/100x100?text=Produto" alt="Produto"&gt;
+    &lt;div class="product-info"&gt;
+        &lt;h4&gt;Nome do Produto&lt;/h4&gt;
+        &lt;p&gt;R$ 99,99&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+                    </code></pre>
+                    <p>CSS:</p>
+                    <pre><code>
+/* Insira seu código CSS aqui para resolver o Problema 2 */
+.product-card {
+    /* ... */
+}
+.product-info {
+    /* ... */
+}
+                    </code></pre>
+                </div>
+
+                <div class="problema-card">
+                    <h3>Problema 3: Grid Simples com Quebra de Linha</h3>
+                    <p>Crie uma seção com 5 caixas. Faça com que essas caixas se organizem em linha, mas quando a tela for pequena, elas devem quebrar para a próxima linha automaticamente e se ajustar para ocupar a largura total disponível em cada linha.</p>
+                    <p>HTML:</p>
+                    <pre><code>
+&lt;div class="flex-grid"&gt;
+    &lt;div class="grid-item"&gt;Item 1&lt;/div&gt;
+    &lt;div class="grid-item"&gt;Item 2&lt;/div&gt;
+    &lt;div class="grid-item"&gt;Item 3&lt;/div&gt;
+    &lt;div class="grid-item"&gt;Item 4&lt;/div&gt;
+    &lt;div class="grid-item"&gt;Item 5&lt;/div&gt;
+&lt;/div&gt;
+                    </code></pre>
+                    <p>CSS:</p>
+                    <pre><code>
+/* Insira seu código CSS aqui para resolver o Problema 3 */
+.flex-grid {
+    /* ... */
+}
+.grid-item {
+    /* ... */
+}
+                    </code></pre>
+                </div>
+
+                <div class="problema-card">
+                    <h3>Problema 4: Rodapé com Itens à Esquerda e Direita</h3>
+                    <p>Crie um rodapé com duas partes: uma à esquerda (com o texto "Direitos Autorais") e outra à direita (com um link "Política de Privacidade"). Faça com que elas fiquem em extremos opostos do rodapé.</p>
+                    <p>HTML:</p>
+                    <pre><code>
+&lt;footer class="site-footer-flex"&gt;
+    &lt;p&gt;&copy; 2024 Meu Site.&lt;/p&gt;
+    &lt;a href="#"&gt;Política de Privacidade&lt;/a&gt;
+&lt;/footer&gt;
+                    </code></pre>
+                    <p>CSS:</p>
+                    <pre><code>
+/* Insira seu código CSS aqui para resolver o Problema 4 */
+.site-footer-flex {
+    /* ... */
+}
+                    </code></pre>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Curso de HTML e CSS. Aula 8: Flexbox.</p>
+        <p><a href="#topo">Voltar ao Topo</a></p>
+    </footer>
+
+</body>
+</html>

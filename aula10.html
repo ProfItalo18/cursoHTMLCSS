@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 10: Responsividade e Media Queries</title>
+    <link rel="stylesheet" href="style.css"> <style>
+        /* Estilos específicos para a página da aula 10 */
+        .aula-container {
+            max-width: 900px;
+            margin: 100px auto 60px auto;
+            padding: 30px;
+            background-color: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
+            animation: fadeInScale 0.8s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            0% { opacity: 0; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .aula-container h1 {
+            color: #00bcd4;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.8em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            border-bottom: 3px solid #e0e0e0;
+            padding-bottom: 20px;
+        }
+
+        .aula-container h2 {
+            color: #343a40;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 2em;
+            border-bottom: 1px solid #ced4da;
+            padding-bottom: 10px;
+        }
+
+        .aula-container h3 {
+            color: #495057;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.6em;
+        }
+
+        .aula-container p {
+            font-size: 1.1em;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .aula-container ul, .aula-container ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .aula-container ul li, .aula-container ol li {
+            margin-bottom: 8px;
+            font-size: 1.05em;
+        }
+
+        .aula-container strong {
+            color: #00bcd4;
+        }
+
+        /* Estilo para blocos de código */
+        .code-example {
+            background-color: #f4f6f8;
+            border-left: 5px solid #00bcd4;
+            padding: 15px 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        .code-example pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .code-example code {
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.95em;
+            color: #333;
+        }
+
+        /* Exemplos visuais de Responsividade */
+        .responsive-box {
+            background-color: #bbdefb;
+            border: 2px solid #2196f3;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease, font-size 0.3s ease;
+        }
+
+        .responsive-header {
+            background-color: #c8e6c9;
+            color: #333;
+            padding: 15px;
+            text-align: center;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            transition: background-color 0.3s ease, font-size 0.3s ease;
+        }
+
+        .responsive-grid-container {
+            display: grid;
+            gap: 15px;
+            padding: 10px;
+            border: 1px dashed #ccc;
+            background-color: #f0f8ff;
+        }
+
+        .responsive-grid-item {
+            background-color: #ffccbc;
+            border: 1px solid #ff5722;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Media Queries para os exemplos */
+        /* Para telas menores que 600px */
+        @media screen and (max-width: 600px) {
+            .responsive-box {
+                background-color: #ffe0b2; /* Light orange for small screens */
+                font-size: 1em;
+            }
+            .responsive-header {
+                background-color: #ffeb3b; /* Yellow for small screens */
+                font-size: 1.2em;
+            }
+            .responsive-grid-container {
+                grid-template-columns: 1fr; /* Uma coluna em telas pequenas */
+            }
+        }
+
+        /* Para telas entre 601px e 900px */
+        @media screen and (min-width: 601px) and (max-width: 900px) {
+            .responsive-box {
+                background-color: #e1bee7; /* Light purple for medium screens */
+                font-size: 1.1em;
+            }
+            .responsive-header {
+                background-color: #ce93d8; /* Purple for medium screens */
+                font-size: 1.3em;
+            }
+            .responsive-grid-container {
+                grid-template-columns: 1fr 1fr; /* Duas colunas em telas médias */
+            }
+        }
+
+        /* Para telas maiores que 900px */
+        @media screen and (min-width: 901px) {
+            .responsive-box {
+                background-color: #bbdefb; /* Default blue for large screens */
+                font-size: 1.2em;
+            }
+            .responsive-header {
+                background-color: #c8e6c9; /* Default green for large screens */
+                font-size: 1.5em;
+            }
+            .responsive-grid-container {
+                grid-template-columns: 1fr 1fr 1fr; /* Três colunas em telas grandes */
+            }
+        }
+
+        /* Botão para Quiz */
+        .quiz-button-container {
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 30px;
+        }
+
+        .quiz-button {
+            display: inline-block;
+            background-color: #f44336;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .quiz-button:hover {
+            background-color: #d32f2f;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Seção de Situações-Problema */
+        .problema-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .problema-card {
+            background-color: #fefefe;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .problema-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+        }
+
+        .problema-card h3 {
+            color: #2196f3;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed #e0e0e0;
+            padding-bottom: 10px;
+        }
+
+        .problema-card p {
+            font-size: 1em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .problema-card pre {
+            background-color: #eee;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 0.85em;
+            overflow-x: auto;
+        }
+
+        /* Responsividade geral da página */
+        @media screen and (max-width: 768px) {
+            .aula-container {
+                margin: 20px auto;
+                padding: 20px;
+            }
+            .aula-container h1 {
+                font-size: 2.2em;
+            }
+            .aula-container h2 {
+                font-size: 1.8em;
+            }
+            .aula-container h3 {
+                font-size: 1.4em;
+            }
+            .aula-container p {
+                font-size: 1em;
+            }
+            .quiz-button {
+                font-size: 1em;
+                padding: 12px 25px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .aula-container h1 {
+                font-size: 1.8em;
+            }
+            .aula-container h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Aula 10: Responsividade e Media Queries</h1>
+        <nav>
+            <ul>
+                <li><a href="painel.html">Voltar ao Painel</a></li>
+                <li><a href="aula9.html">Aula Anterior</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="aula-container">
+        <h1>Aula 10: Responsividade e Media Queries - Criando Sites Adaptáveis</h1>
+        <p>A web moderna exige que os sites se adaptem a uma vasta gama de dispositivos, de celulares minúsculos a telas de desktop gigantescas. Isso é o que chamamos de <strong>Responsividade</strong>. A principal ferramenta do CSS para alcançar a responsividade são as <strong>Media Queries</strong>.</p>
+
+        <section>
+            <h2>O Que é Responsividade?</h2>
+            <p>Um design responsivo garante que a aparência e o layout do seu site se ajustem automaticamente ao tamanho da tela e às características do dispositivo do usuário. Isso significa:</p>
+            <ul>
+                <li>**Layout Flexível:** Elementos se redimensionam ou reposicionam.</li>
+                <li>**Imagens Adaptáveis:** Imagens que não transbordam ou ficam muito grandes.</li>
+                <li>**Textos Legíveis:** Tamanhos de fonte adequados para cada tela.</li>
+                <li>**Navegação Otimizada:** Menus que se transformam (ex: hambúrguer menu em mobile).</li>
+            </ul>
+            <p>O objetivo é oferecer a melhor experiência possível para o usuário, independentemente de como ele acessa seu site.</p>
+
+            <h3>A Meta Tag Viewport: O Primeiro Passo Essencial</h3>
+            <p>Antes de usar Media Queries, você precisa garantir que o navegador saiba como escalar seu conteúdo. Isso é feito com a meta tag `viewport` no `&lt;head&gt;` do seu HTML:</p>
+            <div class="code-example">
+                <pre><code>
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+                </code></pre>
+            </div>
+            <ul>
+                <li><code>width=device-width</code>: Define a largura da viewport para a largura do dispositivo (em pixels CSS).</li>
+                <li><code>initial-scale=1.0</code>: Define o nível de zoom inicial quando a página é carregada.</li>
+            </ul>
+            <p>Sem esta tag, navegadores móveis tentarão renderizar a página como se fosse em um desktop, o que resultará em uma experiência ruim.</p>
+
+            <h2>Media Queries: A Ferramenta Mágica</h2>
+            <p>Media Queries permitem aplicar estilos CSS apenas quando certas condições são verdadeiras, como o tamanho da tela, a orientação (retrato/paisagem), ou o tipo de mídia (tela, impressão).</p>
+            <p>A sintaxe básica é:</p>
+            <div class="code-example">
+                <pre><code>
+@media tipo de mídia e (característica: valor) {
+    /* Estilos CSS aplicados quando a condição é verdadeira */
+}
+                </code></pre>
+            </div>
+
+            <h3>Tipos de Mídia Comuns:</h3>
+            <ul>
+                <li><strong><code>screen</code>:</strong> Para telas de computador, tablets, smartphones, etc. (o mais comum).</li>
+                <li><strong><code>print</code>:</strong> Para impressoras.</li>
+                <li><strong><code>all</code>:</strong> Para todos os dispositivos.</li>
+            </ul>
+
+            <h3>Características de Mídia Comuns:</h3>
+            <ul>
+                <li><strong><code>width</code> / <code>height</code>:</strong> Largura/altura da viewport.</li>
+                <li><strong><code>min-width</code>:</strong> Mínima largura da viewport.</li>
+                <li><strong><code>max-width</code>:</strong> Máxima largura da viewport.</li>
+                <li><strong><code>orientation</code>:</strong> <code>portrait</code> (altura maior que largura) ou <code>landscape</code> (largura maior que altura).</li>
+                <li><strong><code>resolution</code>:</strong> Resolução do dispositivo (ex: <code>min-resolution: 2dppx</code> para telas Retina).</li>
+            </ul>
+
+            <h3>Exemplos de Media Queries na Prática:</h3>
+
+            <h4>1. Alterando Estilos para Telas Pequenas (Mobile First Approach)</h4>
+            <p>A abordagem <strong>Mobile First</strong> é uma prática recomendada: você escreve o CSS para a menor tela primeiro, e depois usa Media Queries para adicionar estilos para telas maiores.</p>
+            <div class="code-example">
+                <pre><code>
+/* Estilos padrão (aplicados a todas as telas, mas otimizados para mobile) */
+body {
+    font-size: 16px;
+}
+.header {
+    padding: 10px;
+}
+.menu {
+    display: none; /* Esconde o menu principal em mobile */
+}
+
+/* Media Query para telas maiores que 600px (tablets e desktops) */
+@media screen and (min-width: 601px) {
+    body {
+        font-size: 18px;
+    }
+    .header {
+        padding: 20px;
+    }
+    .menu {
+        display: block; /* Mostra o menu em telas maiores */
+    }
+}
+                </code></pre>
+            </div>
+
+            <h4>2. Alterando Cores e Tamanhos de Fontes</h4>
+            <p>Redimensione a janela do seu navegador para ver as mudanças abaixo:</p>
+            <div class="responsive-header">
+                Cabeçalho Responsivo
+            </div>
+            <div class="responsive-box">
+                Esta caixa muda de cor e tamanho de fonte!
+            </div>
+            <p class="small-text" style="font-size: 1em;">
+                (Cor padrão azul, fundo verde para telas grandes; cor laranja, fundo amarelo para telas pequenas; roxo para telas médias)
+            </p>
+
+            <h4>3. Alterando Layouts com Grid ou Flexbox</h4>
+            <p>Um exemplo clássico é alterar o número de colunas de um layout Grid:</p>
+            <div class="responsive-grid-container">
+                <div class="responsive-grid-item">Item Grid 1</div>
+                <div class="responsive-grid-item">Item Grid 2</div>
+                <div class="responsive-grid-item">Item Grid 3</div>
+                <div class="responsive-grid-item">Item Grid 4</div>
+            </div>
+            <p class="small-text" style="font-size: 1em;">
+                (1 coluna em telas pequenas, 2 colunas em telas médias, 3 colunas em telas grandes)
+            </p>
+
+            <h3>Considerações Importantes:</h3>
+            <ul>
+                <li>**Mobile First vs. Desktop First:** Embora Mobile First seja geralmente preferido, Desktop First (`@media (max-width: Xpx)`) também funciona. Escolha a que faz mais sentido para seu projeto.</li>
+                <li>**Breakpoints:** São os pontos de interrupção onde você aplica as Media Queries. Não existem breakpoints "universais", mas alguns comuns são 480px, 768px, 992px, 1200px. Escolha breakpoints que façam sentido para o seu conteúdo.</li>
+                <li>**Unidades Relativas:** Use `em`, `rem`, `%`, `vw`, `vh` para tamanhos de fonte, larguras, etc., pois eles se ajustam melhor do que pixels fixos.</li>
+                <li>**Imagens Responsivas:** Use `max-width: 100%; height: auto;` em suas imagens para que elas se adaptem ao contêiner.</li>
+            </ul>
+        </section>
+
+        <hr>
+
+        <div class="quiz-button-container">
+            <h2>Hora do Quiz!</h2>
+            <p>Teste seus conhecimentos sobre Responsividade e Media Queries!</p>
+            <a href="https://quizizz.com/admin/quiz/YOUR_QUIZ_CODE_AULA10" target="_blank" class="quiz-button">Fazer o Quiz da Aula 10!</a>
+            <p style="font-size: 0.9em; color: #888; margin-top: 15px;">**Lembre-se:** Substitua "YOUR_QUIZ_CODE_AULA10" pelo código real do seu Quizizz!</p>
+        </div>
+
+        <hr>
+
+        <section>
+            <h2>Situações-Problema: Desafios Práticos com Responsividade!</h2>
+            <p>Aplique o que aprendeu para resolver os seguintes cenários. Crie um novo arquivo HTML temporário (ex: `desafios-aula10.html`) e um CSS associado para testar suas soluções.</p>
+
+            <div class="problema-card-grid">
+                <div class="problema-card">
+                    <h3>Problema 1: Menu de Navegação Adaptativo</h3>
+                    <p>Você tem um menu de navegação (`&lt;ul&gt;` com `&lt;li&gt;` e `&lt;a&gt;`). Em telas grandes (acima de 768px), ele deve aparecer como uma linha horizontal. Em telas menores (até 768px), os itens devem ser empilhados verticalmente e ocupar a largura total.</p>
+                    <p>HTML:</p>
+                    <pre><code>
+&lt;nav class="main-nav"&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Item 1&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Item 2&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Item 3&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;
+                    </code></pre>
+                    <p>CSS:</p>
+                    <pre><code>
+/* Insira seu código CSS aqui para resolver o Problema 1 */
+/* Estilos para mobile first */
+.main-nav ul {
+    /* ... */
+}
+.main-nav li {
+    /* ... */
+}
+/* Media Query para telas maiores */
+@media screen and (min-width: 769px) {
+    .main-nav ul {
+        /* ... */
+    }
+    .main-nav li {
+        /* ... */
+    }
+}
+                    </code></pre>
+                </div>
+
+                <div class="problema-card">
+                    <h3>Problema 2: Redimensionamento de Imagem para Fundo</h3>
+                    <p>Você tem uma imagem que serve como fundo de uma seção (`div`). Ela deve cobrir toda a área da seção (`background-size: cover;`) em telas grandes. No entanto, em telas menores (até 480px), você quer que a imagem de fundo seja diferente e use `background-size: contain;` para que a imagem inteira seja visível.</p>
+                    <p>HTML:</p>
+                    <pre><code>
+&lt;div class="hero-section"&gt;
+    &lt;h2&gt;Seção de Destaque&lt;/h2&gt;
+&lt;/div&gt;
+                    </code></pre>
+                    <p>CSS:</p>
+                    <pre><code>
+/* Insira seu código CSS aqui para resolver o Problema 2 */
+.hero-section {
+    background-image: url('https://via.placeholder.com/1200x400?text=Fundo+Grande'); /* Imagem para telas grandes */
+    min-height: 300px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    /* ... estilos para telas grandes */
+}
+
+@media screen and (max-width: 480px) {
+    .hero-section {
+        background-image: url('https://via.placeholder.com/600x300?text=Fundo+Pequeno'); /* Imagem para telas pequenas */
+        /* ... estilos para telas pequenas */
+    }
+}
+                    </code></pre>
+                </div>
+
+                <div class="problema-card">
+                    <h3>Problema 3: Mudança de Cores e Bordas</h3>
+                    <p>Crie uma caixa (`div`) com um parágrafo dentro. A caixa deve ter uma borda azul e um fundo branco por padrão. Em telas com orientação paisagem (`landscape`), a borda deve se tornar verde e o fundo cinza claro. Em telas muito pequenas (largura máxima de 400px), a borda deve sumir e o fundo ser vermelho claro.</p>
+                    <p>HTML:</p>
+                    <pre><code>
+&lt;div class="color-box"&gt;
+    &lt;p&gt;Esta caixa muda de cor!&lt;/p&gt;
+&lt;/div&gt;
+                    </code></pre>
+                    <p>CSS:</p>
+                    <pre><code>
+/* Insira seu código CSS aqui para resolver o Problema 3 */
+.color-box {
+    border: 2px solid blue;
+    background-color: white;
+    padding: 20px;
+    margin: 20px;
+}
+
+@media screen and (orientation: landscape) {
+    .color-box {
+        /* ... */
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .color-box {
+        /* ... */
+    }
+}
+                    </code></pre>
+                </div>
+
+                <div class="problema-card">
+                    <h3>Problema 4: Ocultar Elemento em Mobile</h3>
+                    <p>Você tem uma barra lateral (`&lt;aside&gt;`) que contém informações adicionais. Em telas grandes, ela deve ser visível. Em telas menores que 768px, a barra lateral deve ser completamente ocultada para otimizar o espaço na tela.</p>
+                    <p>HTML:</p>
+                    <pre><code>
+&lt;div style="display: flex;"&gt;
+    &lt;main style="flex: 1;"&gt;
+        &lt;h2&gt;Conteúdo Principal&lt;/h2&gt;
+        &lt;p&gt;Este é o conteúdo principal da página.&lt;/p&gt;
+    &lt;/main&gt;
+    &lt;aside class="sidebar"&gt;
+        &lt;h3&gt;Barra Lateral&lt;/h3&gt;
+        &lt;p&gt;Informações extras.&lt;/p&gt;
+    &lt;/aside&gt;
+&lt;/div&gt;
+                    </code></pre>
+                    <p>CSS:</p>
+                    <pre><code>
+/* Insira seu código CSS aqui para resolver o Problema 4 */
+.sidebar {
+    /* Estilos padrão para telas grandes */
+    width: 250px;
+    background-color: #f0f0f0;
+    padding: 15px;
+}
+
+@media screen and (max-width: 768px) {
+    .sidebar {
+        /* ... */
+    }
+}
+                    </code></pre>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Curso de HTML e CSS. Aula 10: Responsividade e Media Queries.</p>
+        <p><a href="#topo">Voltar ao Topo</a></p>
+    </footer>
+
+</body>
+</html>

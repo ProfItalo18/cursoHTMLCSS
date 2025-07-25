@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel do Curso de HTML e CSS</title>
+    <link rel="stylesheet" href="style.css"> <style>
+        /* Estilos específicos para o painel */
+        .painel-container {
+            max-width: 900px;
+            margin: 80px auto 40px auto; /* Ajuste para o header fixo */
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+        }
+
+        .painel-container h1 {
+            color: #00bcd4;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .modulo-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .modulo-card {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .modulo-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .modulo-card h2 {
+            color: #333;
+            font-size: 1.8em;
+            margin-top: 0;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .modulo-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .modulo-card ul li {
+            margin-bottom: 10px;
+        }
+
+        .modulo-card ul li a {
+            color: #007bff; /* Cor de link padrão */
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .modulo-card ul li a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+
+        .modulo-card .projeto-link a {
+            display: inline-block;
+            background-color: #28a745; /* Cor verde para o projeto */
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        .modulo-card .projeto-link a:hover {
+            background-color: #218838;
+        }
+
+        /* Responsividade para o painel */
+        @media screen and (max-width: 768px) {
+            .painel-container {
+                margin: 20px auto;
+                padding: 15px;
+            }
+            .modulo-card h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Painel do Curso de HTML e CSS</h1>
+        <nav>
+           <ul>
+                <li><a href="painel.html">Painel do Curso</a></li>
+                <li><a href="projetos.html">Projetos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="painel-container">
+        <h1>Bem-vindo ao seu Curso de HTML e CSS!</h1>
+        <p>Aqui você pode navegar pelos conteúdos de cada módulo e acessar o seu projeto evolutivo.</p>
+
+        <div class="modulo-card-grid">
+
+            <div class="modulo-card">
+                <h2>Módulo 1: Fundamentos de HTML</h2>
+                <ul>
+                    <li><a href="aula1.html">Aula 1: HTML Básico</a></li>
+                    <li><a href="aula2.html">Aula 2: Links e Imagens</a></li>
+                    <li><a href="aula3.html">Aula 3: Listas e Tabelas</a></li>
+                    <li><a href="aula4.html">Aula 4: HTML Semântico e Formulários</a></li>
+                </ul>
+                <p class="projeto-link"><a href="projeto1.html" target="_blank">Ver Projeto HTML</a></p>
+            </div>
+
+            <div class="modulo-card">
+                <h2>Módulo 2: Fundamentos de CSS</h2>
+                <ul>
+                    <li><a href="aula5.html">Aula 5: Introdução ao CSS</a></li>
+                    <li><a href="aula6.html">Aula 6: Modelo de Caixa</a></li>
+                    <li><a href="aula7.html">Aula 7: Posicionamento Básico</a></li>
+                    <li><a href="aula8.html">Aula 8: Flexbox</a></li>
+                    <li><a href="aula9.html">Aula 9: CSS Grid (Opcional)</a></li>
+                </ul>
+                <p class="projeto-link"><a href="projeto2.html" target="_blank">Ver Projeto CSS</a></p>
+            </div>
+
+            <div class="modulo-card">
+                <h2>Módulo 3: Tópicos Avançados e Otimização</h2>
+                <ul>
+                    <li><a href="aula10.html">Aula 10: Responsividade e Media Queries</a></li>
+                    <li><a href="aula11.html">Aula 11: Transições e Animações</a></li>
+                    <li><a href="aula12.html">Aula 12: Boas Práticas e Publicação</a></li>
+                </ul>
+                <p class="projeto-link"><a href="projeto3.html" target="_blank">Ver Projeto Final</a></p>
+            </div>
+
+        </div>
+
+        <h2 style="margin-top: 50px; text-align: center; color: #555;">Recursos Adicionais</h2>
+        <div class="modulo-card-grid">
+            <div class="modulo-card">
+                <h3>Ferramentas e Documentação</h3>
+                <ul>
+                    <li><a href="https://color.adobe.com/pt/create/color-wheel" target="_blank">Adobe Color</a></li>
+                    <li><a href="https://code.visualstudio.com/" target="_blank">VS Code</a></li>
+                    <li><a href="https://github.com" target="_blank">GitHub</a></li>
+                    <li><a href="https://classroom.google.com/" target="_blank">Classroom (Google Sala de Aula)</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Curso de HTML e CSS. Todos os direitos reservados.</p>
+        <p><a href="#topo-painel">Voltar ao Topo do Painel</a></p>
+    </footer>
+
+</body>
+</html>

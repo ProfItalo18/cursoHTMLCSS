@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 5: Introdução ao CSS</title>
+    <link rel="stylesheet" href="style.css"> <style>
+        /* Estilos específicos para a página da aula 5 */
+        .aula-container {
+            max-width: 900px;
+            margin: 100px auto 60px auto;
+            padding: 30px;
+            background-color: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
+            animation: fadeInScale 0.8s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            0% { opacity: 0; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .aula-container h1 {
+            color: #00bcd4;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.8em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            border-bottom: 3px solid #e0e0e0;
+            padding-bottom: 20px;
+        }
+
+        .aula-container h2 {
+            color: #343a40;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 2em;
+            border-bottom: 1px solid #ced4da;
+            padding-bottom: 10px;
+        }
+
+        .aula-container h3 {
+            color: #495057;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.6em;
+        }
+
+        .aula-container p {
+            font-size: 1.1em;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .aula-container ul, .aula-container ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .aula-container ul li, .aula-container ol li {
+            margin-bottom: 8px;
+            font-size: 1.05em;
+        }
+
+        .aula-container strong {
+            color: #00bcd4;
+        }
+
+        /* Estilo para blocos de código */
+        .code-example {
+            background-color: #f4f6f8;
+            border-left: 5px solid #00bcd4;
+            padding: 15px 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        .code-example pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .code-example code {
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.95em;
+            color: #333;
+        }
+
+        /* Exemplos de CSS na própria página */
+        .exemplo-div-inline {
+            background-color: lightcoral;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        #exemplo-paragrafo-id {
+            color: #e67e22; /* Laranja */
+            font-size: 1.2em;
+            font-weight: bold;
+            border: 1px dashed #e67e22;
+            padding: 10px;
+            margin-top: 15px;
+        }
+
+        .exemplo-classe {
+            background-color: #27ae60; /* Verde */
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        /* Botão para Quiz */
+        .quiz-button-container {
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 30px;
+        }
+
+        .quiz-button {
+            display: inline-block;
+            background-color: #f44336;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .quiz-button:hover {
+            background-color: #d32f2f;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Seção de Situações-Problema */
+        .problema-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .problema-card {
+            background-color: #fefefe;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .problema-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+        }
+
+        .problema-card h3 {
+            color: #2196f3;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed #e0e0e0;
+            padding-bottom: 10px;
+        }
+
+        .problema-card p {
+            font-size: 1em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .problema-card pre {
+            background-color: #eee;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 0.85em;
+            overflow-x: auto;
+        }
+
+        /* Responsividade */
+        @media screen and (max-width: 768px) {
+            .aula-container {
+                margin: 20px auto;
+                padding: 20px;
+            }
+            .aula-container h1 {
+                font-size: 2.2em;
+            }
+            .aula-container h2 {
+                font-size: 1.8em;
+            }
+            .aula-container h3 {
+                font-size: 1.4em;
+            }
+            .aula-container p {
+                font-size: 1em;
+            }
+            .quiz-button {
+                font-size: 1em;
+                padding: 12px 25px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .aula-container h1 {
+                font-size: 1.8em;
+            }
+            .aula-container h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Aula 5: Introdução ao CSS</h1>
+        <nav>
+            <ul>
+                <li><a href="painel.html">Voltar ao Painel</a></li>
+                <li><a href="aula4.html">Aula Anterior</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="aula-container">
+        <h1>Aula 5: Introdução ao CSS - Dê Estilo às Suas Páginas!</h1>
+        <p>Até agora, suas páginas HTML parecem um "esqueleto" sem muita graça. É hora de vesti-las com roupas bonitas! Nesta aula, você será introduzido ao <strong>CSS (Cascading Style Sheets)</strong>, a linguagem responsável por todo o visual da sua página: cores, fontes, tamanhos, espaçamentos, posicionamento e muito mais.</p>
+
+        <section>
+            <h2>O Que é CSS e Por Que Usá-lo?</h2>
+            <p><strong>CSS</strong> é a linguagem de estilo que descreve a apresentação de um documento escrito em HTML. Pense no HTML como a estrutura da casa e o CSS como a decoração: a cor das paredes, o tipo de piso, o tamanho das janelas.</p>
+            <p>Usamos CSS para:</p>
+            <ul>
+                <li>Controlar cores de texto, fundo e bordas.</li>
+                <li>Definir tipos, tamanhos e estilos de fonte.</li>
+                <li>Organizar o layout dos elementos na página (colunas, alinhamentos).</li>
+                <li>Adicionar animações e transições.</li>
+                <li>Tornar a página responsiva (adaptável a diferentes tamanhos de tela).</li>
+            </ul>
+            <p>A principal vantagem é <strong>separar o conteúdo (HTML) da apresentação (CSS)</strong>, tornando seu código mais organizado, fácil de manter e reutilizável.</p>
+        </section>
+
+        <section>
+            <h2>Sintaxe Básica do CSS: Regras e Declarações</h2>
+            <p>Uma regra CSS consiste em um <strong>seletor</strong> e um bloco de <strong>declarações</strong>.</p>
+            <div class="code-example">
+                <pre><code>
+seletor {
+    propriedade: valor;
+    propriedade-dois: valor-dois;
+    /* ... outras declarações ... */
+}
+                </code></pre>
+            </div>
+            <ul>
+                <li><strong>Seletor:</strong> Aponta para o elemento HTML que você quer estilizar (ex: `p`, `h1`, `.minha-classe`, `#meu-id`).</li>
+                <li><strong>Declaração:</strong> Uma ou mais declarações separadas por ponto e vírgula (`;`). Cada declaração é um par de <strong>propriedade</strong> e <strong>valor</strong>, separados por dois pontos (`:`).
+                    <ul>
+                        <li><strong>Propriedade:</strong> O atributo de estilo que você quer mudar (ex: `color`, `font-size`, `background-color`).</li>
+                        <li><strong>Valor:</strong> O valor que você quer atribuir à propriedade (ex: `blue`, `16px`, `red`).</li>
+                    </ul>
+                </li>
+            </ul>
+            <p><strong>Exemplo:</strong> Estilizando todos os parágrafos para serem azuis.</p>
+            <div class="code-example">
+                <pre><code>
+p {
+    color: blue; /* Define a cor do texto como azul */
+    font-size: 18px; /* Define o tamanho da fonte como 18 pixels */
+}
+                </code></pre>
+            </div>
+            <p style="color: blue; font-size: 18px;">Este parágrafo é um exemplo de como o CSS funciona.</p>
+        </section>
+
+        <section>
+            <h2>Onde Colocar o CSS: 3 Maneiras de Incluir Estilos</h2>
+            <p>Existem três formas principais de aplicar CSS a uma página HTML:</p>
+
+            <h3>1. CSS Externo (Recomendado!)</h3>
+            <p>É a forma mais comum e recomendada. Você cria um arquivo <code>.css</code> separado (ex: <code>style.css</code>) e o vincula ao seu HTML usando a tag <code>&lt;link&gt;</code> dentro do <code>&lt;head&gt;</code>.</p>
+            <p><strong>No seu arquivo HTML (`.html`):</strong></p>
+            <div class="code-example">
+                <pre><code>
+&lt;head&gt;
+    &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+                </code></pre>
+            </div>
+            <p><strong>No seu arquivo CSS (`style.css`):</strong></p>
+            <div class="code-example">
+                <pre><code>
+/* style.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+                </code></pre>
+            </div>
+            <p><strong>Vantagens:</strong> Código organizado, fácil de manter, estilos reutilizáveis em várias páginas.</p>
+
+            <h3>2. CSS Interno (<code>&lt;style&gt;</code> Tag)</h3>
+            <p>Você escreve o CSS diretamente dentro da tag <code>&lt;style&gt;</code>, que fica no <code>&lt;head&gt;</code> do seu documento HTML.</p>
+            <p><strong>No seu arquivo HTML (`.html`):</strong></p>
+            <div class="code-example">
+                <pre><code>
+&lt;head&gt;
+    &lt;style&gt;
+        h1 {
+            color: purple;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Este título é roxo!&lt;/h1&gt;
+&lt;/body&gt;
+                </code></pre>
+            </div>
+            <h1 style="color: purple;">Este título é roxo! (Exemplo Interno)</h1>
+            <p><strong>Vantagens:</strong> Útil para estilos específicos de uma única página. **Desvantagens:** Mistura conteúdo e estilo, difícil de manter em projetos maiores.</p>
+
+            <h3>3. CSS Inline (Atributo <code>style</code>)</h3>
+            <p>Você aplica estilos diretamente a um elemento HTML usando o atributo <code>style</code> na própria tag.</p>
+            <p><strong>No seu arquivo HTML (`.html`):</strong></p>
+            <div class="code-example">
+                <pre><code>
+&lt;p style="color: green; background-color: lightgreen;"&gt;Este parágrafo tem estilo inline.&lt;/p&gt;
+                </code></pre>
+            </div>
+            <p class="exemplo-div-inline" style="background-color: lightgreen; color: green;">Este parágrafo tem estilo inline. (Exemplo Inline)</p>
+            <p><strong>Vantagens:</strong> Para estilos muito pontuais e específicos. **Desvantagens:** Pior forma para organização, não reutilizável, difícil de manter, anula outros estilos.</p>
+        </section>
+
+        <section>
+            <h2>Seletores CSS Básicos: Quem você quer estilizar?</h2>
+            <p>Seletores são como você "seleciona" os elementos HTML para aplicar os estilos CSS.</p>
+
+            <h3>1. Seletor de Tipo (Tag)</h3>
+            <p>Seleciona todos os elementos de um determinado tipo (tag).</p>
+            <div class="code-example">
+                <pre><code>
+/* Estiliza todos os parágrafos */
+p {
+    font-family: sans-serif;
+}
+
+/* Estiliza todos os h2 */
+h2 {
+    text-align: center;
+}
+                </code></pre>
+            </div>
+
+            <h3>2. Seletor de Classe (<code>.classe</code>)</h3>
+            <p>Seleciona elementos que possuem um atributo <code>class</code> específico. Você pode aplicar a mesma classe a vários elementos.</p>
+            <p><strong>No HTML:</strong> <code>&lt;div class="meu-componente"&gt;...&lt;/div&gt;</code></p>
+            <p><strong>No CSS:</strong></p>
+            <div class="code-example">
+                <pre><code>
+/* Estiliza elementos com a classe 'meu-componente' */
+.meu-componente {
+    border: 1px solid blue;
+    padding: 10px;
+}
+                </code></pre>
+            </div>
+            <div class="exemplo-classe">Este é um elemento com a classe 'exemplo-classe'.</div>
+            <div class="exemplo-classe" style="background-color: #2c3e50; color: white;">Outro elemento com a mesma classe, mas com outro estilo inline para diferenciação.</div>
+
+
+            <h3>3. Seletor de ID (<code>#id</code>)</h3>
+            <p>Seleciona um **único** elemento com um atributo <code>id</code> específico. O <code>id</code> deve ser único na página.</p>
+            <p><strong>No HTML:</strong> <code>&lt;p id="meu-paragrafo-unico"&gt;...&lt;/p&gt;</code></p>
+            <p><strong>No CSS:</strong></p>
+            <div class="code-example">
+                <pre><code>
+/* Estiliza o elemento com o ID 'meu-paragrafo-unico' */
+#meu-paragrafo-unico {
+    color: red;
+    font-weight: bold;
+}
+                </code></pre>
+            </div>
+            <p id="exemplo-paragrafo-id">Este parágrafo tem um ID único e um estilo específico.</p>
+
+            <p><strong>Precedência:</strong> Estilos inline > Estilos ID > Estilos Classe > Estilos de Tipo. (Veremos mais sobre isso em especificidade CSS).</p>
+        </section>
+
+        <section>
+            <h2>Primeiras Propriedades CSS Essenciais:</h2>
+            <ul>
+                <li><strong><code>color</code></strong>: Cor do texto (ex: `color: red;`, `color: #FF0000;`, `color: rgb(255, 0, 0);`).</li>
+                <li><strong><code>background-color</code></strong>: Cor de fundo de um elemento.</li>
+                <li><strong><code>font-size</code></strong>: Tamanho da fonte (ex: `16px`, `1.2em`, `150%`).</li>
+                <li><strong><code>font-family</code></strong>: Tipo da fonte (ex: `Arial, sans-serif;`).</li>
+                <li><strong><code>text-align</code></strong>: Alinhamento do texto (ex: `left`, `center`, `right`, `justify`).</li>
+                <li><strong><code>border</code></strong>: Adiciona uma borda (ex: `border: 1px solid black;`).</li>
+                <li><strong><code>padding</code></strong>: Espaço interno entre o conteúdo e a borda do elemento.</li>
+                <li><strong><code>margin</code></strong>: Espaço externo entre a borda do elemento e outros elementos.</li>
+            </ul>
+        </section>
+
+        <hr>
+
+        <div class="quiz-button-container">
+            <h2>Hora do Quiz!</h2>
+            <p>Teste seus conhecimentos sobre a Introdução ao CSS!</p>
+            <a href="https://quizizz.com/admin/quiz/YOUR_QUIZ_CODE_AULA5" target="_blank" class="quiz-button">Fazer o Quiz da Aula 5!</a>
+            <p style="font-size: 0.9em; color: #888; margin-top: 15px;">**Lembre-se:** Substitua "YOUR_QUIZ_CODE_AULA5" pelo código real do seu Quizizz!</p>
+        </div>
+
+        <hr>
+
+        <section>
+            <h2>Situações-Problema: Desafios de Estilo!</h2>
+            <p>Crie um novo arquivo HTML chamado `desafios-aula5.html` e um arquivo CSS chamado `desafios-aula5.css` na mesma pasta. Vincule o CSS ao HTML e resolva os problemas propostos usando o CSS!</p>
+
+            <div class="problema-card-grid">
+                <div class="problema-card">
+                    <h3>Problema 1: Estilizando Todos os Parágrafos</h3>
+                    <p>No seu `desafios-aula5.html`, crie três parágrafos (`&lt;p&gt;`). No `desafios-aula5.css`, faça com que todos eles tenham a cor de texto **azul** e o tamanho de fonte de **20px**.</p>
+                    <pre><code>
+&lt;!-- HTML --&gt;
+&lt;p&gt;Este é o primeiro parágrafo.&lt;/p&gt;
+&lt;p&gt;Este é o segundo parágrafo.&lt;/p&gt;
+&lt;p&gt;Este é o terceiro parágrafo.&lt;/p&gt;
+
+&lt;!-- CSS --&gt;
+/* Seu código CSS aqui */
+                    </code></pre>
+                </div>
+
+                <div class="problema-card">
+                    <h3>Problema 2: Destaque com Classe</h3>
+                    <p>No `desafios-aula5.html`, crie uma `div` com a classe `card-destaque`. Dentro dela, adicione um título `&lt;h3&gt;` e um parágrafo. No CSS, dê a essa `div` um `background-color` **verde claro (`#d4edda`)**, `padding` de **20px** e `border-radius` de **8px**.</p>
+                    <pre><code>
+&lt;!-- HTML --&gt;
+&lt;div class="card-destaque"&gt;
+    &lt;h3&gt;Oferta Especial!&lt;/h3&gt;
+    &lt;p&gt;Aproveite nossos descontos incríveis.&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- CSS --&gt;
+/* Seu código CSS aqui */
+                    </code></pre>
+                </div>
+
+                <div class="problema-card">
+                    <h3>Problema 3: Elemento Único com ID</h3>
+                    <p>No `desafios-aula5.html`, crie um `&lt;h1&gt;` com o `id="titulo-principal"`. No CSS, faça com que este `&lt;h1&gt;` tenha a cor de texto **vermelha** e seja **centralizado**.</p>
+                    <pre><code>
+&lt;!-- HTML --&gt;
+&lt;h1 id="titulo-principal"&gt;Bem-vindo ao Meu Site!&lt;/h1&gt;
+
+&lt;!-- CSS --&gt;
+/* Seu código CSS aqui */
+                    </code></pre>
+                </div>
+
+                <div class="problema-card">
+                    <h3>Problema 4: Usando Estilo Inline (apenas para testar!)</h3>
+                    <p>No `desafios-aula5.html`, crie um parágrafo. Aplique a ele um estilo inline para que o `background-color` seja **amarelo** e a `color` do texto seja **preto**.</p>
+                    <pre><code>
+&lt;!-- HTML --&gt;
+&lt;p style="/* Seu estilo inline aqui */"&gt;Este parágrafo tem estilo inline.&lt;/p&gt;
+
+&lt;!-- CSS --&gt;
+/* Não precisa de CSS externo para este problema */
+                    </code></pre>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Curso de HTML e CSS. Aula 5: Introdução ao CSS.</p>
+        <p><a href="#topo">Voltar ao Topo</a></p>
+    </footer>
+
+</body>
+</html>

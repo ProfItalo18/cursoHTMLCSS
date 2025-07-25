@@ -1,0 +1,476 @@
+/* Estilos gerais da página */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte mais moderna */
+    background-color: #e9ecef; /* Cor de fundo mais suave */
+    color: #343a40; /* Cor de texto mais escura */
+    margin: 0;
+    padding-top: 100px; /* Espaço para o cabeçalho fixo */
+    line-height: 1.6;
+}
+
+/* --- Cabeçalho e Navegação --- */
+header {
+    background-color: #212529; /* Cor mais escura para o cabeçalho */
+    color: white;
+    padding: 1rem 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra mais acentuada */
+    box-sizing: border-box;
+}
+
+header h1 {
+    font-size: 2.5em;
+    color: #00bcd4; /* Cor de destaque */
+    margin: 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Sombra no texto */
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 25px; /* Aumenta o espaçamento */
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 15px; /* Aumenta o padding */
+    border: 2px solid transparent; /* Borda um pouco mais grossa */
+    border-radius: 25px; /* Mais arredondado */
+    transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease, transform 0.3s ease; /* Transições mais suaves */
+}
+
+nav ul li a:hover {
+    background-color: #495057; /* Fundo mais claro no hover */
+    border-color: #00bcd4; /* Borda colorida no hover */
+    color: #00bcd4;
+    transform: translateY(-3px); /* Efeito de elevação */
+}
+
+/* --- Layout Principal do Portfólio --- */
+.portfolio-container {
+    max-width: 1000px; /* Largura um pouco menor para melhor leitura */
+    margin: 30px auto 60px auto; /* Mais margem superior e inferior */
+    padding: 0 25px; /* Mais padding lateral */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Imagem de perfil */
+.portfolio-container > img {
+    display: block;
+    margin: 30px auto 50px auto; /* Mais margem */
+    border-radius: 50%;
+    border: 6px solid #00bcd4; /* Borda mais grossa */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25); /* Sombra mais forte */
+    max-width: 220px; /* Levemente maior */
+    height: auto;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Curva de animação mais interessante */
+}
+
+.portfolio-container > img:hover {
+    transform: rotate(7deg) scale(1.1); /* Mais rotação e zoom */
+}
+
+/* --- Seções de Conteúdo --- */
+section {
+    padding: 40px; /* Mais padding nas seções */
+    margin-bottom: 30px; /* Mais margem entre seções */
+    background-color: white;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Sombra mais refinada */
+    border-radius: 10px; /* Bordas mais arredondadas */
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 1s ease-out; /* Animação de fade in para cada seção */
+}
+
+/* Animação de fade in */
+@keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Títulos das seções */
+section h2 {
+    color: #00bcd4;
+    border-bottom: 2px solid #ced4da; /* Borda mais suave */
+    padding-bottom: 12px;
+    margin-bottom: 25px;
+    font-size: 2em; /* Títulos maiores */
+    position: relative;
+}
+
+/* Adicionando um pseudo-elemento decorativo aos títulos */
+section h2::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px; /* Alinha com a borda inferior */
+    width: 50px; /* Largura da linha colorida */
+    height: 3px;
+    background-color: #00bcd4;
+}
+
+/* Parágrafos gerais */
+p {
+    margin-bottom: 15px; /* Mais margem entre parágrafos */
+    font-size: 1.1em; /* Parágrafos maiores */
+    color: #495057;
+}
+
+/* Listas */
+section ul {
+    list-style: disc; /* Estilo de disco para listas */
+    margin-left: 20px;
+    margin-bottom: 20px;
+    color: #495057;
+}
+
+section ul li {
+    margin-bottom: 8px;
+}
+
+
+/* --- Estilos de Tabela --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden; /* Garante que bordas arredondadas funcionem */
+}
+
+table thead {
+    background-color: #00bcd4; /* Cabeçalho da tabela colorido */
+    color: white;
+}
+
+table th, table td {
+    padding: 15px; /* Mais padding nas células */
+    text-align: left;
+    border-bottom: 1px solid #dee2e6; /* Linha de divisão mais clara */
+}
+
+table th {
+    font-weight: bold;
+    text-transform: uppercase; /* Texto em maiúsculas */
+    font-size: 0.9em;
+}
+
+table tbody tr:nth-child(even) { /* Estilo para linhas pares */
+    background-color: #f8f9fa;
+}
+
+/* --- Formulário de Contato --- */
+form label {
+    display: block;
+    margin-bottom: 8px; /* Mais espaço para labels */
+    font-weight: bold;
+    color: #343a40;
+}
+
+form input[type="text"],
+form input[type="email"],
+form textarea {
+    width: calc(100% - 24px); /* Ajuste para padding */
+    padding: 12px; /* Mais padding */
+    margin-bottom: 20px; /* Mais margem abaixo */
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    font-size: 1em;
+    box-sizing: border-box; /* Inclui padding na largura */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form textarea:focus {
+    border-color: #00bcd4; /* Borda colorida no foco */
+    box-shadow: 0 0 0 0.2rem rgba(0, 188, 212, 0.25); /* Sombra de foco */
+    outline: none; /* Remove o contorno padrão do navegador */
+}
+
+form textarea {
+    resize: vertical; /* Permite redimensionar verticalmente */
+}
+
+form button {
+    background-color: #00bcd4;
+    color: white;
+    padding: 14px 25px; /* Botão maior */
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+form button:hover {
+    background-color: #0097a7;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Seção de Projetos (Grid) --- */
+.grid-projetos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Min-width um pouco maior */
+    gap: 30px; /* Mais espaçamento */
+    margin-top: 30px;
+}
+
+.projeto-item {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Sombra mais suave */
+    padding: 20px; /* Mais padding */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.projeto-item:hover {
+    transform: translateY(-8px); /* Elevação mais pronunciada */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.projeto-item img {
+    max-width: 100%;
+    height: 180px; /* Altura fixa para as imagens dos projetos */
+    object-fit: cover; /* Garante que a imagem preencha o espaço sem distorcer */
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+}
+
+.projeto-item h3 {
+    color: #343a40;
+    font-size: 1.4em;
+    margin-bottom: 8px;
+}
+
+.projeto-item p {
+    font-size: 1em;
+    color: #6c757d;
+    margin-bottom: 20px;
+}
+
+.projeto-item a {
+    display: inline-block;
+    background-color: #00bcd4;
+    color: white;
+    padding: 10px 20px; /* Botão de projeto maior */
+    border-radius: 25px; /* Mais arredondado */
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.projeto-item a:hover {
+    background-color: #0097a7;
+    transform: translateY(-2px);
+}
+
+/* --- Rodapé --- */
+footer {
+    background-color: #212529;
+    color: white;
+    text-align: center;
+    padding: 2rem 0; /* Mais padding */
+    margin-top: 50px; /* Mais margem superior */
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 25px; /* Mais espaçamento */
+}
+
+footer ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+footer ul li a:hover {
+    color: #00bcd4;
+    transform: scale(1.15); /* Aumenta um pouco mais no hover */
+}
+
+footer p {
+    font-size: 0.9em;
+    color: #adb5bd;
+    margin-top: 10px;
+}
+
+
+/* --- Media Queries para Responsividade --- */
+
+/* Para telas menores que 992px (tablets maiores e desktops menores) */
+@media screen and (max-width: 992px) {
+    .portfolio-container {
+        max-width: 90%; /* Ajusta largura máxima */
+    }
+
+    header h1 {
+        font-size: 2em;
+    }
+
+    nav ul {
+        gap: 15px; /* Reduz espaçamento */
+    }
+}
+
+/* Para telas menores que 768px (tablets e celulares) */
+@media screen and (max-width: 768px) {
+    header {
+        flex-direction: column; /* Empilha itens do cabeçalho */
+        padding: 1rem 10px;
+        position: relative; /* Deixa de ser fixo em telas pequenas */
+        height: auto;
+        padding-top: 20px;
+    }
+
+    body {
+        padding-top: 0; /* Ajusta padding do body */
+    }
+
+    header h1 {
+        font-size: 1.8em;
+        margin-bottom: 15px;
+    }
+
+    nav ul {
+        flex-direction: column; /* Empilha os itens do menu */
+        gap: 10px;
+        width: 100%;
+        margin-top: 15px; /* Mais espaço entre título e menu */
+    }
+
+    nav ul li {
+        width: 90%;
+        text-align: center;
+        margin: 0 auto;
+        padding: 10px 0; /* Mais padding para área de clique */
+        background-color: #343a40; /* Fundo para cada item do menu */
+        border-radius: 5px;
+    }
+
+    nav ul li a {
+        display: block; /* Garante que o link ocupe toda a área do li */
+        padding: 0; /* Remove padding extra do a */
+    }
+
+    .portfolio-container {
+        padding: 0 15px; /* Reduz o padding lateral do contêiner */
+        margin: 20px auto;
+    }
+
+    section {
+        padding: 25px; /* Reduz o padding das seções */
+        margin-bottom: 20px;
+    }
+
+    section h2 {
+        font-size: 1.7em; /* Reduz o tamanho dos títulos de seção */
+    }
+
+    /* Tabela responsiva para mobile */
+    table, tbody, thead, th, td, tr {
+        display: block;
+    }
+
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    tr {
+        border: 1px solid #ccc;
+        margin-bottom: 15px;
+        border-radius: 8px;
+    }
+
+    td {
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+        text-align: right;
+    }
+
+    td:before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px; /* Mais espaço da borda */
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+        color: #555;
+    }
+
+    td:last-child {
+        border-bottom: 0; /* Remove borda do último td */
+    }
+
+    .grid-projetos {
+        grid-template-columns: 1fr; /* Uma coluna em telas menores para projetos */
+    }
+
+    .projeto-item img {
+        height: 150px; /* Altura um pouco menor em mobile */
+    }
+}
+
+/* Para telas muito pequenas (smartphones antigos) */
+@media screen and (max-width: 480px) {
+    header h1 {
+        font-size: 1.5em;
+    }
+    nav ul li {
+        font-size: 0.9em;
+    }
+    section h2 {
+        font-size: 1.4em;
+    }
+    p {
+        font-size: 1em;
+    }
+    .projeto-item h3 {
+        font-size: 1.2em;
+    }
+    .projeto-item p {
+        font-size: 0.85em;
+    }
+    form input, form textarea, form button {
+        font-size: 0.9em;
+        padding: 10px;
+    }
+    footer ul li a {
+        font-size: 0.9em;
+    }
+}

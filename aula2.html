@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 2: Links e Imagens - Conectando e Ilustrando</title>
+    <link rel="stylesheet" href="style.css"> <style>
+        /* Estilos específicos para a página da aula 2 */
+        .aula-container {
+            max-width: 900px;
+            margin: 100px auto 60px auto;
+            padding: 30px;
+            background-color: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
+            animation: fadeInScale 0.8s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            0% { opacity: 0; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .aula-container h1 {
+            color: #00bcd4;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.8em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            border-bottom: 3px solid #e0e0e0;
+            padding-bottom: 20px;
+        }
+
+        .aula-container h2 {
+            color: #343a40;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 2em;
+            border-bottom: 1px solid #ced4da;
+            padding-bottom: 10px;
+        }
+
+        .aula-container h3 {
+            color: #495057;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.6em;
+        }
+
+        .aula-container p {
+            font-size: 1.1em;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .aula-container ul {
+            list-style: disc;
+            margin-left: 25px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .aula-container ul li {
+            margin-bottom: 8px;
+            font-size: 1.05em;
+        }
+
+        .aula-container strong {
+            color: #00bcd4; /* Cor de destaque para termos importantes */
+        }
+
+        /* Estilo para blocos de código */
+        .code-example {
+            background-color: #f4f6f8;
+            border-left: 5px solid #00bcd4;
+            padding: 15px 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+            overflow-x: auto; /* Permite rolagem horizontal para códigos longos */
+        }
+
+        .code-example pre {
+            margin: 0;
+            white-space: pre-wrap; /* Quebra linhas longas */
+            word-wrap: break-word;
+        }
+
+        .code-example code {
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.95em;
+            color: #333;
+        }
+
+        /* Imagens na aula */
+        .aula-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        /* Botão para Quiz */
+        .quiz-button-container {
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 30px;
+        }
+
+        .quiz-button {
+            display: inline-block;
+            background-color: #f44336; /* Vermelho vibrante */
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .quiz-button:hover {
+            background-color: #d32f2f;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Seção de Situações-Problema */
+        .problema-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .problema-card {
+            background-color: #fefefe;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .problema-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+        }
+
+        .problema-card h3 {
+            color: #2196f3; /* Azul para problemas */
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed #e0e0e0;
+            padding-bottom: 10px;
+        }
+
+        .problema-card p {
+            font-size: 1em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .problema-card pre {
+            background-color: #eee;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 0.85em;
+            overflow-x: auto;
+        }
+
+        /* Responsividade para a página da aula */
+        @media screen and (max-width: 768px) {
+            .aula-container {
+                margin: 20px auto;
+                padding: 20px;
+            }
+            .aula-container h1 {
+                font-size: 2.2em;
+            }
+            .aula-container h2 {
+                font-size: 1.8em;
+            }
+            .aula-container h3 {
+                font-size: 1.4em;
+            }
+            .aula-container p {
+                font-size: 1em;
+            }
+            .quiz-button {
+                font-size: 1em;
+                padding: 12px 25px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .aula-container h1 {
+                font-size: 1.8em;
+            }
+            .aula-container h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Aula 2: Links e Imagens</h1>
+        <nav>
+            <ul>
+                <li><a href="painel.html">Voltar ao Painel</a></li>
+                <li><a href="aula1.html">Aula Anterior</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="aula-container">
+        <h1>Aula 2: Links e Imagens - Conectando e Ilustrando a Web</h1>
+        <p>Após aprender a estrutura básica do HTML, é hora de dar vida às suas páginas! Nesta aula, você descobrirá como adicionar **links** para navegar entre conteúdos e como inserir **imagens** para tornar seu site visualmente mais atraente e informativo.</p>
+
+        <section>
+            <h2>1. Links (Hyperlinks) - A Conexão da Internet</h2>
+            <p>Os links são o coração da World Wide Web, permitindo que os usuários saltem de um documento para outro. No HTML, usamos a tag <strong><code>&lt;a&gt;</code></strong> (âncora) para criar um link.</p>
+            <h3>Estrutura Básica do Link:</h3>
+            <p>A tag <code>&lt;a&gt;</code> precisa do atributo <strong><code>href</code></strong> (Hypertext REFerence), que define o destino do link.</p>
+            <div class="code-example">
+                <pre><code>&lt;a href="destino_do_link.html"&gt;Texto que o usuário vai clicar&lt;/a&gt;</code></pre>
+            </div>
+            <ul>
+                <li><strong><code>href</code></strong>: O endereço (URL) para onde o link aponta.</li>
+                <li><strong><code>Texto que o usuário vai clicar</code></strong>: O texto visível que o usuário interagirá.</li>
+            </ul>
+
+            <h3>Tipos de Links:</h3>
+            <h4>Links Internos (dentro do seu projeto):</h4>
+            <p>Apontam para outros arquivos HTML na sua pasta ou em subpastas. O caminho é relativo à posição do arquivo atual.</p>
+            <div class="code-example">
+                <pre><code>
+&lt;!-- Link para um arquivo na mesma pasta --&gt;
+&lt;a href="aula1.html"&gt;Ir para a Aula 1&lt;/a&gt;
+
+&lt;!-- Link para um arquivo dentro da pasta 'paginas' --&gt;
+&lt;a href="paginas/sobre.html"&gt;Nossa História&lt;/a&gt;
+
+&lt;!-- Link para um arquivo um nível acima (usando '../') --&gt;
+&lt;a href="../index.html"&gt;Voltar para a Home&lt;/a&gt;
+                </code></pre>
+            </div>
+
+            <h4>Links Externos (para outros sites):</h4>
+            <p>Apontam para qualquer endereço na internet. Sempre use o protocolo completo (<code>http://</code> ou <code>https://</code>).</p>
+            <div class="code-example">
+                <pre><code>&lt;a href="https://www.google.com"&gt;Pesquisar no Google&lt;/a&gt;</code></pre>
+            </div>
+
+            <h3>Abrindo Links em Novas Abas (<code>target="_blank"</code>):</h3>
+            <p>Para que o link seja aberto em uma nova aba do navegador (e o usuário não saia da sua página atual), use o atributo <strong><code>target="_blank"</code></strong>.</p>
+            <div class="code-example">
+                <pre><code>&lt;a href="https://developer.mozilla.org/pt-BR/" target="_blank"&gt;Documentação MDN&lt;/a&gt;</code></pre>
+            </div>
+
+            <h3>Links para Seções Específicas (Âncoras - <code>#id</code>):</h3>
+            <p>Você pode criar um "salto" para uma parte específica da mesma página (ou de outra página) usando o atributo <code>id</code>. Primeiro, dê um <code>id</code> único ao elemento de destino, depois crie um link para ele com <code>#nome_do_id</code>.</p>
+            <div class="code-example">
+                <pre><code>
+&lt;!-- Na seção de destino --&gt;
+&lt;section id="topo-pagina"&gt;
+    &lt;h2&gt;Início da Página&lt;/h2&gt;
+&lt;/section&gt;
+
+&lt;!-- O link para a âncora --&gt;
+&lt;a href="#topo-pagina"&gt;Ir para o Topo&lt;/a&gt;
+                </code></pre>
+            </div>
+
+            <h3>Links Especiais (E-mail e Telefone):</h3>
+            <p>Você pode configurar links para iniciar um e-mail ou uma ligação telefônica:</p>
+            <div class="code-example">
+                <pre><code>
+&lt;a href="mailto:contato@exemplo.com"&gt;Enviar E-mail&lt;/a&gt;
+&lt;a href="tel:+5511987654321"&gt;Ligar Agora&lt;/a&gt;
+                </code></pre>
+            </div>
+        </section>
+
+        <section>
+            <h2>2. Imagens - Ilustrando seu Conteúdo</h2>
+            <p>As imagens são essenciais para aprimorar o design e a clareza da sua página. A tag para inserir uma imagem é a <strong><code>&lt;img&gt;</code></strong>, que é uma tag vazia (não tem fechamento).</p>
+            <h3>Estrutura Básica da Imagem:</h3>
+            <p>A tag <code>&lt;img&gt;</code> precisa de dois atributos cruciais: <strong><code>src</code></strong> e <strong><code>alt</code></strong>.</p>
+            <div class="code-example">
+                <pre><code>&lt;img src="caminho_da_sua_imagem.jpg" alt="Descrição útil da imagem"&gt;</code></pre>
+            </div>
+            <ul>
+                <li><strong><code>src</code> (source)</strong>: O caminho para o arquivo da imagem. Pode ser um caminho local (relativo) ou um URL (absoluto).</li>
+                <li><strong><code>alt</code> (alternative text)</strong>: Texto alternativo que é exibido se a imagem não carregar, ou lido por leitores de tela para acessibilidade. **É fundamental para SEO e inclusão!**</li>
+            </ul>
+
+            <h3>Exemplos de <code>src</code>:</h3>
+            <h4>Imagem Local (na pasta <code>imagens/</code>):</h4>
+            <p>Se você tem uma imagem <code>minha-foto.jpg</code> dentro da sua pasta <code>imagens/</code>, o caminho será:</p>
+            <div class="code-example">
+                <pre><code>&lt;img src="imagens/minha-foto.jpg" alt="Foto de perfil de [Seu Nome]"&gt;</code></pre>
+            </div>
+
+            <h4>Imagem de um URL Externo:</h4>
+            <p>Você pode usar imagens hospedadas em outros sites, mas isso pode gerar problemas se a imagem for removida do site original.</p>
+            <div class="code-example">
+                <pre><code>&lt;img src="https://picsum.photos/400/300" alt="Imagem aleatória de paisagem"&gt;</code></pre>
+            </div>
+            <img src="https://picsum.photos/400/250" alt="Exemplo de imagem de paisagem" class="aula-image">
+
+            <h3>Atributos de Dimensão (<code>width</code> e <code>height</code>):</h3>
+            <p>Embora seja possível definir a largura e altura da imagem diretamente no HTML, é uma prática melhor usar o <strong>CSS</strong> para isso, pois oferece mais controle e flexibilidade para a responsividade (que veremos em aulas futuras).</p>
+            <div class="code-example">
+                <pre><code>&lt;img src="imagens/logo.png" alt="Logotipo da empresa" width="150" height="auto"&gt;</code></pre>
+            </div>
+        </section>
+
+        <hr>
+
+        <div class="quiz-button-container">
+            <h2>Hora do Quiz!</h2>
+            <p>Teste seus conhecimentos sobre Links e Imagens com este quiz rápido!</p>
+            <a href="https://quizizz.com/admin/quiz/YOUR_QUIZ_CODE_AULA2" target="_blank" class="quiz-button">Fazer o Quiz da Aula 2!</a>
+            <p style="font-size: 0.9em; color: #888; margin-top: 15px;">**Lembre-se:** Substitua "YOUR_QUIZ_CODE_AULA2" pelo código real do seu Quizizz!</p>
+        </div>
+
+        <hr>
+
+        <section>
+            <h2>Situações-Problema: Desafios Práticos!</h2>
+            <p>Aplique o que aprendeu para resolver os seguintes cenários. Crie um novo arquivo HTML temporário para testar suas soluções.</p>
+
+            <div class="problema-card-grid">
+                <div class="problema-card">
+                    <h3>Problema 1: Página de Contato e Portfólio</h3>
+                    <p>Você está criando uma página "Sobre Mim" (`sobre.html`). Nela, você precisa de um link para:</p>
+                    <ul>
+                        <li>A sua "Página de Contato" (`contato.html`, na mesma pasta).</li>
+                        <li>Seu perfil no LinkedIn (`https://www.linkedin.com/in/SEU_PERFIL`). Este link deve abrir em uma nova aba.</li>
+                    </ul>
+                    <pre><code>
+&lt;!-- Insira seu código HTML aqui para resolver o Problema 1 --&gt;
+                    </code></pre>
+                </div>
+
+                <div class="problema-card">
+                    <h3>Problema 2: Galeria de Produtos</h3>
+                    <p>Você tem um site de e-commerce. Crie uma seção que exiba a imagem de um produto (`produto.jpg` - na pasta `imagens/`) com a descrição "Novo Smartphone XYZ". Abaixo da imagem, crie um link que leve o usuário para a página de detalhes desse produto (`detalhes-produto.html`, na mesma pasta).</p>
+                    <p>Se não tiver a imagem, use `https://via.placeholder.com/350x250?text=Smartphone`.</p>
+                    <pre><code>
+&lt;!-- Insira seu código HTML aqui para resolver o Problema 2 --&gt;
+                    </code></pre>
+                </div>
+
+                <div class="problema-card">
+                    <h3>Problema 3: Rodapé com Informações</h3>
+                    <p>No rodapé de uma página, você quer adicionar um link para o "Início da Página" (que tem o `id="inicio"`) e um link para o seu e-mail de contato (`meuemail@dominio.com`).</p>
+                    <pre><code>
+&lt;!-- Insira seu código HTML aqui para resolver o Problema 3 --&gt;
+                    </code></pre>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Curso de HTML e CSS. Aula 2: Links e Imagens.</p>
+        <p><a href="#topo">Voltar ao Topo</a></p>
+    </footer>
+
+</body>
+</html>

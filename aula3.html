@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 3: Listas e Tabelas - Organizando Dados</title>
+    <link rel="stylesheet" href="style.css"> <style>
+        /* Estilos específicos para a página da aula 3 */
+        .aula-container {
+            max-width: 900px;
+            margin: 100px auto 60px auto;
+            padding: 30px;
+            background-color: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
+            animation: fadeInScale 0.8s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            0% { opacity: 0; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .aula-container h1 {
+            color: #00bcd4;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.8em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            border-bottom: 3px solid #e0e0e0;
+            padding-bottom: 20px;
+        }
+
+        .aula-container h2 {
+            color: #343a40;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 2em;
+            border-bottom: 1px solid #ced4da;
+            padding-bottom: 10px;
+        }
+
+        .aula-container h3 {
+            color: #495057;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.6em;
+        }
+
+        .aula-container p {
+            font-size: 1.1em;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .aula-container ul, .aula-container ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .aula-container ul li, .aula-container ol li {
+            margin-bottom: 8px;
+            font-size: 1.05em;
+        }
+        .aula-container ul.no-bullet {
+            list-style: none; /* Remove marcadores para listas específicas */
+            margin-left: 0;
+            padding-left: 0;
+        }
+
+        .aula-container strong {
+            color: #00bcd4;
+        }
+
+        /* Estilo para blocos de código */
+        .code-example {
+            background-color: #f4f6f8;
+            border-left: 5px solid #00bcd4;
+            padding: 15px 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        .code-example pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .code-example code {
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.95em;
+            color: #333;
+        }
+
+        /* Estilo para tabelas na aula */
+        .aula-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .aula-table th, .aula-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .aula-table th {
+            background-color: #e9ecef;
+            color: #343a40;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.9em;
+        }
+
+        .aula-table tbody tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        /* Botão para Quiz */
+        .quiz-button-container {
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 30px;
+        }
+
+        .quiz-button {
+            display: inline-block;
+            background-color: #f44336;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .quiz-button:hover {
+            background-color: #d32f2f;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Seção de Situações-Problema */
+        .problema-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .problema-card {
+            background-color: #fefefe;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .problema-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+        }
+
+        .problema-card h3 {
+            color: #2196f3;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed #e0e0e0;
+            padding-bottom: 10px;
+        }
+
+        .problema-card p {
+            font-size: 1em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .problema-card pre {
+            background-color: #eee;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 0.85em;
+            overflow-x: auto;
+        }
+
+        /* Responsividade */
+        @media screen and (max-width: 768px) {
+            .aula-container {
+                margin: 20px auto;
+                padding: 20px;
+            }
+            .aula-container h1 {
+                font-size: 2.2em;
+            }
+            .aula-container h2 {
+                font-size: 1.8em;
+            }
+            .aula-container h3 {
+                font-size: 1.4em;
+            }
+            .aula-container p {
+                font-size: 1em;
+            }
+            .quiz-button {
+                font-size: 1em;
+                padding: 12px 25px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .aula-container h1 {
+                font-size: 1.8em;
+            }
+            .aula-container h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Aula 3: Listas e Tabelas</h1>
+        <nav>
+            <ul>
+                <li><a href="painel.html">Voltar ao Painel</a></li>
+                <li><a href="aula2.html">Aula Anterior</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="aula-container">
+        <h1>Aula 3: Listas e Tabelas - Organize seu Conteúdo com Estrutura</h1>
+        <p>Nesta aula, você aprenderá a organizar informações de forma clara e estruturada usando <strong>listas</strong> e <strong>tabelas</strong> em HTML. Esses elementos são fundamentais para apresentar dados de maneira legível e acessível.</p>
+
+        <section>
+            <h2>1. Listas HTML: Organizando Itens</h2>
+            <p>As listas são perfeitas para agrupar itens relacionados. Existem três tipos principais de listas em HTML:</p>
+
+            <h3>1.1. Listas Não Ordenadas (<code>&lt;ul&gt;</code> - Unordered List)</h3>
+            <p>Usadas para itens onde a ordem não importa (por exemplo, uma lista de compras, habilidades). Os itens são marcados por símbolos (geralmente bolinhas).</p>
+            <div class="code-example">
+                <pre><code>
+&lt;ul&gt;
+    &lt;li&gt;Maçãs&lt;/li&gt;
+    &lt;li&gt;Bananas&lt;/li&gt;
+    &lt;li&gt;Laranjas&lt;/li&gt;
+&lt;/ul&gt;
+                </code></pre>
+            </div>
+            <p>Resultado:</p>
+            <ul>
+                <li>Maçãs</li>
+                <li>Bananas</li>
+                <li>Laranjas</li>
+            </ul>
+
+            <h3>1.2. Listas Ordenadas (<code>&lt;ol&gt;</code> - Ordered List)</h3>
+            <p>Usadas para itens que possuem uma ordem específica (por exemplo, um passo a passo de uma receita, rankings). Os itens são marcados por números ou letras.</p>
+            <div class="code-example">
+                <pre><code>
+&lt;ol&gt;
+    &lt;li&gt;Ferva a água&lt;/li&gt;
+    &lt;li&gt;Adicione o macarrão&lt;/li&gt;
+    &lt;li&gt;Cozinhe por 8 minutos&lt;/li&gt;
+&lt;/ol&gt;
+                </code></pre>
+            </div>
+            <p>Resultado:</p>
+            <ol>
+                <li>Ferva a água</li>
+                <li>Adicione o macarrão</li>
+                <li>Cozinhe por 8 minutos</li>
+            </ol>
+            <p>Você pode mudar o tipo de marcador usando o atributo <code>type</code> no <code>&lt;ol&gt;</code> (ex: <code>type="a"</code> para letras, <code>type="I"</code> para números romanos maiúsculos). Mas é mais comum e recomendado estilizar com CSS.</p>
+
+            <h3>1.3. Listas de Definição (<code>&lt;dl&gt;</code> - Description List)</h3>
+            <p>Usadas para listar termos e suas descrições (por exemplo, um glossário). Elas não usam <code>&lt;li&gt;</code>, mas sim:</p>
+            <ul>
+                <li><strong><code>&lt;dt&gt;</code></strong> (Definition Term): O termo a ser definido.</li>
+                <li><strong><code>&lt;dd&gt;</code></strong> (Definition Description): A descrição do termo.</li>
+            </ul>
+            <div class="code-example">
+                <pre><code>
+&lt;dl&gt;
+    &lt;dt&gt;HTML&lt;/dt&gt;
+    &lt;dd&gt;Linguagem de Marcação de Hipertexto.&lt;/dd&gt;
+
+    &lt;dt&gt;CSS&lt;/dt&gt;
+    &lt;dd&gt;Folhas de Estilo em Cascata.&lt;/dd&gt;
+&lt;/dl&gt;
+                </code></pre>
+            </div>
+            <p>Resultado:</p>
+            <dl>
+                <dt>HTML</dt>
+                <dd>Linguagem de Marcação de Hipertexto.</dd>
+                <dt>CSS</dt>
+                <dd>Folhas de Estilo em Cascata.</dd>
+            </dl>
+        </section>
+
+        <section>
+            <h2>2. Tabelas HTML: Exibindo Dados Tabulares</h2>
+            <p>As tabelas são ideais para exibir dados em formato de grade (linhas e colunas), como informações financeiras, horários, ou listas de produtos com atributos.</p>
+
+            <h3>Estrutura Básica de uma Tabela:</h3>
+            <div class="code-example">
+                <pre><code>
+&lt;table class="aula-table"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Cabeçalho 1&lt;/th&gt;
+            &lt;th&gt;Cabeçalho 2&lt;/th&gt;
+            &lt;th&gt;Cabeçalho 3&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Dado A1&lt;/td&gt;
+            &lt;td&gt;Dado A2&lt;/td&gt;
+            &lt;td&gt;Dado A3&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Dado B1&lt;/td&gt;
+            &lt;td&gt;Dado B2&lt;/td&gt;
+            &lt;td&gt;Dado B3&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+    &lt;tfoot&gt;
+        &lt;tr&gt;
+            &lt;td colspan="3"&gt;Rodapé da tabela&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tfoot&gt;
+&lt;/table&gt;
+                </code></pre>
+            </div>
+            <p>Resultado (com o CSS já aplicado):</p>
+            <table class="aula-table">
+                <thead>
+                    <tr>
+                        <th>Cabeçalho 1</th>
+                        <th>Cabeçalho 2</th>
+                        <th>Cabeçalho 3</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Dado A1</td>
+                        <td>Dado A2</td>
+                        <td>Dado A3</td>
+                    </tr>
+                    <tr>
+                        <td>Dado B1</td>
+                        <td>Dado B2</td>
+                        <td>Dado B3</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3">Rodapé da tabela</td>
+                    </tr>
+                </tfoot>
+            </table>
+
+            <h3>Detalhando as Tags da Tabela:</h3>
+            <ul>
+                <li><strong><code>&lt;table&gt;</code></strong>: Contém todo o conteúdo da tabela.</li>
+                <li><strong><code>&lt;thead&gt;</code></strong>: Grupo de cabeçalho da tabela. Contém as informações do cabeçalho.
+                    <ul>
+                        <li><strong><code>&lt;tr&gt;</code></strong> (Table Row): Define uma linha na tabela.</li>
+                        <li><strong><code>&lt;th&gt;</code></strong> (Table Header): Define uma célula de cabeçalho. O texto geralmente é em negrito e centralizado por padrão.</li>
+                    </ul>
+                </li>
+                <li><strong><code>&lt;tbody&gt;</code></strong>: Grupo de corpo da tabela. Contém os dados principais da tabela.
+                    <ul>
+                        <li><strong><code>&lt;tr&gt;</code></strong> (Table Row): Define uma linha de dados.</li>
+                        <li><strong><code>&lt;td&gt;</code></strong> (Table Data): Define uma célula de dados.</li>
+                    </ul>
+                </li>
+                <li><strong><code>&lt;tfoot&gt;</code></strong>: Grupo de rodapé da tabela. Contém resumos ou totais.
+                    <ul>
+                        <li><strong>`colspan`</strong>: Atributo para <code>&lt;td&gt;</code> ou <code>&lt;th&gt;</code> que faz com que uma célula ocupe várias colunas. Ex: <code>&lt;td colspan="3"&gt;</code>.</li>
+                        <li><strong>`rowspan`</strong>: Atributo para <code>&lt;td&gt;</code> ou <code>&lt;th&gt;</code> que faz com que uma célula ocupe várias linhas.</li>
+                    </ul>
+                </li>
+                <li><strong><code>&lt;caption&gt;</code></strong> (Opcional): Define um título para a tabela. Deve ser o primeiro elemento dentro de <code>&lt;table&gt;</code>.
+                    <div class="code-example">
+                        <pre><code>
+&lt;table&gt;
+    &lt;caption&gt;Vendas por Mês (2024)&lt;/caption&gt;
+    &lt;!-- Resto da tabela --&gt;
+&lt;/table&gt;
+                        </code></pre>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <hr>
+
+        <div class="quiz-button-container">
+            <h2>Hora do Quiz!</h2>
+            <p>Teste seus conhecimentos sobre Listas e Tabelas com este quiz rápido!</p>
+            <a href="https://quizizz.com/admin/quiz/YOUR_QUIZ_CODE_AULA3" target="_blank" class="quiz-button">Fazer o Quiz da Aula 3!</a>
+            <p style="font-size: 0.9em; color: #888; margin-top: 15px;">**Lembre-se:** Substitua "YOUR_QUIZ_CODE_AULA3" pelo código real do seu Quizizz!</p>
+        </div>
+
+        <hr>
+
+        <section>
+            <h2>Situações-Problema: Desafios Práticos!</h2>
+            <p>Aplique o que aprendeu para resolver os seguintes cenários. Crie um novo arquivo HTML temporário para testar suas soluções.</p>
+
+            <div class="problema-card-grid">
+                <div class="problema-card">
+                    <h3>Problema 1: Lista de Tarefas</h3>
+                    <p>Crie uma lista de tarefas para o dia. As tarefas devem ser numeradas e incluídas na sua página.</p>
+                    <ol class="no-bullet">
+                        <li>Fazer compras</li>
+                        <li>Estudar HTML e CSS</li>
+                        <li>Preparar o jantar</li>
+                    </ol>
+                    <pre><code>
+&lt;!-- Insira seu código HTML aqui para resolver o Problema 1 --&gt;
+                    </code></pre>
+                </div>
+
+                <div class="problema-card">
+                    <h3>Problema 2: Habilidades do Portfólio</h3>
+                    <p>No seu portfólio, você quer listar suas habilidades principais. Crie uma lista sem marcadores numerados para "HTML Básico", "CSS (Introdução)" e "Noções de Git".</p>
+                    <pre><code>
+&lt;!-- Insira seu código HTML aqui para resolver o Problema 2 --&gt;
+                    </code></pre>
+                </div>
+
+                <div class="problema-card">
+                    <h3>Problema 3: Tabela de Notas</h3>
+                    <p>Crie uma tabela para registrar as notas de um aluno em algumas disciplinas. A tabela deve ter um cabeçalho com "Disciplina" e "Nota". Adicione pelo menos duas linhas de dados. Inclua um rodapé simples dizendo "Média: [Calcule a média]".</p>
+                    <pre><code>
+&lt;!-- Insira seu código HTML aqui para resolver o Problema 3 --&gt;
+                    </code></pre>
+                </div>
+
+                <div class="problema-card">
+                    <h3>Problema 4: Catálogo de Produtos</h3>
+                    <p>Você precisa exibir um pequeno catálogo de produtos. Crie uma tabela com os cabeçalhos: "Produto", "Preço" e "Disponibilidade". Adicione dois produtos, um "Mouse Gamer" por "R$ 150,00" e "Em estoque", e um "Teclado Mecânico" por "R$ 300,00" e "Poucas unidades".</p>
+                    <pre><code>
+&lt;!-- Insira seu código HTML aqui para resolver o Problema 4 --&gt;
+                    </code></pre>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Curso de HTML e CSS. Aula 3: Listas e Tabelas.</p>
+        <p><a href="#topo">Voltar ao Topo</a></p>
+    </footer>
+
+</body>
+</html>

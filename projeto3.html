@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto 3 - Módulo 3: Site Interativo e Otimizado</title>
+    <link rel="stylesheet" href="style.css"> 
+    <style>
+        /* Estilos específicos para a página do projeto */
+        .project-container {
+            max-width: 900px;
+            margin: 100px auto 60px auto;
+            padding: 30px;
+            background-color: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
+            animation: fadeInScale 0.8s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            0% { opacity: 0; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .project-container h1 {
+            color: #00bcd4;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.8em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            border-bottom: 3px solid #e0e0e0;
+            padding-bottom: 20px;
+        }
+
+        .project-container h2 {
+            color: #343a40;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 2em;
+            border-bottom: 1px solid #ced4da;
+            padding-bottom: 10px;
+        }
+
+        .project-container h3 {
+            color: #495057;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.6em;
+        }
+
+        .project-container p {
+            font-size: 1.1em;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .project-container ul, .project-container ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .project-container ul li, .project-container ol li {
+            margin-bottom: 8px;
+            font-size: 1.05em;
+        }
+
+        .project-container strong {
+            color: #00bcd4;
+        }
+
+        .call-to-action-box {
+            background-color: #e0f2f7;
+            border: 1px solid #b3e5fc;
+            padding: 25px;
+            margin-top: 50px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .call-to-action-box h3 {
+            color: #007bb6;
+            margin-top: 0;
+            font-size: 1.8em;
+        }
+
+        .call-to-action-box p {
+            font-size: 1.1em;
+            margin-bottom: 25px;
+        }
+
+        .start-button {
+            display: inline-block;
+            background-color: #28a745;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .start-button:hover {
+            background-color: #218838;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsividade */
+        @media screen and (max-width: 768px) {
+            .project-container {
+                margin: 20px auto;
+                padding: 20px;
+            }
+            .project-container h1 {
+                font-size: 2.2em;
+            }
+            .project-container h2 {
+                font-size: 1.8em;
+            }
+            .project-container h3 {
+                font-size: 1.4em;
+            }
+            .project-container p {
+                font-size: 1em;
+            }
+            .start-button {
+                font-size: 1em;
+                padding: 12px 25px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .project-container h1 {
+                font-size: 1.8em;
+            }
+            .project-container h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Proposta do Projeto 3: Módulo 3</h1>
+        <nav>
+            <ul>
+                <li><a href="painel.html">Voltar ao Painel</a></li>
+                <li><a href="projetos.html">Ver Todos os Projetos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="project-container">
+        <h1>Projeto 3: Módulo 3 - Desenvolvendo um Site Interativo e Otimizado</h1>
+        <p>Este é o seu projeto final do curso de HTML e CSS! Você terá a oportunidade de criar um site completo, com múltiplas páginas ou seções, aplicando tudo o que aprendeu sobre estruturação, estilização avançada, responsividade, e adicionando toques de interatividade visual com transições e animações. O foco será na entrega de um produto de alta qualidade, otimizado e pronto para ser publicado.</p>
+
+        <section>
+            <h2>Objetivo do Projeto</h2>
+            <p>O objetivo principal é que você demonstre o domínio abrangente dos tópicos do Módulo 3 e a capacidade de integrar diferentes conhecimentos para criar um site funcional e esteticamente agradável, com foco em:</p>
+            <ul>
+                <li>Consolidação da **Responsividade e Media Queries** para garantir que o site funcione perfeitamente em qualquer dispositivo.</li>
+                <li>Uso criativo de **Transições CSS** para criar interações suaves e elegantes.</li>
+                <li>Implementação de **Animações CSS** para adicionar dinamismo e chamar a atenção para elementos importantes.</li>
+                <li>Aplicação de **Boas Práticas de Codificação** (HTML semântico, CSS organizado e eficiente).</li>
+                <li>Experiência prática na **Publicação do seu site** utilizando o GitHub Pages, garantindo que ele esteja acessível online.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Requisitos Essenciais</h2>
+            <p>Seu site deve conter, no mínimo, as seguintes características:</p>
+            <ol>
+                <li>
+                    <h3>Estrutura do Site (Múltiplas Páginas ou Seções)</h3>
+                    <ul>
+                        <li>Um site com **pelo menos 3 páginas HTML distintas** (ex: Página Inicial, Serviços/Produtos, Contato) ou uma **single-page** com 3 seções bem definidas (`&lt;section&gt;`) e navegação suave entre elas (utilizando links internos e rolagem suave).</li>
+                        <li>Utilização de elementos HTML semânticos como `&lt;header&gt;`, `&lt;nav&gt;`, `&lt;main&gt;`, `&lt;section&gt;`, `&lt;article&gt;`, `&lt;aside&gt;` e `&lt;footer&gt;`.</li>
+                        <li>Um **formulário de contato** funcional (não precisa enviar dados para um servidor, apenas a estrutura com campos como `&lt;input type="text"&gt;`, `&lt;input type="email"&gt;`, `&lt;textarea&gt;` e `&lt;button type="submit"&gt;`).</li>
+                    </ul>
+                </li>
+                <li>
+                    <h3>Responsividade Avançada</h3>
+                    <ul>
+                        <li>O layout deve ser **totalmente responsivo**, adaptando-se a telas de smartphones, tablets e desktops de forma fluida.</li>
+                        <li>Utilize **Media Queries** de forma estratégica para otimizar a experiência em diferentes tamanhos de tela (ex: alterando layouts de Flexbox/Grid, tamanhos de fonte, visibilidade de elementos).</li>
+                        <li>Garanta que as imagens sejam responsivas (ex: `max-width: 100%; height: auto;`).</li>
+                    </ul>
+                </li>
+                <li>
+                    <h3>Transições e Animações CSS</h3>
+                    <ul>
+                        <li>Implemente **pelo menos 3 transições CSS** em elementos interativos (ex: mudança de cor de fundo em botões ao `hover`, suavização em menus de navegação, transformação de elementos ao passar o mouse).</li>
+                        <li>Crie **pelo menos 1 animação CSS** que seja visualmente interessante e funcional (ex: um loader simples, um elemento que entra na tela com um efeito ao carregar, um ícone pulsante). Utilize `@keyframes` para definir a animação.</li>
+                    </ul>
+                </li>
+                <li>
+                    <h3>Boas Práticas e Otimização</h3>
+                    <ul>
+                        <li>**Código HTML limpo e bem identado.**</li>
+                        <li>**CSS organizado:** utilize comentários, classes semânticas, e, se desejar, organize seu CSS em seções ou até mesmo em múltiplos arquivos (`&lt;link rel="stylesheet" href="caminho/arquivo.css"&gt;`).</li>
+                        <li>**Otimização de Imagens:** utilize imagens com tamanhos e formatos adequados para web para garantir um bom desempenho.</li>
+                        <li>Acessibilidade básica (ex: uso de atributos `alt` em imagens, estrutura de cabeçalhos correta).</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>Entrega do Projeto</h2>
+            <p>Para entregar seu projeto finalizado, siga os passos abaixo:</p>
+            <ol>
+                <li>**Organização:** Organize todos os seus arquivos (HTML, CSS, imagens, etc.) de forma lógica em uma pasta principal (ex: <code>meu-site-final</code>).</li>
+                <li>**GitHub:** Faça o upload completo desta pasta para um **novo repositório** no seu perfil do **GitHub**.</li>
+                <li>**Publicação:** Publique seu site online utilizando o **GitHub Pages**. Certifique-se de que o site está acessível publicamente.</li>
+                <li>**Compartilhamento:** Forneça o **link público** do seu site para avaliação.</li>
+                <li>(Obrigatório): Adicione um arquivo <code>README.md</code> na raiz do seu repositório GitHub. Este <code>README</code> deve incluir:
+                    <ul>
+                        <li>Uma breve descrição do seu projeto.</li>
+                        <li>As tecnologias HTML e CSS utilizadas.</li>
+                        <li>Quais funcionalidades de responsividade, transições e animações foram implementadas.</li>
+                        <li>Quaisquer desafios que você enfrentou e como os superou.</li>
+                        <li>Uma captura de tela ou GIF do seu site (opcional, mas recomendado).</li>
+                    </ul>
+                </li>
+            </ol>
+            <p>Este projeto é a sua chance de mostrar tudo o que você aprendeu. Dedique-se à qualidade do código, à experiência do usuário e à apresentação final. Boa sorte!</p>
+        </section>
+
+        <div class="call-to-action-box">
+            <h3>Seu Grande Final está Chamando!</h3>
+            <p>Este é o momento de brilhar e aplicar todas as suas novas habilidades. Mal podemos esperar para ver seu projeto!</p>
+            <a href="projetos.html" class="start-button">Voltar à Página de Projetos</a>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Curso de HTML e CSS. Projeto 3 - Módulo 3.</p>
+        <p><a href="#topo">Voltar ao Topo</a></p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projetos do Curso de HTML e CSS</title>
+    <link rel="stylesheet" href="style.css"> <style>
+        /* Estilos específicos para a página de projetos */
+        .projects-page-container {
+            max-width: 1000px; /* Um pouco mais largo para os cards de projeto */
+            margin: 100px auto 60px auto;
+            padding: 30px;
+            background-color: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
+            animation: fadeInScale 0.8s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            0% { opacity: 0; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .projects-page-container h1 {
+            color: #00bcd4;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 3em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            border-bottom: 3px solid #e0e0e0;
+            padding-bottom: 20px;
+        }
+
+        .projects-page-container h2 {
+            color: #343a40;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 2.2em;
+            text-align: center;
+        }
+
+        .project-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+            padding: 20px 0;
+        }
+
+        .project-card {
+            background-color: #fefefe;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Empurra o botão para o final */
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-card h3 {
+            color: #2196f3;
+            font-size: 1.8em;
+            margin-top: 0;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed #e0e0e0;
+            padding-bottom: 10px;
+        }
+
+        .project-card p {
+            font-size: 1.05em;
+            line-height: 1.6;
+            color: #666;
+            margin-bottom: 20px;
+            flex-grow: 1; /* Permite que o parágrafo ocupe o espaço disponível */
+        }
+
+        .project-card .btn-view-project {
+            display: inline-block;
+            background-color: #00bcd4;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.0em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            align-self: flex-start; /* Alinha o botão à esquerda dentro do card */
+            margin-top: 15px; /* Espaçamento acima do botão */
+        }
+
+        .project-card .btn-view-project:hover {
+            background-color: #0097a7;
+            transform: translateY(-2px);
+        }
+
+        /* Responsividade */
+        @media screen and (max-width: 768px) {
+            .projects-page-container {
+                margin: 20px auto;
+                padding: 20px;
+            }
+            .projects-page-container h1 {
+                font-size: 2.5em;
+            }
+            .projects-page-container h2 {
+                font-size: 1.8em;
+            }
+            .project-card {
+                padding: 25px;
+            }
+            .project-card h3 {
+                font-size: 1.5em;
+            }
+            .project-card p {
+                font-size: 1em;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .projects-page-container h1 {
+                font-size: 2em;
+            }
+            .projects-page-container h2 {
+                font-size: 1.6em;
+            }
+            .project-card-grid {
+                grid-template-columns: 1fr; /* Uma coluna em telas muito pequenas */
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Projetos do Curso</h1>
+        <nav>
+            <ul>
+                <li><a href="painel.html">Voltar ao Painel</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="projects-page-container">
+        <h1>Grandes Projetos de HTML e CSS</h1>
+        <p style="text-align: center; font-size: 1.2em; color: #555; margin-bottom: 50px;">
+            Aqui você encontrará as propostas detalhadas dos projetos práticos que consolidarão seu aprendizado em HTML e CSS. Cada projeto é uma oportunidade para aplicar e expandir suas habilidades!
+        </p>
+
+        <div class="project-card-grid">
+
+            <div class="project-card">
+                <h3>Projeto 1: Portfólio Web Pessoal</h3>
+                <p>Este é o seu primeiro grande passo! Você construirá uma versão inicial do seu portfólio web pessoal, aplicando conceitos de estrutura HTML, elementos de texto, imagens, links, e toda a base de estilização CSS, incluindo o modelo de caixa e seletores.</p>
+                <a href="projeto1.html" class="btn-view-project">Ver Proposta Detalhada</a>
+            </div>
+
+            <div class="project-card">
+                <h3>Projeto 2: Layout Responsivo Avançado</h3>
+                <p>No segundo projeto, o foco será em layouts mais complexos e na responsividade avançada. Você criará uma página com múltiplas seções, utilizando Flexbox e CSS Grid de forma mais aprofundada, garantindo que o design se adapte perfeitamente a qualquer dispositivo. Exploraremos formulários e interatividade básica.</p>
+                <a href="projeto2.html" class="btn-view-project">Ver Proposta Detalhada</a>
+            </div>
+
+            <div class="project-card">
+                <h3>Projeto 3: Página Interativa com Animações</h3>
+                <p>O terceiro e último projeto do curso desafiará você a criar uma página web dinâmica, incorporando transições e animações CSS para uma experiência de usuário rica. O foco será na otimização de performance, acessibilidade e na publicação final do seu site, aplicando boas práticas de desenvolvimento.</p>
+                <a href="projeto3.html" class="btn-view-project">Ver Proposta Detalhada</a>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Curso de HTML e CSS. Página de Projetos.</p>
+        <p><a href="#topo">Voltar ao Topo</a></p>
+    </footer>
+
+    <style>
+        /* Estilos para desabilitar o botão "Em Breve" */
+        .btn-view-project.disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+        .btn-view-project.disabled:hover {
+            transform: none;
+            box-shadow: none;
+            background-color: #cccccc;
+        }
+    </style>
+
+</body>
+</html>

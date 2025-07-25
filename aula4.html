@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 4: HTML Semântico e Formulários</title>
+    <link rel="stylesheet" href="style.css"> <style>
+        /* Estilos específicos para a página da aula 4 */
+        .aula-container {
+            max-width: 900px;
+            margin: 100px auto 60px auto;
+            padding: 30px;
+            background-color: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
+            animation: fadeInScale 0.8s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            0% { opacity: 0; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .aula-container h1 {
+            color: #00bcd4;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.8em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            border-bottom: 3px solid #e0e0e0;
+            padding-bottom: 20px;
+        }
+
+        .aula-container h2 {
+            color: #343a40;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 2em;
+            border-bottom: 1px solid #ced4da;
+            padding-bottom: 10px;
+        }
+
+        .aula-container h3 {
+            color: #495057;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.6em;
+        }
+
+        .aula-container p {
+            font-size: 1.1em;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .aula-container ul, .aula-container ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .aula-container ul li, .aula-container ol li {
+            margin-bottom: 8px;
+            font-size: 1.05em;
+        }
+        .aula-container ul.no-bullet {
+            list-style: none;
+            margin-left: 0;
+            padding-left: 0;
+        }
+
+        .aula-container strong {
+            color: #00bcd4;
+        }
+
+        /* Estilo para blocos de código */
+        .code-example {
+            background-color: #f4f6f8;
+            border-left: 5px solid #00bcd4;
+            padding: 15px 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        .code-example pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .code-example code {
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.95em;
+            color: #333;
+        }
+
+        /* Estilo para formulários dentro da aula */
+        .aula-form-example {
+            background-color: #fefefe;
+            border: 1px solid #e0e0e0;
+            padding: 25px;
+            margin-top: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .aula-form-example label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #343a40;
+        }
+
+        .aula-form-example input[type="text"],
+        .aula-form-example input[type="email"],
+        .aula-form-example input[type="password"],
+        .aula-form-example input[type="number"],
+        .aula-form-example input[type="date"],
+        .aula-form-example select,
+        .aula-form-example textarea {
+            width: calc(100% - 24px);
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            font-size: 1em;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .aula-form-example input[type="text"]:focus,
+        .aula-form-example input[type="email"]:focus,
+        .aula-form-example input[type="password"]:focus,
+        .aula-form-example input[type="number"]:focus,
+        .aula-form-example input[type="date"]:focus,
+        .aula-form-example select:focus,
+        .aula-form-example textarea:focus {
+            border-color: #00bcd4;
+            box-shadow: 0 0 0 0.2rem rgba(0, 188, 212, 0.25);
+            outline: none;
+        }
+
+        .aula-form-example input[type="radio"],
+        .aula-form-example input[type="checkbox"] {
+            margin-right: 8px;
+        }
+
+        .aula-form-example button {
+            background-color: #00bcd4;
+            color: white;
+            padding: 14px 25px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        }
+
+        .aula-form-example button:hover {
+            background-color: #0097a7;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Botão para Quiz */
+        .quiz-button-container {
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 30px;
+        }
+
+        .quiz-button {
+            display: inline-block;
+            background-color: #f44336;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .quiz-button:hover {
+            background-color: #d32f2f;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Seção de Situações-Problema */
+        .problema-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .problema-card {
+            background-color: #fefefe;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .problema-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+        }
+
+        .problema-card h3 {
+            color: #2196f3;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed #e0e0e0;
+            padding-bottom: 10px;
+        }
+
+        .problema-card p {
+            font-size: 1em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .problema-card pre {
+            background-color: #eee;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 0.85em;
+            overflow-x: auto;
+        }
+
+        /* Responsividade */
+        @media screen and (max-width: 768px) {
+            .aula-container {
+                margin: 20px auto;
+                padding: 20px;
+            }
+            .aula-container h1 {
+                font-size: 2.2em;
+            }
+            .aula-container h2 {
+                font-size: 1.8em;
+            }
+            .aula-container h3 {
+                font-size: 1.4em;
+            }
+            .aula-container p {
+                font-size: 1em;
+            }
+            .quiz-button {
+                font-size: 1em;
+                padding: 12px 25px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .aula-container h1 {
+                font-size: 1.8em;
+            }
+            .aula-container h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Aula 4: HTML Semântico e Formulários</h1>
+        <nav>
+            <ul>
+                <li><a href="painel.html">Voltar ao Painel</a></li>
+                <li><a href="aula3.html">Aula Anterior</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="aula-container">
+        <h1>Aula 4: HTML Semântico e Formulários - Dando Significado e Interatividade</h1>
+        <p>Nesta aula, você aprofundará seus conhecimentos em HTML aprendendo sobre <strong>HTML Semântico</strong>, que melhora a estrutura e o significado do seu conteúdo, e sobre <strong>Formulários</strong>, que permitem coletar informações dos usuários e criar interatividade.</p>
+
+        <section>
+            <h2>1. HTML Semântico: Construindo com Significado</h2>
+            <p>O HTML Semântico consiste em usar as tags HTML de acordo com o <strong>significado</strong> do conteúdo que elas representam, e não apenas por sua aparência visual (que é trabalho do CSS!). Isso é crucial para:</p>
+            <ul>
+                <li><strong>Acessibilidade:</strong> Leitores de tela e outras tecnologias assistivas entendem melhor a estrutura da página.</li>
+                <li><strong>SEO (Search Engine Optimization):</strong> Motores de busca (Google, Bing) compreendem melhor o seu conteúdo, o que pode melhorar seu ranqueamento.</li>
+                <li><strong>Manutenibilidade:</strong> Seu código fica mais claro e fácil de entender e manter por outros desenvolvedores (e por você mesmo no futuro!).</li>
+            </ul>
+
+            <h3>Tags Semânticas Comuns:</h3>
+            <ul>
+                <li><strong><code>&lt;header&gt;</code></strong>: Representa o cabeçalho de um documento ou de uma seção, geralmente contendo o logotipo, título principal e navegação.</li>
+                <li><strong><code>&lt;nav&gt;</code></strong>: Contém links de navegação (menus).</li>
+                <li><strong><code>&lt;main&gt;</code></strong>: Representa o conteúdo principal do documento. Deve haver apenas uma tag <code>&lt;main&gt;</code> por página.</li>
+                <li><strong><code>&lt;section&gt;</code></strong>: Representa uma seção genérica de conteúdo (ex: "Sobre Mim", "Projetos"). Geralmente, tem um cabeçalho (<code>&lt;h1&gt;</code> a <code>&lt;h6&gt;</code>) como filho.</li>
+                <li><strong><code>&lt;article&gt;</code></strong>: Representa um conteúdo independente e auto-contido, como um post de blog, um comentário ou uma notícia.</li>
+                <li><strong><code>&lt;aside&gt;</code></strong>: Conteúdo relacionado, mas separado do conteúdo principal (ex: barras laterais, citações).</li>
+                <li><strong><code>&lt;footer&gt;</code></strong>: Representa o rodapé de um documento ou seção, geralmente contendo informações de direitos autorais, links de contato, etc.</li>
+                <li><strong><code>&lt;figure&gt;</code> e <code>&lt;figcaption&gt;</code></strong>: Usadas para agrupar uma imagem, vídeo, diagrama, etc., com sua legenda.</li>
+                <li><strong><code>&lt;time&gt;</code></strong>: Representa uma data e/ou hora.</li>
+            </ul>
+
+            <p><strong>Exemplo de Estrutura Semântica:</strong></p>
+            <div class="code-example">
+                <pre><code>
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Título do Site&lt;/h1&gt;
+        &lt;nav&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;Sobre&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+
+    &lt;main&gt;
+        &lt;section&gt;
+            &lt;h2&gt;Minha História&lt;/h2&gt;
+            &lt;p&gt;Conteúdo sobre minha história...&lt;/p&gt;
+        &lt;/section&gt;
+
+        &lt;article&gt;
+            &lt;h2&gt;Artigo Recente&lt;/h2&gt;
+            &lt;p&gt;Este é um artigo sobre...&lt;/p&gt;
+            &lt;footer&gt;Publicado em &lt;time datetime="2024-07-25"&gt;25 de julho de 2024&lt;/time&gt;.&lt;/footer&gt;
+        &lt;/article&gt;
+    &lt;/main&gt;
+
+    &lt;aside&gt;
+        &lt;h3&gt;Publicidade&lt;/h3&gt;
+        &lt;p&gt;Anúncio aqui.&lt;/p&gt;
+    &lt;/aside&gt;
+
+    &lt;footer&gt;
+        &lt;p&gt;&copy; 2024 Meu Site.&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+                </code></pre>
+            </div>
+            <p>Note que o seu arquivo `index.html` já utiliza muitas dessas tags semânticas para organizar o portfólio!</p>
+        </section>
+
+        <section>
+            <h2>2. Formulários HTML: Coletando Dados do Usuário</h2>
+            <p>Os formulários são usados para coletar informações do usuário, como nomes, e-mails, senhas, mensagens, etc. Eles são essenciais para login, contato, pesquisas e muito mais.</p>
+
+            <h3>2.1. A Tag <code>&lt;form&gt;</code>: O Contêiner do Formulário</h3>
+            <p>Todos os elementos de um formulário devem estar dentro da tag <code>&lt;form&gt;</code>. Ela possui atributos importantes:</p>
+            <ul>
+                <li><strong><code>action</code></strong>: O URL para onde os dados do formulário serão enviados após o envio.</li>
+                <li><strong><code>method</code></strong>: O método HTTP usado para enviar os dados. Os mais comuns são:
+                    <ul>
+                        <li><strong><code>GET</code></strong>: Os dados são anexados ao URL (visíveis na barra de endereço). Ideal para buscas ou dados não sensíveis.</li>
+                        <li><strong><code>POST</code></strong>: Os dados são enviados no corpo da requisição (não visíveis no URL). Ideal para dados sensíveis (senhas) ou grandes volumes de dados.</li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="code-example">
+                <pre><code>
+&lt;form action="/enviar-contato" method="post"&gt;
+    &lt;!-- Elementos do formulário aqui --&gt;
+&lt;/form&gt;
+                </code></pre>
+            </div>
+
+            <h3>2.2. Elementos de Entrada (<code>&lt;input&gt;</code>)</h3>
+            <p>A tag <code>&lt;input&gt;</code> é a mais versátil. Seu comportamento muda com o atributo <strong><code>type</code></strong>.</p>
+            <ul>
+                <li><strong><code>type="text"</code></strong>: Para entrada de texto curto (nomes, endereços).
+                    <div class="code-example">
+                        <pre><code>&lt;label for="nome"&gt;Nome:&lt;/label&gt;
+&lt;input type="text" id="nome" name="nome" placeholder="Seu nome completo"&gt;</code></pre>
+                    </div>
+                </li>
+                <li><strong><code>type="email"</code></strong>: Para endereços de e-mail. Inclui validação básica de formato.
+                    <div class="code-example">
+                        <pre><code>&lt;label for="email"&gt;E-mail:&lt;/label&gt;
+&lt;input type="email" id="email" name="email" required&gt;</code></pre>
+                    </div>
+                </li>
+                <li><strong><code>type="password"</code></strong>: Para senhas (esconde o texto digitado).
+                    <div class="code-example">
+                        <pre><code>&lt;label for="senha"&gt;Senha:&lt;/label&gt;
+&lt;input type="password" id="senha" name="senha"&gt;</code></pre>
+                    </div>
+                </li>
+                <li><strong><code>type="number"</code></strong>: Para números.
+                    <div class="code-example">
+                        <pre><code>&lt;label for="idade"&gt;Idade:&lt;/label&gt;
+&lt;input type="number" id="idade" name="idade" min="18" max="99"&gt;</code></pre>
+                    </div>
+                </li>
+                <li><strong><code>type="date"</code></strong>: Para datas.
+                    <div class="code-example">
+                        <pre><code>&lt;label for="data"&gt;Data de Nascimento:&lt;/label&gt;
+&lt;input type="date" id="data" name="nascimento"&gt;</code></pre>
+                    </div>
+                </li>
+                <li><strong><code>type="radio"</code></strong>: Para seleção de uma única opção em um grupo.
+                    <div class="code-example">
+                        <pre><code>
+&lt;input type="radio" id="opcao1" name="grupo" value="valor1"&gt; &lt;label for="opcao1"&gt;Opção 1&lt;/label&gt;&lt;br&gt;
+&lt;input type="radio" id="opcao2" name="grupo" value="valor2"&gt; &lt;label for="opcao2"&gt;Opção 2&lt;/label&gt;
+                        </code></pre>
+                        <p><strong>Importante:</strong> Rádios com o mesmo `name` formam um grupo onde apenas um pode ser selecionado.</p>
+                    </div>
+                </li>
+                <li><strong><code>type="checkbox"</code></strong>: Para seleção de múltiplas opções.
+                    <div class="code-example">
+                        <pre><code>
+&lt;input type="checkbox" id="item1" name="hobbies" value="ler"&gt; &lt;label for="item1"&gt;Ler&lt;/label&gt;&lt;br&gt;
+&lt;input type="checkbox" id="item2" name="hobbies" value="esportes"&gt; &lt;label for="item2"&gt;Esportes&lt;/label&gt;
+                        </code></pre>
+                    </div>
+                </li>
+                <li><strong><code>type="submit"</code></strong>: Cria um botão para enviar o formulário.
+                    <div class="code-example">
+                        <pre><code>&lt;input type="submit" value="Enviar Formulário"&gt;</code></pre>
+                    </div>
+                </li>
+            </ul>
+
+            <h3>2.3. Outros Elementos de Formulário:</h3>
+            <ul>
+                <li><strong><code>&lt;textarea&gt;</code></strong>: Para entrada de texto longo (mensagens, comentários).
+                    <div class="code-example">
+                        <pre><code>&lt;label for="mensagem"&gt;Sua Mensagem:&lt;/label&gt;
+&lt;textarea id="mensagem" name="mensagem" rows="5" cols="30"&gt;&lt;/textarea&gt;</code></pre>
+                    </div>
+                </li>
+                <li><strong><code>&lt;select&gt;</code> e <code>&lt;option&gt;</code></strong>: Para listas suspensas (dropdowns).
+                    <div class="code-example">
+                        <pre><code>
+&lt;label for="cidade"&gt;Selecione sua cidade:&lt;/label&gt;
+&lt;select id="cidade" name="cidade"&gt;
+    &lt;option value="sp"&gt;São Paulo&lt;/option&gt;
+    &lt;option value="rj"&gt;Rio de Janeiro&lt;/option&gt;
+    &lt;option value="bh" selected&gt;Belo Horizonte&lt;/option&gt; &lt;!-- 'selected' pré-seleciona --&gt;
+&lt;/select&gt;
+                        </code></pre>
+                    </div>
+                </li>
+                <li><strong><code>&lt;label&gt;</code></strong>: Associa um texto descritivo a um controle de formulário. **Essencial para acessibilidade!** O atributo `for` do `&lt;label&gt;` deve ser igual ao `id` do input que ele descreve.
+                    <div class="code-example">
+                        <pre><code>&lt;label for="meuInput"&gt;Meu Campo de Texto:&lt;/label&gt;
+&lt;input type="text" id="meuInput" name="campo"&gt;</code></pre>
+                    </div>
+                </li>
+                <li><strong><code>&lt;button&gt;</code></strong>: Cria um botão genérico. O `type` padrão é `submit`, mas pode ser `button` (para JavaScript) ou `reset`.
+                    <div class="code-example">
+                        <pre><code>&lt;button type="submit"&gt;Enviar Dados&lt;/button&gt;</code></pre>
+                    </div>
+                </li>
+            </ul>
+
+            <h3>Atributos Importantes para Inputs:</h3>
+            <ul>
+                <li><strong><code>name</code></strong>: Nome do campo, usado para identificar o dado quando o formulário é enviado. **Obrigatório para que o dado seja enviado!**</li>
+                <li><strong><code>id</code></strong>: Identificador único, usado para associar com `&lt;label&gt;` e para estilização/JavaScript.</li>
+                <li><strong><code>value</code></strong>: O valor inicial do campo ou o valor que será enviado para `radio`, `checkbox`, `select`.</li>
+                <li><strong><code>placeholder</code></strong>: Texto de dica que aparece no campo antes de o usuário digitar.</li>
+                <li><strong><code>required</code></strong>: Faz com que o campo seja obrigatório (o formulário não será enviado se estiver vazio).</li>
+                <li><strong><code>min</code>, <code>max</code>, <code>step</code></strong>: Para `type="number"`, `range`, `date`, etc., definem limites e incrementos.</li>
+            </ul>
+
+            <p><strong>Exemplo Completo de Formulário:</strong></p>
+            <div class="aula-form-example">
+                <h3>Formulário de Contato Exemplo</h3>
+                <form action="#" method="post">
+                    <label for="nome-exemplo">Nome Completo:</label>
+                    <input type="text" id="nome-exemplo" name="nome" placeholder="Seu nome" required>
+
+                    <label for="email-exemplo">E-mail:</label>
+                    <input type="email" id="email-exemplo" name="email" placeholder="seuemail@exemplo.com" required>
+
+                    <label for="assunto-exemplo">Assunto:</label>
+                    <select id="assunto-exemplo" name="assunto">
+                        <option value="geral">Geral</option>
+                        <option value="suporte">Suporte Técnico</option>
+                        <option value="sugestao">Sugestão</option>
+                    </select>
+
+                    <label for="mensagem-exemplo">Sua Mensagem:</label>
+                    <textarea id="mensagem-exemplo" name="mensagem" rows="6" placeholder="Escreva sua mensagem aqui..." required></textarea>
+
+                    <p>Qual seu meio de contato preferido?</p>
+                    <input type="radio" id="contato-email" name="contato_pref" value="email">
+                    <label for="contato-email">E-mail</label><br>
+                    <input type="radio" id="contato-tel" name="contato_pref" value="telefone">
+                    <label for="contato-tel">Telefone</label><br><br>
+
+                    <input type="checkbox" id="noticias" name="aceitar_noticias" value="sim">
+                    <label for="noticias">Desejo receber notícias e promoções</label><br><br>
+
+                    <button type="submit">Enviar Formulário</button>
+                    <button type="reset">Limpar Campos</button>
+                </form>
+            </div>
+        </section>
+
+        <hr>
+
+        <div class="quiz-button-container">
+            <h2>Hora do Quiz!</h2>
+            <p>Teste seus conhecimentos sobre HTML Semântico e Formulários com este quiz rápido!</p>
+            <a href="https://quizizz.com/admin/quiz/YOUR_QUIZ_CODE_AULA4" target="_blank" class="quiz-button">Fazer o Quiz da Aula 4!</a>
+            <p style="font-size: 0.9em; color: #888; margin-top: 15px;">**Lembre-se:** Substitua "YOUR_QUIZ_CODE_AULA4" pelo código real do seu Quizizz!</p>
+        </div>
+
+        <hr>
+
+        <section>
+            <h2>Situações-Problema: Desafios Práticos!</h2>
+            <p>Aplique o que aprendeu para resolver os seguintes cenários. Crie um novo arquivo HTML temporário para testar suas soluções.</p>
+
+            <div class="problema-card-grid">
+                <div class="problema-card">
+                    <h3>Problema 1: Registro de Usuário</h3>
+                    <p>Crie um formulário de registro simples. Ele deve ter campos para:</p>
+                    <ul>
+                        <li>Nome de usuário (texto, obrigatório)</li>
+                        <li>Email (email, obrigatório)</li>
+                        <li>Senha (password, obrigatório)</li>
+                        <li>Botão de "Registrar"</li>
+                    </ul>
+                    <pre><code>
+&lt;!-- Insira seu código HTML aqui para resolver o Problema 1 --&gt;
+                    </code></pre>
+                </div>
+
+                <div class="problema-card">
+                    <h3>Problema 2: Pesquisa de Satisfação</h3>
+                    <p>Crie um pequeno formulário de pesquisa de satisfação. Ele deve perguntar:</p>
+                    <ul>
+                        <li>"Como você avalia nosso serviço?" com opções de rádio: "Excelente", "Bom", "Regular", "Ruim".</li>
+                        <li>Um campo de texto longo para "Comentários adicionais".</li>
+                        <li>Um botão de "Enviar Pesquisa".</li>
+                    </ul>
+                    <pre><code>
+&lt;!-- Insira seu código HTML aqui para resolver o Problema 2 --&gt;
+                    </code></pre>
+                </div>
+
+                <div class="problema-card">
+                    <h3>Problema 3: Pedido Online Simplificado</h3>
+                    <p>Crie um formulário para um pedido de comida online. Ele deve ter:</p>
+                    <ul>
+                        <li>Um campo de texto para o nome do cliente.</li>
+                        <li>Uma lista suspensa (`select`) para escolher um tipo de pizza (ex: "Calabresa", "Marguerita", "Frango com Catupiry").</li>
+                        <li>Checkboxes para adicionar extras (ex: "Borda Recheada", "Refrigerante").</li>
+                        <li>Um botão para "Fazer Pedido".</li>
+                    </ul>
+                    <pre><code>
+&lt;!-- Insira seu código HTML aqui para resolver o Problema 3 --&gt;
+                    </code></pre>
+                </div>
+
+                <div class="problema-card">
+                    <h3>Problema 4: Estrutura Semântica para um Blog Post</h3>
+                    <p>Imagine que você está criando a página de um post de blog. Use as tags semânticas para estruturar:</p>
+                    <ul>
+                        <li>O cabeçalho principal do site (`&lt;header&gt;` com `&lt;nav&gt;` para o menu).</li>
+                        <li>A área de conteúdo principal (`&lt;main&gt;`).</li>
+                        <li>O post do blog em si (`&lt;article&gt;`) com um título (`&lt;h1&gt;`), parágrafos e um rodapé (`&lt;footer&gt;`) com a data de publicação (`&lt;time&gt;`).</li>
+                        <li>Uma barra lateral com "Posts Relacionados" (`&lt;aside&gt;`).</li>
+                        <li>O rodapé geral da página (`&lt;footer&gt;`).</li>
+                    </ul>
+                    <pre><code>
+&lt;!-- Insira seu código HTML aqui para resolver o Problema 4 --&gt;
+                    </code></pre>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Curso de HTML e CSS. Aula 4: HTML Semântico e Formulários.</p>
+        <p><a href="#topo">Voltar ao Topo</a></p>
+    </footer>
+
+</body>
+</html>

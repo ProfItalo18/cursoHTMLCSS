@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 6: Modelo de Caixa - CSS</title>
+    <link rel="stylesheet" href="style.css"> <style>
+        /* Estilos específicos para a página da aula 6 */
+        .aula-container {
+            max-width: 900px;
+            margin: 100px auto 60px auto;
+            padding: 30px;
+            background-color: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
+            animation: fadeInScale 0.8s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            0% { opacity: 0; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .aula-container h1 {
+            color: #00bcd4;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.8em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            border-bottom: 3px solid #e0e0e0;
+            padding-bottom: 20px;
+        }
+
+        .aula-container h2 {
+            color: #343a40;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 2em;
+            border-bottom: 1px solid #ced4da;
+            padding-bottom: 10px;
+        }
+
+        .aula-container h3 {
+            color: #495057;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.6em;
+        }
+
+        .aula-container p {
+            font-size: 1.1em;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .aula-container ul, .aula-container ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .aula-container ul li, .aula-container ol li {
+            margin-bottom: 8px;
+            font-size: 1.05em;
+        }
+
+        .aula-container strong {
+            color: #00bcd4;
+        }
+
+        /* Estilo para blocos de código */
+        .code-example {
+            background-color: #f4f6f8;
+            border-left: 5px solid #00bcd4;
+            padding: 15px 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        .code-example pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .code-example code {
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.95em;
+            color: #333;
+        }
+
+        /* Exemplos visuais do Modelo de Caixa */
+        .box-model-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 40px 0;
+            gap: 30px;
+            background-color: #f8f8f8;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+        }
+
+        .box-example {
+            background-color: #e0f7fa; /* Light cyan */
+            border: 2px solid #00bcd4; /* Cyan */
+            padding: 20px;
+            margin: 30px;
+            text-align: center;
+            font-weight: bold;
+            color: #333;
+            min-width: 150px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .box-example:hover {
+            transform: translateY(-5px);
+        }
+
+        .box-example.content {
+            background-color: #bbdefb; /* Light blue */
+            border-color: #2196f3; /* Blue */
+            padding: 30px;
+            margin: 0; /* Para mostrar o conteúdo base */
+            font-size: 1.2em;
+            color: #000;
+        }
+
+        .box-example.padding {
+            background-color: #c8e6c9; /* Light green */
+            border-color: #4caf50; /* Green */
+            padding: 20px; /* Padding visível */
+            margin: 0;
+        }
+
+        .box-example.border {
+            background-color: #ffccbc; /* Light orange */
+            border: 5px solid #ff5722; /* Orange */
+            padding: 0;
+            margin: 0;
+        }
+
+        .box-example.margin {
+            background-color: #ede7f6; /* Light purple */
+            border: 2px dashed #673ab7; /* Purple */
+            padding: 15px;
+            margin: 40px; /* Margin visível */
+        }
+
+        /* Botão para Quiz */
+        .quiz-button-container {
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 30px;
+        }
+
+        .quiz-button {
+            display: inline-block;
+            background-color: #f44336;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .quiz-button:hover {
+            background-color: #d32f2f;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Seção de Situações-Problema */
+        .problema-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .problema-card {
+            background-color: #fefefe;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .problema-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+        }
+
+        .problema-card h3 {
+            color: #2196f3;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed #e0e0e0;
+            padding-bottom: 10px;
+        }
+
+        .problema-card p {
+            font-size: 1em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .problema-card pre {
+            background-color: #eee;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 0.85em;
+            overflow-x: auto;
+        }
+
+        /* Responsividade */
+        @media screen and (max-width: 768px) {
+            .aula-container {
+                margin: 20px auto;
+                padding: 20px;
+            }
+            .aula-container h1 {
+                font-size: 2.2em;
+            }
+            .aula-container h2 {
+                font-size: 1.8em;
+            }
+            .aula-container h3 {
+                font-size: 1.4em;
+            }
+            .aula-container p {
+                font-size: 1em;
+            }
+            .quiz-button {
+                font-size: 1em;
+                padding: 12px 25px;
+            }
+            .box-model-container {
+                flex-direction: column;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .aula-container h1 {
+                font-size: 1.8em;
+            }
+            .aula-container h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Aula 6: Modelo de Caixa</h1>
+        <nav>
+            <ul>
+                <li><a href="painel.html">Voltar ao Painel</a></li>
+                <li><a href="aula5.html">Aula Anterior</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="aula-container">
+        <h1>Aula 6: Modelo de Caixa - Como os Elementos Ocupam Espaço</h1>
+        <p>No CSS, todo elemento HTML é tratado como uma <strong>caixa retangular</strong>. Entender o <strong>Modelo de Caixa</strong> (Box Model) é fundamental para controlar o espaçamento, o tamanho e o posicionamento dos elementos na sua página. Ele é composto por quatro partes principais: <strong>Conteúdo, Preenchimento (Padding), Borda (Border) e Margem (Margin)</strong>.</p>
+
+        <section>
+            <h2>Anatomia do Modelo de Caixa</h2>
+            <p>Imagine que cada elemento HTML é como uma caixa com várias camadas, como uma cebola. Do centro para fora, temos:</p>
+
+            <div class="box-model-container">
+                <div class="box-example content">Conteúdo</div>
+                <div class="box-example padding">Padding</div>
+                <div class="box-example border">Border</div>
+                <div class="box-example margin">Margin</div>
+            </div>
+
+            <h3>1. Conteúdo (Content)</h3>
+            <ul>
+                <li>É a área central da caixa, onde o <strong>conteúdo real</strong> do elemento é exibido. Pode ser texto, imagens, vídeos, etc.</li>
+                <li>Seu tamanho é controlado pelas propriedades <code>width</code> (largura) e <code>height</code> (altura).</li>
+            </ul>
+            <div class="code-example">
+                <pre><code>
+p {
+    width: 200px; /* Largura do conteúdo */
+    height: 100px; /* Altura do conteúdo */
+    background-color: lightblue;
+}
+                </code></pre>
+            </div>
+
+            <h3>2. Preenchimento (Padding)</h3>
+            <ul>
+                <li>O <strong>espaço entre o conteúdo e a borda</strong> do elemento.</li>
+                <li>É usado para dar "respiro" ao conteúdo, evitando que ele fique colado nas bordas.</li>
+                <li>O padding recebe a mesma cor de fundo do elemento.</li>
+                <li>Pode ser aplicado uniformemente ou em lados específicos (<code>padding-top</code>, <code>padding-right</code>, <code>padding-bottom</code>, <code>padding-left</code>).</li>
+            </ul>
+            <div class="code-example">
+                <pre><code>
+.caixa {
+    padding: 20px; /* 20px em todos os lados */
+    padding-top: 10px; /* 10px em cima */
+    padding-right: 30px; /* 30px à direita */
+    /* Shorthand: top right bottom left */
+    padding: 10px 20px 30px 40px;
+    /* Shorthand: top/bottom left/right */
+    padding: 15px 30px;
+}
+                </code></pre>
+            </div>
+
+            <h3>3. Borda (Border)</h3>
+            <ul>
+                <li>A <strong>linha que envolve o padding e o conteúdo</strong>.</li>
+                <li>Serve para separar visualmente o elemento de outros.</li>
+                <li>Três propriedades principais para borda: <code>border-width</code> (espessura), <code>border-style</code> (tipo da linha, ex: solid, dashed, dotted) e <code>border-color</code> (cor).</li>
+                <li>Assim como o padding, pode ser definida para lados específicos.</li>
+            </ul>
+            <div class="code-example">
+                <pre><code>
+.caixa {
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
+    /* Shorthand: width style color */
+    border: 2px solid #ccc;
+    /* Borda apenas na parte inferior */
+    border-bottom: 1px dashed red;
+}
+                </code></pre>
+            </div>
+
+            <h3>4. Margem (Margin)</h3>
+            <ul>
+                <li>O <strong>espaço externo</strong> do elemento, entre a borda do elemento e os elementos vizinhos.</li>
+                <li>Usado para criar distância entre um elemento e outro.</li>
+                <li>O margin é sempre transparente.</li>
+                <li>Assim como o padding, pode ser aplicado uniformemente ou em lados específicos (<code>margin-top</code>, <code>margin-right</code>, <code>margin-bottom</code>, <code>margin-left</code>).</li>
+                <li><strong>Colapso de Margens:</strong> Margens verticais adjacentes (entre elementos acima/abaixo) se "colapsam", ou seja, a maior margem prevalece, não somam. Margens horizontais (entre elementos lado a lado) se somam normalmente.</li>
+            </ul>
+            <div class="code-example">
+                <pre><code>
+.caixa {
+    margin: 30px; /* 30px em todos os lados */
+    margin-top: 15px; /* 15px em cima */
+    margin-left: auto; /* Centraliza elementos de bloco horizontalmente (com width definido) */
+    margin-right: auto;
+    /* Shorthand: top right bottom left */
+    margin: 5px 10px 15px 20px;
+}
+                </code></pre>
+            </div>
+            <p><strong>Centralizando Elementos de Bloco:</strong> Para centralizar um elemento de bloco horizontalmente, defina uma largura (`width`) para ele e use `margin: auto;` (ou `margin-left: auto; margin-right: auto;`).</p>
+            <div class="code-example">
+                <pre><code>
+.elemento-centralizado {
+    width: 60%; /* Defina uma largura */
+    margin: 0 auto; /* 0px de margem vertical, 'auto' nas laterais */
+    background-color: #f0f8ff;
+    padding: 20px;
+    border: 1px solid #add8e6;
+}
+                </code></pre>
+            </div>
+
+            <h3>Propriedade <code>box-sizing</code>:</h3>
+            <p>Por padrão, `width` e `height` definem o tamanho da **área de conteúdo**. Isso significa que `padding` e `border` são *adicionados* a essa largura/altura, aumentando o tamanho total do elemento.</p>
+            <p>Com <strong><code>box-sizing: border-box;</code></strong>, <code>width</code> e <code>height</code> incluem o padding e a borda. Isso simplifica muito o cálculo de layouts, pois o tamanho total do elemento é exatamente o que você define. **É uma prática recomendada!**</p>
+            <div class="code-example">
+                <pre><code>
+* { /* Aplica-se a todos os elementos */
+    box-sizing: border-box;
+}
+
+.minha-caixa {
+    width: 200px; /* 200px incluindo padding e borda */
+    padding: 20px;
+    border: 5px solid black;
+    /* Conteúdo terá 200 - (20+20) - (5+5) = 150px de largura */
+}
+                </code></pre>
+            </div>
+        </section>
+
+        <hr>
+
+        <div class="quiz-button-container">
+            <h2>Hora do Quiz!</h2>
+            <p>Teste seus conhecimentos sobre o Modelo de Caixa com este quiz rápido!</p>
+            <a href="https://quizizz.com/admin/quiz/YOUR_QUIZ_CODE_AULA6" target="_blank" class="quiz-button">Fazer o Quiz da Aula 6!</a>
+            <p style="font-size: 0.9em; color: #888; margin-top: 15px;">**Lembre-se:** Substitua "YOUR_QUIZ_CODE_AULA6" pelo código real do seu Quizizz!</p>
+        </div>
+
+        <hr>
+
+        <section>
+            <h2>Situações-Problema: Desafios Práticos com o Modelo de Caixa!</h2>
+            <p>Aplique o que aprendeu para resolver os seguintes cenários. Crie um novo arquivo HTML temporário (ex: `desafios-aula6.html`) e um CSS associado para testar suas soluções.</p>
+
+            <div class="problema-card-grid">
+                <div class="problema-card">
+                    <h3>Problema 1: Botão com Respiro</h3>
+                    <p>Você tem um botão e quer que o texto dentro dele tenha um espaço maior até as bordas. Além disso, o botão deve ter uma borda cinza sólida e um bom espaçamento em relação a outros elementos na página.</p>
+                    <p>HTML:</p>
+                    <pre><code>&lt;button class="meu-botao"&gt;Clique Aqui&lt;/button&gt;</code></pre>
+                    <p>CSS:</p>
+                    <pre><code>
+/* Insira seu código CSS aqui para resolver o Problema 1 */
+.meu-botao {
+    /* ... */
+}
+                    </code></pre>
+                </div>
+
+                <div class="problema-card">
+                    <h3>Problema 2: Card de Conteúdo Centralizado</h3>
+                    <p>Crie um "card" (uma div) que contenha um título e um parágrafo. Este card deve ter uma largura fixa de <code>400px</code>, um preenchimento interno de <code>25px</code>, uma borda azul pontilhada de <code>3px</code> e deve ser centralizado horizontalmente na página. Use <code>box-sizing: border-box;</code>.</p>
+                    <p>HTML:</p>
+                    <pre><code>
+&lt;div class="card-central"&gt;
+    &lt;h3&gt;Título do Card&lt;/h3&gt;
+    &lt;p&gt;Este é o conteúdo do card.&lt;/p&gt;
+&lt;/div&gt;
+                    </code></pre>
+                    <p>CSS:</p>
+                    <pre><code>
+/* Insira seu código CSS aqui para resolver o Problema 2 */
+.card-central {
+    /* ... */
+}
+                    </code></pre>
+                </div>
+
+                <div class="problema-card">
+                    <h3>Problema 3: Espaçamento entre Itens de Lista</h3>
+                    <p>Você tem uma lista não ordenada de itens e quer que cada item tenha <code>10px</code> de espaço na parte inferior para separá-los visualmente, mas sem adicionar espaço extra ao último item da lista.</p>
+                    <p>HTML:</p>
+                    <pre><code>
+&lt;ul class="lista-itens"&gt;
+    &lt;li&gt;Item Um&lt;/li&gt;
+    &lt;li&gt;Item Dois&lt;/li&gt;
+    &lt;li&gt;Item Três&lt;/li&gt;
+&lt;/ul&gt;
+                    </code></pre>
+                    <p>CSS:</p>
+                    <pre><code>
+/* Insira seu código CSS aqui para resolver o Problema 3 */
+.lista-itens li {
+    /* ... */
+}
+                    </code></pre>
+                </div>
+
+                <div class="problema-card">
+                    <h3>Problema 4: Imagem com Moldura e Margem</h3>
+                    <p>Insira uma imagem na página. Dê a ela uma largura de <code>250px</code>, um padding de <code>15px</code>, uma borda verde sólida de <code>4px</code> e uma margem de <code>20px</code> em todos os lados para afastá-la de outros elementos.</p>
+                    <p>HTML:</p>
+                    <pre><code>&lt;img src="imagens/foto-paisagem.jpg" alt="Bela paisagem" class="img-moldura"&gt;</code></pre>
+                    <p>(Se não tiver a imagem, use `https://via.placeholder.com/250x150?text=Imagem+com+Moldura`)</p>
+                    <p>CSS:</p>
+                    <pre><code>
+/* Insira seu código CSS aqui para resolver o Problema 4 */
+.img-moldura {
+    /* ... */
+}
+                    </code></pre>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Curso de HTML e CSS. Aula 6: Modelo de Caixa.</p>
+        <p><a href="#topo">Voltar ao Topo</a></p>
+    </footer>
+
+</body>
+</html>

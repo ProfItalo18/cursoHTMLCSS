@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 12: Boas Práticas e Publicação</title>
+    <link rel="stylesheet" href="style.css"> <style>
+        /* Estilos específicos para a página da aula 12 */
+        .aula-container {
+            max-width: 900px;
+            margin: 100px auto 60px auto;
+            padding: 30px;
+            background-color: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
+            animation: fadeInScale 0.8s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            0% { opacity: 0; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .aula-container h1 {
+            color: #00bcd4;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.8em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            border-bottom: 3px solid #e0e0e0;
+            padding-bottom: 20px;
+        }
+
+        .aula-container h2 {
+            color: #343a40;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 2em;
+            border-bottom: 1px solid #ced4da;
+            padding-bottom: 10px;
+        }
+
+        .aula-container h3 {
+            color: #495057;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.6em;
+        }
+
+        .aula-container p {
+            font-size: 1.1em;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .aula-container ul, .aula-container ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .aula-container ul li, .aula-container ol li {
+            margin-bottom: 8px;
+            font-size: 1.05em;
+        }
+
+        .aula-container strong {
+            color: #00bcd4;
+        }
+
+        /* Estilo para blocos de código */
+        .code-example {
+            background-color: #f4f6f8;
+            border-left: 5px solid #00bcd4;
+            padding: 15px 20px;
+            margin: 25px 0;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        .code-example pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .code-example code {
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.95em;
+            color: #333;
+        }
+
+        /* Estilos para exemplos de boas práticas */
+        .good-practice-tip {
+            background-color: #e0f7fa;
+            border-left: 4px solid #00bcd4;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+        }
+        .good-practice-tip h4 {
+            color: #00796B;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+        .good-practice-tip p {
+            font-size: 0.95em;
+            line-height: 1.6;
+            color: #444;
+        }
+
+        /* Botão para Quiz */
+        .quiz-button-container {
+            text-align: center;
+            margin-top: 50px;
+            margin-bottom: 30px;
+        }
+
+        .quiz-button {
+            display: inline-block;
+            background-color: #f44336;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .quiz-button:hover {
+            background-color: #d32f2f;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Seção de Situações-Problema */
+        .problema-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .problema-card {
+            background-color: #fefefe;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.07);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .problema-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+        }
+
+        .problema-card h3 {
+            color: #2196f3;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed #e0e0e0;
+            padding-bottom: 10px;
+        }
+
+        .problema-card p {
+            font-size: 1em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .problema-card pre {
+            background-color: #eee;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 0.85em;
+            overflow-x: auto;
+        }
+
+        /* Responsividade geral da página */
+        @media screen and (max-width: 768px) {
+            .aula-container {
+                margin: 20px auto;
+                padding: 20px;
+            }
+            .aula-container h1 {
+                font-size: 2.2em;
+            }
+            .aula-container h2 {
+                font-size: 1.8em;
+            }
+            .aula-container h3 {
+                font-size: 1.4em;
+            }
+            .aula-container p {
+                font-size: 1em;
+            }
+            .quiz-button {
+                font-size: 1em;
+                padding: 12px 25px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .aula-container h1 {
+                font-size: 1.8em;
+            }
+            .aula-container h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Aula 12: Boas Práticas e Publicação</h1>
+        <nav>
+            <ul>
+                <li><a href="painel.html">Voltar ao Painel</a></li>
+                <li><a href="aula11.html">Aula Anterior</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="aula-container">
+        <h1>Aula 12: Boas Práticas e Publicação - Elevando seu Código e Compartilhando seu Trabalho</h1>
+        <p>Parabéns por chegar até aqui! Nesta aula final, vamos abordar dois tópicos cruciais que separam um "codificador" de um "desenvolvedor profissional": as <b>boas práticas de codificação</b> e os passos para <b>publicar seu site online</b>.</p>
+
+        <section>
+            <h2>Boas Práticas em HTML e CSS</h2>
+            <p>Escrever código limpo, organizado e eficiente não é apenas para os outros lerem; é também para você mesmo no futuro! Boas práticas tornam o código mais fácil de manter, escalar e depurar.</p>
+
+            <h3>1. Estrutura do HTML: Semântica e Acessibilidade</h3>
+            <div class="good-practice-tip">
+                <h4>Use Tags Semânticas</h4>
+                <p>Em vez de usar apenas `&lt;div&gt;` e `&lt;span&gt;` para tudo, utilize tags HTML5 que descrevem o conteúdo: `&lt;header&gt;`, `&lt;nav&gt;`, `&lt;main&gt;`, `&lt;section&gt;`, `&lt;article&gt;`, `&lt;aside&gt;`, `&lt;footer&gt;`. Isso melhora a acessibilidade e o SEO.</p>
+                <div class="code-example">
+                    <pre><code>
+&lt;!-- Ruim --&gt;
+&lt;div id="header"&gt;...&lt;/div&gt;
+&lt;div class="navigation"&gt;...&lt;/div&gt;
+
+&lt;!-- Bom --&gt;
+&lt;header&gt;...&lt;/header&gt;
+&lt;nav&gt;...&lt;/nav&gt;
+                    </code></pre>
+                </div>
+            </div>
+            <div class="good-practice-tip">
+                <h4>Atributos `alt` em Imagens</h4>
+                <p>Sempre forneça descrições significativas nos atributos `alt` para imagens. Isso é crucial para acessibilidade (leitores de tela) e SEO.</p>
+                <div class="code-example">
+                    <pre><code>
+&lt;!-- Ruim --&gt;
+&lt;img src="foto.jpg"&gt;
+
+&lt;!-- Bom --&gt;
+&lt;img src="foto-do-por-do-sol.jpg" alt="Pôr do sol vibrante sobre o oceano com nuvens laranjas"&gt;
+                    </code></pre>
+                </div>
+            </div>
+            <div class="good-practice-tip">
+                <h4>Estrutura Lógica de Títulos</h4>
+                <p>Utilize a hierarquia de títulos (`&lt;h1&gt;` a `&lt;h6&gt;`) de forma lógica e sequencial. Deve haver apenas um `&lt;h1&gt;` por página (o título principal).</p>
+            </div>
+
+            <h3>2. Organização e Estilo do CSS</h3>
+            <div class="good-practice-tip">
+                <h4>Use Classes Significativas</h4>
+                <p>Nomeie suas classes de forma descritiva e consistente (ex: `header-main-nav`, `product-card-title`, `btn-primary`). Evite nomes genéricos (`div1`, `itemA`).</p>
+            </div>
+            <div class="good-practice-tip">
+                <h4>Organize seu CSS</h4>
+                <p>Agrupe as propriedades CSS relacionadas e organize suas regras. Você pode organizar por:</p>
+                <ul>
+                    <li><strong>Seção do site:</strong> `header`, `main`, `footer`, `sidebar`.</li>
+                    <li><strong>Componente:</strong> `button`, `card`, `form`.</li>
+                    <li><strong>Tipos de propriedade:</strong> `layout` (display, position), `box-model` (margin, padding, border), `typography`, `colors`.</li>
+                </ul>
+                <p>Use comentários para seções maiores (ex: `/* --- Seção de Navegação --- */`).</p>
+            </div>
+            <div class="good-practice-tip">
+                <h4>Evite Estilos Inline e `!important`</h4>
+                <p>Estilos inline (`&lt;div style="..."&gt;`) são difíceis de manter. O uso de `!important` quebra a cascata do CSS e deve ser evitado ao máximo.</p>
+            </div>
+            <div class="good-practice-tip">
+                <h4>Comentários e Indentação</h4>
+                <p>Use comentários para explicar código complexo ou decisões de design. Mantenha uma indentação consistente para facilitar a leitura.</p>
+            </div>
+            <div class="good-practice-tip">
+                <h4>Unidades Relativas para Responsividade</h4>
+                <p>Prefira `rem`, `em`, `%`, `vw`, `vh` em vez de pixels fixos para tipografia e dimensões, tornando seu design mais responsivo e escalável.</p>
+            </div>
+
+            <h3>3. Validação de Código</h3>
+            <p>Sempre valide seu HTML e CSS para encontrar erros e garantir que seu código esteja de acordo com os padrões da web.</p>
+            <ul>
+                <li><strong>Validador HTML:</strong> <a href="https://validator.w3.org/" target="_blank">W3C Markup Validation Service</a></li>
+                <li><strong>Validador CSS:</strong> <a href="https://jigsaw.w3.org/css-validator/" target="_blank">W3C CSS Validation Service</a></li>
+            </ul>
+        </section>
+
+        <hr>
+
+        <section>
+            <h2>Publicando seu Site: Colocando-o Online!</h2>
+            <p>Depois de criar e testar seu site localmente, o próximo passo é torná-lo acessível para o mundo! Isso envolve hospedar seus arquivos em um servidor.</p>
+
+            <h3>Passos para Publicar um Site Estático:</h3>
+            <ol>
+                <li>
+                    <h4>Organize seus Arquivos</h4>
+                    <p>Certifique-se de que todos os seus arquivos (HTML, CSS, imagens, etc.) estão na estrutura de pastas correta e que todos os caminhos (`href`, `src`) estão corretos (relativos ou absolutos).</p>
+                    <div class="code-example">
+                        <pre><code>
+meu-projeto/
+├── index.html
+├── painel.html
+├── aula1.html
+├── aula2.html
+├── ...
+├── aula12.html
+├── style.css
+└── imagens/
+    ├── logo.png
+    └── background.jpg
+                        </code></pre>
+                    </div>
+                </li>
+                <li>
+                    <h4>Escolha uma Plataforma de Hospedagem Gratuita (para começar)</h4>
+                    <p>Para projetos simples de HTML/CSS como este, existem ótimas opções gratuitas:</p>
+                    <ul>
+                        <li>
+                            <strong>GitHub Pages:</strong> Excelente para projetos que já estão no GitHub. Você cria um repositório, faz o upload dos arquivos, e o GitHub Pages serve seu site diretamente do repositório.
+                            <ul>
+                                <li><strong>Como fazer:</strong>
+                                    <ol>
+                                        <li>Crie uma conta no <a href="https://github.com/" target="_blank">GitHub</a>.</li>
+                                        <li>Crie um novo repositório (ex: `meu-portfolio`).</li>
+                                        <li>Faça o upload de todos os seus arquivos para este repositório.</li>
+                                        <li>Vá para as "Settings" (Configurações) do repositório, encontre a seção "Pages".</li>
+                                        <li>Escolha a branch `main` (ou `master`) e a pasta `/(root)` ou `/docs` se você tiver uma pasta `docs`.</li>
+                                        <li>Salve. Em alguns minutos, seu site estará acessível em um URL como `[seu-usuario].github.io/[nome-do-repositorio]`.</li>
+                                    </ol>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Netlify:</strong> Outra opção popular e muito fácil de usar. Permite arrastar e soltar sua pasta de projeto ou conectar-se diretamente ao GitHub. Oferece implantação contínua e HTTPS.
+                            <ul>
+                                <li><strong>Como fazer:</strong>
+                                    <ol>
+                                        <li>Crie uma conta no <a href="https://www.netlify.com/" target="_blank">Netlify</a>.</li>
+                                        <li>No dashboard, clique em "Add new site" (Adicionar novo site) &gt; "Deploy manually" (Implantação manual).</li>
+                                        <li>Arraste e solte sua pasta de projeto (a pasta `curso-html-css` completa, por exemplo) para a área indicada.</li>
+                                        <li>O Netlify irá implantar seu site e fornecer um URL automaticamente.</li>
+                                    </ol>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Vercel:</strong> Similar ao Netlify, com uma excelente experiência para desenvolvedores e integração fácil com repositórios Git.
+                            <ul>
+                                <li><strong>Como fazer:</strong> Siga um processo similar ao Netlify, conectando-se ao GitHub ou fazendo o upload da pasta.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <p>Escolha a que você se sentir mais confortável. Para este curso, **GitHub Pages** é uma excelente escolha, pois também o familiariza com o controle de versão.</p>
+                </li>
+                <li>
+                    <h4>Teste seu Site Online</h4>
+                    <p>Após a publicação, acesse seu site pelo URL fornecido e teste-o em diferentes navegadores e dispositivos (use as ferramentas de desenvolvedor do navegador para simular dispositivos móveis).</p>
+                </li>
+            </ol>
+        </section>
+
+        <hr>
+
+        <div class="quiz-button-container">
+            <h2>Hora do Quiz!</h2>
+            <p>Teste seus conhecimentos sobre Boas Práticas e Publicação!</p>
+            <a href="https://quizizz.com/admin/quiz/YOUR_QUIZ_CODE_AULA12" target="_blank" class="quiz-button">Fazer o Quiz da Aula 12!</a>
+            <p style="font-size: 0.9em; color: #888; margin-top: 15px;">**Lembre-se:** Substitua "YOUR_QUIZ_CODE_AULA12" pelo código real do seu Quizizz!</p>
+        </div>
+
+        <hr>
+
+        <section>
+            <h2>Situações-Problema: Desafios Finais!</h2>
+            <p>Estes desafios testarão sua compreensão das boas práticas e do processo de publicação.</p>
+
+            <div class="problema-card-grid">
+                <div class="problema-card">
+                    <h3>Problema 1: Refatorando HTML Semântico</h3>
+                    <p>Dada a seguinte estrutura HTML não semântica, reescreva-a usando as tags HTML5 mais apropriadas.</p>
+                    <p>HTML Atual:</p>
+                    <pre><code>
+&lt;div class="cabecalho"&gt;
+    &lt;div class="logo"&gt;Meu Logo&lt;/div&gt;
+    &lt;div class="links"&gt;
+        &lt;a href="#"&gt;Item1&lt;/a&gt;
+        &lt;a href="#"&gt;Item2&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="conteudo-principal"&gt;
+    &lt;div class="secao-artigo"&gt;
+        &lt;div class="titulo-artigo"&gt;Título&lt;/div&gt;
+        &lt;p&gt;Parágrafo do artigo.&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+                    </code></pre>
+                    <p>Seu Código Refatorado:</p>
+                    <pre><code>
+&lt;!-- Insira seu código HTML semântico aqui para resolver o Problema 1 --&gt;
+                    </code></pre>
+                </div>
+
+                <div class="problema-card">
+                    <h3>Problema 2: Organizando CSS</h3>
+                    <p>Você tem um arquivo CSS desorganizado. Proponha uma estrutura de organização para as classes listadas, agrupando-as logicamente e adicionando comentários.</p>
+                    <p>CSS Desorganizado:</p>
+                    <pre><code>
+.card-title { font-size: 1.5em; }
+.btn-primary { background-color: blue; padding: 10px; }
+.header-logo { width: 100px; }
+.card-image { max-width: 100%; }
+.footer-text { text-align: center; }
+.btn-secondary { background-color: gray; }
+.header-nav { display: flex; }
+.card-body { padding: 15px; }
+                    </code></pre>
+                    <p>Seu Código CSS Organizado:</p>
+                    <pre><code>
+/* Insira seu código CSS organizado aqui para resolver o Problema 2 */
+                    </code></pre>
+                </div>
+
+                <div class="problema-card">
+                    <h3>Problema 3: Publicando seu Portfólio</h3>
+                    <p>Considerando que você terminou seu portfólio (o `index.html` e todas as aulas), descreva os passos práticos que você tomaria para publicá-lo usando o GitHub Pages. Quais arquivos você precisaria fazer upload e para onde?</p>
+                    <p>Responda aqui:</p>
+                    <pre><code>
+/* Descreva os passos para publicar no GitHub Pages. */
+                    </code></pre>
+                </div>
+
+                <div class="problema-card">
+                    <h3>Problema 4: Verificação de Acessibilidade e SEO</h3>
+                    <p>Você criou um site com várias imagens e links. Liste duas boas práticas importantes para garantir que suas imagens e links contribuam para a acessibilidade e o SEO.</p>
+                    <p>Responda aqui:</p>
+                    <pre><code>
+/* Descreva duas boas práticas para imagens e links. */
+                    </code></pre>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Curso de HTML e CSS. Aula 12: Boas Práticas e Publicação.</p>
+        <p><a href="#topo">Voltar ao Topo</a></p>
+    </footer>
+
+</body>
+</html>

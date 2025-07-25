@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto 2 - Módulo 2: Layout Responsivo de Cartões</title>
+    <link rel="stylesheet" href="style.css"> 
+    <style>
+        /* Estilos específicos para a página do projeto */
+        .project-container {
+            max-width: 900px;
+            margin: 100px auto 60px auto;
+            padding: 30px;
+            background-color: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
+            animation: fadeInScale 0.8s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            0% { opacity: 0; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .project-container h1 {
+            color: #00bcd4;
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2.8em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            border-bottom: 3px solid #e0e0e0;
+            padding-bottom: 20px;
+        }
+
+        .project-container h2 {
+            color: #343a40;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 2em;
+            border-bottom: 1px solid #ced4da;
+            padding-bottom: 10px;
+        }
+
+        .project-container h3 {
+            color: #495057;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.6em;
+        }
+
+        .project-container p {
+            font-size: 1.1em;
+            line-height: 1.7;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .project-container ul, .project-container ol {
+            margin-left: 25px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .project-container ul li, .project-container ol li {
+            margin-bottom: 8px;
+            font-size: 1.05em;
+        }
+
+        .project-container strong {
+            color: #00bcd4;
+        }
+
+        .call-to-action-box {
+            background-color: #e0f2f7;
+            border: 1px solid #b3e5fc;
+            padding: 25px;
+            margin-top: 50px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .call-to-action-box h3 {
+            color: #007bb6;
+            margin-top: 0;
+            font-size: 1.8em;
+        }
+
+        .call-to-action-box p {
+            font-size: 1.1em;
+            margin-bottom: 25px;
+        }
+
+        .start-button {
+            display: inline-block;
+            background-color: #28a745;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .start-button:hover {
+            background-color: #218838;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsividade */
+        @media screen and (max-width: 768px) {
+            .project-container {
+                margin: 20px auto;
+                padding: 20px;
+            }
+            .project-container h1 {
+                font-size: 2.2em;
+            }
+            .project-container h2 {
+                font-size: 1.8em;
+            }
+            .project-container h3 {
+                font-size: 1.4em;
+            }
+            .project-container p {
+                font-size: 1em;
+            }
+            .start-button {
+                font-size: 1em;
+                padding: 12px 25px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .project-container h1 {
+                font-size: 1.8em;
+            }
+            .project-container h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Proposta do Projeto 2: Módulo 2</h1>
+        <nav>
+            <ul>
+                <li><a href="painel.html">Voltar ao Painel</a></li>
+                <li><a href="projetos.html">Ver Todos os Projetos</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="project-container">
+        <h1>Projeto 2: Módulo 2 - Criando um Layout Responsivo de Cartões</h1>
+        <p>Este projeto foca na sua habilidade de construir layouts complexos e responsivos usando as ferramentas mais poderosas do CSS. Você criará uma página web que exibe uma coleção de "cartões" (cards), como os que você vê em sites de produtos, notícias ou portfólios. O grande desafio será fazer com que esses cartões se organizem de forma fluida em diferentes tamanhos de tela.</p>
+
+        <section>
+            <h2>Objetivo do Projeto</h2>
+            <p>O objetivo principal é que você demonstre o domínio dos seguintes conceitos do Módulo 2:</p>
+            <ul>
+                <li>Entendimento e aplicação avançada do **Modelo de Caixa** (`margin`, `padding`, `border`, `box-sizing`).</li>
+                <li>Uso do **Posicionamento Básico** (`static`, `relative`, `absolute`, `fixed`) quando necessário para elementos específicos.</li>
+                <li>Criação de layouts flexíveis e responsivos utilizando **Flexbox**.</li>
+                <li>(Opcional, mas altamente recomendado): Implementação de layouts complexos usando **CSS Grid**.</li>
+                <li>Domínio de **Media Queries** para criar breakpoints e adaptar o layout para dispositivos móveis, tablets e desktops.</li>
+                <li>Manter a **semântica do HTML** e a **organização do CSS**.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Requisitos Essenciais</h2>
+            <p>Sua página de cartões deve conter:</p>
+            <ol>
+                <li>
+                    <h3>Estrutura Básica (`index.html` ou `cards.html`)</h3>
+                    <ul>
+                        <li>Uma página HTML com a estrutura básica (`&lt;!DOCTYPE html&gt;`, `&lt;html&gt;`, `&lt;head&gt;`, `&lt;body&gt;`).</li>
+                        <li>Um **cabeçalho** (`&lt;header&gt;`) com um título principal (`&lt;h1&gt;`) e uma barra de navegação simples (`&lt;nav&gt;`).</li>
+                        <li>Uma **seção principal** (`&lt;main&gt;` ou `&lt;section&gt;`) que contenha o contêiner dos cartões.</li>
+                        <li>Um **rodapé** (`&lt;footer&gt;`) com informações de copyright.</li>
+                    </ul>
+                </li>
+                <li>
+                    <h3>Layout dos Cartões</h3>
+                    <ul>
+                        <li>Crie um mínimo de **4 a 6 cartões** (`&lt;div class="card"&gt;` ou `&lt;article class="card"&gt;`).</li>
+                        <li>Cada cartão deve conter:
+                            <ul>
+                                <li>Uma imagem (`&lt;img&gt;`).</li>
+                                <li>Um título (`&lt;h3&gt;`).</li>
+                                <li>Um parágrafo de descrição (`&lt;p&gt;`).</li>
+                                <li>Um botão ou link (`&lt;button&gt;` ou `&lt;a&gt;`).</li>
+                            </ul>
+                        </li>
+                        <li>Utilize **Flexbox** para organizar o conteúdo dentro de cada cartão (ex: imagem acima do texto, botão no final).</li>
+                        <li>Utilize **Flexbox** ou **CSS Grid** para organizar os cartões dentro de um contêiner principal.</li>
+                    </ul>
+                </li>
+                <li>
+                    <h3>Responsividade (o ponto crucial do projeto)</h3>
+                    <ul>
+                        <li>Em telas de **desktops grandes** (ex: acima de 1200px), os cartões devem ter 4 colunas.</li>
+                        <li>Em telas de **desktops/laptops menores** (ex: entre 992px e 1199px), os cartões devem ter 3 colunas.</li>
+                        <li>Em telas de **tablets** (ex: entre 768px e 991px), os cartões devem ter 2 colunas.</li>
+                        <li>Em telas de **dispositivos móveis** (ex: abaixo de 767px), os cartões devem ter 1 coluna e ocupar quase toda a largura disponível.</li>
+                        <li>Utilize **Media Queries** (`@media`) para implementar esses breakpoints e mudar o layout do grid/flexbox.</li>
+                    </ul>
+                </li>
+                <li>
+                    <h3>Estilização e Interatividade</h3>
+                    <ul>
+                        <li>Aplique estilos visuais consistentes e atraentes (cores, fontes, sombras, bordas arredondadas para os cartões).</li>
+                        <li>Adicione efeitos de `hover` nos cartões (ex: uma leve elevação com `transform: translateY()`, ou uma mudança de sombra).</li>
+                        <li>Garanta que o `box-sizing: border-box;` esteja aplicado globalmente (ou nos elementos necessários) para facilitar o cálculo das dimensões.</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>Entrega do Projeto</h2>
+            <p>Para entregar seu projeto finalizado, siga os passos abaixo:</p>
+            <ol>
+                <li>**Organização:** Reúna todos os seus arquivos (HTML, CSS e quaisquer pastas de imagens) em uma única pasta (ex: <code>layout-cards-modulo2</code>).</li>
+                <li>**GitHub:** Faça o upload completo desta pasta para um repositório que você criar no **GitHub**.</li>
+                <li>**Publicação:** Publique seu site online utilizando o serviço gratuito **GitHub Pages**.</li>
+                <li>**Compartilhamento:** Compartilhe o **link público** do seu site.</li>
+                <li>(Opcional, mas recomendado): Adicione um pequeno arquivo <code>README.md</code> na raiz do seu repositório GitHub explicando brevemente o projeto, as tecnologias usadas e os desafios enfrentados, especialmente em relação à responsividade.</li>
+            </ol>
+            <p>A atenção aos detalhes na responsividade e na organização do seu código CSS será crucial para a avaliação deste projeto.</p>
+        </section>
+
+        <div class="call-to-action-box">
+            <h3>Pronto para o Desafio do Layout Responsivo?</h3>
+            <p>Este projeto vai solidificar seu conhecimento em CSS e te preparar para criar interfaces web adaptáveis e profissionais!</p>
+            <a href="projetos.html" class="start-button">Voltar à Página de Projetos</a>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Curso de HTML e CSS. Projeto 2 - Módulo 2.</p>
+        <p><a href="#topo">Voltar ao Topo</a></p>
+    </footer>
+
+</body>
+</html>
