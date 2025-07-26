@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login de Usuário</title>
+    <link rel="stylesheet" href="style.css"> <style>
+        /* Estilos específicos para a página de login */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f7f6;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Garante que o footer vá para o final */
+        }
+
+        header {
+            background-color: #00bcd4;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8em;
+        }
+
+        header nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        header nav ul li {
+            margin-left: 20px;
+        }
+
+        header nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        header nav ul li a:hover {
+            color: #e0f7fa;
+        }
+
+        main {
+            flex-grow: 1; /* Faz o main ocupar o espaço restante */
+        }
+
+        .auth-container {
+            max-width: 500px;
+            margin: 100px auto 60px auto;
+            padding: 30px;
+            background-color: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            border-radius: 12px;
+            animation: fadeInScale 0.8s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            0% { opacity: 0; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .auth-container h1 {
+            color: #00bcd4;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 15px;
+        }
+
+        .auth-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #495057;
+        }
+
+        .auth-form input[type="email"],
+        .auth-form input[type="password"] {
+            width: calc(100% - 20px); /* 100% menos o padding */
+            padding: 12px 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            font-size: 1em;
+            box-sizing: border-box; /* Inclui padding na largura */
+        }
+
+        .auth-form button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #007bff; /* Cor azul para login */
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .auth-form button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .auth-container p.register-link {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 0.95em;
+            color: #666;
+        }
+
+        .auth-container p.register-link a {
+            color: #28a745; /* Cor verde para registro */
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .auth-container p.register-link a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: #dc3545; /* Vermelho para mensagens de erro */
+            text-align: center;
+            margin-bottom: 15px;
+            font-weight: bold;
+            display: none; /* Escondido por padrão */
+        }
+
+        footer {
+            background-color: #343a40;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 0.9em;
+            margin-top: auto; /* Empurra o footer para o final da página */
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        footer a {
+            color: #00bcd4;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsividade */
+        @media screen and (max-width: 768px) {
+            .auth-container {
+                margin: 50px auto;
+                padding: 20px;
+            }
+            .auth-container h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Login de Usuário</h1>
+        <nav>
+            <ul>
+                <li><a href="painel.html">Voltar ao Painel</a></li>
+                <li><a href="index.html">Página Inicial</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="auth-container">
+        <h1>Acessar Conta</h1>
+        <p class="error-message" id="errorMessage">Email ou senha incorretos!</p>
+        <form class="auth-form" id="loginForm">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Senha:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Entrar</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Curso de HTML e CSS.</p>
+        <p><a href="#topo">Voltar ao Topo</a></p>
+    </footer>
+
+    <script>
+        // --- INÍCIO DO CÓDIGO JAVASCRIPT ---
+
+        // Dados de usuários simulados (em um sistema real, viriam de um banco de dados)
+        const users = [
+            { email: 'usuario@exemplo.com', password: 'senha123' },
+            { email: 'admin@exemplo.com', password: 'admin' },
+            { email: 'teste@teste.com', password: '123' }
+        ];
+
+        const loginForm = document.getElementById('loginForm');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const errorMessage = document.getElementById('errorMessage');
+
+        loginForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Impede o envio padrão do formulário (que recarregaria a página)
+
+            const email = emailInput.value;
+            const password = passwordInput.value;
+
+            // Simula a verificação de credenciais
+            const foundUser = users.find(user => user.email === email && user.password === password);
+
+            if (foundUser) {
+                // Login bem-sucedido (na simulação)
+                errorMessage.style.display = 'none'; // Esconde a mensagem de erro
+                alert('Login bem-sucedido! Redirecionando para o painel...'); // Mensagem de sucesso
+                
+                // Em um sistema real, você criaria uma sessão aqui.
+                // Por exemplo, usando localStorage para simular:
+                localStorage.setItem('loggedInUser', email); 
+
+                // Redireciona para a página do painel
+                window.location.href = 'index.html'; 
+            } else {
+                // Login falhou
+                errorMessage.textContent = 'Email ou senha incorretos. Tente novamente.';
+                errorMessage.style.display = 'block'; // Mostra a mensagem de erro
+                passwordInput.value = ''; // Limpa o campo da senha para nova tentativa
+            }
+        });
+
+        // --- FIM DO CÓDIGO JAVASCRIPT ---
+    </script>
+
+</body>
+</html>

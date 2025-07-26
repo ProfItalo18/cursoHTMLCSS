@@ -1,7 +1,7 @@
 # 🚀 Curso de HTML e CSS: Projetos Práticos
 
 <p align="center">
-  <img src="img/Banner.png" alt="Banner do Curso de HTML e CSS">
+  <img src="./images/banner-html-css.png" alt="Banner do Curso de HTML e CSS">
 </p>
 
 ## 📘 Sobre o Curso
